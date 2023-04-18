@@ -1,0 +1,42 @@
+﻿<Application x:Class="Marathon.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Marathon"
+             StartupUri="AllWindow/MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="TextBlock" x:Key="mainTextBlock">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="mainTextBox">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="headerTextBlock">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="FontFamily" Value="Open Sans Semibold"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="#FF505050"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Width" Value="60"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="bigButton">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Height" Value="65"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="descriptionTextBlock">
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Foreground" Value="#FF505050"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>

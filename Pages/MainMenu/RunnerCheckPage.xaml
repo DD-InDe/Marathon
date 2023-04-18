@@ -1,0 +1,17 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.RunnerCheckPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages.MainMenu"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RunnerCheckPage">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Button x:Name="LoginButton" Click="LoginButton_Click" Style="{StaticResource bigButton}" FontStyle="Italic">Я участвовал раннее</Button>
+            <Button x:Name="RegistButton" Click="RegistButton_Click" Style="{StaticResource bigButton}" FontStyle="Italic">Я новый участник</Button>
+        </StackPanel>
+    </Grid>
+</Page>

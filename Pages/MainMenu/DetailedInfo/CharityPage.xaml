@@ -1,0 +1,34 @@
+﻿<Page x:Class="Marathon.Pages.CharityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CharityPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+            <TextBlock Style="{StaticResource headerTextBlock}">Список благотворительных организаций</TextBlock>
+            <TextBlock Width="550" Style="{StaticResource descriptionTextBlock}">Это - список всех благотворительных учреждений, которые поддерживаются в Marathon Skills 2023. Спасибо за помощь вы поддерживаете их, спонсируя бегунов!
+            </TextBlock>
+            <ListView Width="750" Height="280" x:Name="CharityListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!--логотип-->
+                            <Image VerticalAlignment="Top" Margin="10" Source="{Binding CharityLogoImage}" Width="130" Height="100"></Image>
+                            <StackPanel Orientation="Vertical">
+                                <!--название-->
+                                <TextBlock Style="{StaticResource mainTextBlock}" FontSize="25" Text="{Binding CharityName}"></TextBlock>
+                                <!--описание-->
+                                <TextBlock Width="500" Style="{StaticResource mainTextBlock}" TextWrapping="Wrap" Text="{Binding CharityDescription}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

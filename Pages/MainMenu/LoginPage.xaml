@@ -1,0 +1,35 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Авторизация">
+
+
+    <Grid>
+        <StackPanel Margin="15" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource headerTextBlock}">Форма авторизации</TextBlock>
+            <TextBlock FontSize="16" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource mainTextBlock}" Width="600">Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль.</TextBlock>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--названия-->
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="10" HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Email:</TextBlock>
+                    <TextBlock Margin="10" HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Password:</TextBlock>
+                </StackPanel>
+                <!--поля-->
+                <StackPanel Orientation="Vertical">
+                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10"></TextBox>
+                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10"></TextBox>
+                    <!--кнопки-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="LoginButton" Click="LoginButton_Click" Margin="10">Войти</Button>
+                        <Button x:Name="CancelButton" Click="CancelButton_Click" Margin="10">Отмена</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
