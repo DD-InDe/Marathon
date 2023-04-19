@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marathon.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,30 @@ namespace Marathon.Pages.MainMenu
         public RunnerRegPage()
         {
             InitializeComponent();
+            GenderComboBox.ItemsSource = DB.entities.Gender;
+            CountryComboBox.ItemsSource = DB.entities.Country;
         }
 
-        private void ComboBox_PreviewStylusSystemGesture(object sender, StylusSystemGestureEventArgs e)
+        private void RegButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (EmailTextBox.Text != null && PasswordTextBox.Text != null && PasswordRepeatTextBox.Text != null && FirstNameTextBox.Text != null
+                && LastNameTextBox.Text != null && GenderComboBox.SelectedItem != null && CountryComboBox.SelectedItem != null)
+            {
+
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GenderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

@@ -23,6 +23,6 @@
         <Button Grid.Row="0" HorizontalAlignment="Right" x:Name="ExitButton" Click="ExitButton_Click">Выйти</Button>
         <!--Нижняя шапка-->
         <TextBlock VerticalAlignment="Center" x:Name="TimeTextBlock" FontWeight="Medium" FontSize="14" HorizontalAlignment="Center" Style="{StaticResource mainTextBlock}" Foreground="White" Grid.Row="2"></TextBlock>
-        <Frame x:Name="mainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="mainFrame_ContentRendered"></Frame>
+        <Frame x:Name="mainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"></Frame>
     </Grid>
 </Window>
