@@ -32,7 +32,7 @@ namespace Marathon.Pages.MainMenu
 
         private void RegistButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new RunnerRegPage());
         }
     }
 }

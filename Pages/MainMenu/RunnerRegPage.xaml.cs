@@ -101,12 +101,17 @@ namespace Marathon.Pages.MainMenu
 
         private void VisibleButton_Click(object sender, RoutedEventArgs e)
         {
-
+            VisibleStackPanel.Visibility = Visibility.Collapsed;
+            HiddenStackPanel.Visibility = Visibility.Visible;
         }
 
         private void CollapsedButton_Click(object sender, RoutedEventArgs e)
         {
-
+            VisibleStackPanel.Visibility = Visibility.Visible;
+            HiddenStackPanel.Visibility = Visibility.Collapsed;
         }
+
+        private void VisPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e) => PasswordTextBox.Password = VisPasswordTextBox.Text;
+        private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e) => VisPasswordTextBox.Text = PasswordTextBox.Password;
     }
 }
