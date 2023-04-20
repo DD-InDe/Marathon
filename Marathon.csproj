@@ -297,6 +297,8 @@
       <DependentUpon>Context.edmx</DependentUpon>
       <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\close_eye .png" />
+    <Resource Include="Resources\open_eye .png" />
     <Resource Include="Resources\photo_2023-04-17_15-46-42.jpg" />
     <Resource Include="Resources\info_logo.png" />
   </ItemGroup>
