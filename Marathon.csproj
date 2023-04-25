@@ -141,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainMenu\MatathonRegPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu\RunnerCheckPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +236,9 @@
     <Compile Include="Pages\MainMenu\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainMenu\MatathonRegPage.xaml.cs">
+      <DependentUpon>MatathonRegPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainMenu\RunnerCheckPage.xaml.cs">
       <DependentUpon>RunnerCheckPage.xaml</DependentUpon>
     </Compile>
@@ -297,6 +304,7 @@
       <DependentUpon>Context.edmx</DependentUpon>
       <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\None.png" />
     <Resource Include="Resources\close_eye.png" />
     <Resource Include="Resources\open_eye.png" />
     <Resource Include="Resources\photo_2023-04-17_15-46-42.jpg" />

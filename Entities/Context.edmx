@@ -112,6 +112,7 @@
           <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="RunnerImage" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Sponsorship">
           <Key>
@@ -553,6 +554,7 @@
           <NavigationProperty Name="Gender1" Relationship="Self.FK__Runner__Gender__412EB0B6" FromRole="Runner" ToRole="Gender" />
           <NavigationProperty Name="Registration" Relationship="Self.FK__Registrat__Runne__45F365D3" FromRole="Runner" ToRole="Registration" />
           <NavigationProperty Name="User" Relationship="Self.FK__Runner__Email__403A8C7D" FromRole="Runner" ToRole="User" />
+          <Property Name="RunnerImage" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Sponsorship">
           <Key>
@@ -979,6 +981,7 @@
           <EntitySetMapping Name="Runner">
             <EntityTypeMapping TypeName="MarathonModel.Runner">
               <MappingFragment StoreEntitySet="Runner">
+                <ScalarProperty Name="RunnerImage" ColumnName="RunnerImage" />
                 <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />

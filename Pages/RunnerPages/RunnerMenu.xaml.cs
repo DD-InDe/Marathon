@@ -26,7 +26,10 @@ namespace Marathon.Pages
         public RunnerMenu(User user)
         {
             InitializeComponent();
+            runner = DB.entities.Runner.Where(c=>c.User.Email == user.Email) as Runner;
         }
+
+        Runner runner;
 
         private void ContactsButton_Click(object sender, RoutedEventArgs e)
         {

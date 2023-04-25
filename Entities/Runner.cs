@@ -25,6 +25,7 @@ namespace Marathon.Entities
         public string Gender { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string CountryCode { get; set; }
+        public byte[] RunnerImage { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Gender Gender1 { get; set; }

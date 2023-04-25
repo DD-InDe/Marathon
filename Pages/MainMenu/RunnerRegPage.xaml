@@ -46,16 +46,16 @@
                         <olen:WatermarkPasswordBox x:Name="PasswordRepeatTextBox" HorizontalAlignment="Left" Style="{StaticResource WPasswordBox}" Watermark="повторите пароль"></olen:WatermarkPasswordBox>
                         <olen:WatermarkTextBox x:Name="FirstNameTextBox" HorizontalAlignment="Left" Style="{StaticResource mainWTextBox}" Watermark="введите Ваше имя"></olen:WatermarkTextBox>
                         <olen:WatermarkTextBox x:Name="LastNameTextBox" HorizontalAlignment="Left" Style="{StaticResource mainWTextBox}" Watermark="введите Вашу фамилию"></olen:WatermarkTextBox>
-                        <olen:WatermarkComboBox x:Name="GenderComboBox" SelectionChanged="GenderComboBox_SelectionChanged" DisplayMemberPath="Gender" HorizontalAlignment="Left" Style="{StaticResource WComboBox}" Watermark="выберите пол"></olen:WatermarkComboBox>
+                        <olen:WatermarkComboBox x:Name="GenderComboBox" SelectionChanged="GenderComboBox_SelectionChanged" DisplayMemberPath="Gender1" HorizontalAlignment="Left" Style="{StaticResource WComboBox}" Watermark="выберите пол"></olen:WatermarkComboBox>
                     </StackPanel>
                 </StackPanel>
                 <!--правое поле-->
                 <StackPanel Orientation="Vertical">
-                    <Image x:Name="RunnerPhoto" Margin="8" HorizontalAlignment="Right" Width="80" Height="100"></Image>
-                    <TextBlock Margin="5,0,0,2" Style="{StaticResource mainTextBlock}">Фото файл:</TextBlock>
+                    <Image x:Name="RunnerPhoto" Margin="8" HorizontalAlignment="Right" Width="80" Height="100" Source="{Binding }"></Image>
+                    <TextBlock Margin="5,2,0,2" Style="{StaticResource mainTextBlock}">Фото файл:</TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <olen:WatermarkTextBox Style="{StaticResource mainWTextBox}" Watermark="Photo_logo.jpg"></olen:WatermarkTextBox>
-                        <Button HorizontalAlignment="Right" Margin="5" Width="90" Height="20">Просмотр...</Button>
+                        <olen:WatermarkTextBox x:Name="ImagePathTextBox" Style="{StaticResource mainWTextBox}" Watermark="Photo_logo.jpg" KeyDown="WatermarkTextBox_KeyDown" ></olen:WatermarkTextBox>
+                        <Button x:Name="ExplorerButton" Click="ExplorerButton_Click" HorizontalAlignment="Right" Margin="5" Width="90" Height="20">Просмотр...</Button>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--название полей-->
@@ -65,7 +65,7 @@
                         </StackPanel>
                         <!--поля-->
                         <StackPanel Orientation="Vertical">
-                            <olen:WatermarkTextBox x:Name="DateTextBox" Watermark="гггг.мм.дд" Width="60" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left" ></olen:WatermarkTextBox>
+                            <olen:WatermarkTextBox x:Name="DateTextBox" Watermark="гггг.мм.дд" Width="70" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left" ></olen:WatermarkTextBox>
                             <olen:WatermarkComboBox x:Name="CountryComboBox" SelectionChanged="CountryComboBox_SelectionChanged" DisplayMemberPath="CountryName" HorizontalAlignment="Left" Margin="3.5,5,3.5,3.5" Style="{StaticResource WComboBox}" Watermark="выберите страну"></olen:WatermarkComboBox>
                         </StackPanel>
                     </StackPanel>

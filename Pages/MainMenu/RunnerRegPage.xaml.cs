@@ -1,6 +1,8 @@
 ﻿using Marathon.Entities;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +40,7 @@ namespace Marathon.Pages.MainMenu
                 {
                     if (DB.entities.User.FirstOrDefault(c => c.Email == EmailTextBox.Text) == null)
                     {
-                        if (PasswordTextBox.Text.Length > 6 && PasswordCharCheck(PasswordTextBox.Text) && PasswordNumCheck(PasswordTextBox.Text) && PasswordSymCheck(PasswordTextBox.Text))
+                        if (PasswordTextBox.Text.Length > 6 && PasswordCharCheck(PasswordTextBox.Password) && PasswordNumCheck(PasswordTextBox.Password) && PasswordSymCheck(PasswordTextBox.Password))
                         {
                             User user = new User();
                             Runner runner = new Runner();
@@ -48,29 +50,37 @@ namespace Marathon.Pages.MainMenu
                             user.FirstName = FirstNameTextBox.Text;
                             user.LastName = LastNameTextBox.Text;
                             user.RoleId = "R";
+                            DB.entities.User.Add(user);
 
-                            runner.Email = user.Email;
+                            runner.Email = EmailTextBox.Text;
                             runner.Gender1 = gender;
                             runner.DateOfBirth = Convert.ToDateTime(DateTextBox.Text);
                             runner.CountryCode = country.CountryCode;
+                            runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
+                            DB.entities.Runner.Add(runner);
 
                             DB.entities.SaveChanges();
+                            NavigationService.Navigate(new MatathonRegPage(runner));
                         }
+                        else
+                            MessageBox.Show("Пароль не соответсвует всем требованиям!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                    else
+                        MessageBox.Show("Эта почта уже используется!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                else
+                    MessageBox.Show("Почта введена неверно!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else
+                MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         Gender gender;
         Country country;
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
 
         private void GenderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => gender = GenderComboBox.SelectedItem as Gender;
-
         private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => country = CountryComboBox.SelectedItem as Country;
 
         private bool EmailCheck(string email)
@@ -104,7 +114,6 @@ namespace Marathon.Pages.MainMenu
             VisibleStackPanel.Visibility = Visibility.Collapsed;
             HiddenStackPanel.Visibility = Visibility.Visible;
         }
-
         private void CollapsedButton_Click(object sender, RoutedEventArgs e)
         {
             VisibleStackPanel.Visibility = Visibility.Visible;
@@ -113,5 +122,28 @@ namespace Marathon.Pages.MainMenu
 
         private void VisPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e) => PasswordTextBox.Password = VisPasswordTextBox.Text;
         private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e) => VisPasswordTextBox.Text = PasswordTextBox.Password;
+
+        private void ExplorerButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Image | *.jpg; *.png";
+
+            if (fileDialog.ShowDialog() == true)
+            {
+                RunnerPhoto.DataContext = File.ReadAllBytes(fileDialog.FileName);
+            }
+        }
+
+        private void WatermarkTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                FileInfo fileInfo = new FileInfo(ImagePathTextBox.Text.Trim('"'));
+                if (fileInfo.Extension == ".jpg" || fileInfo.Extension == ".png")
+                    RunnerPhoto.DataContext = File.ReadAllBytes(ImagePathTextBox.Text.Trim('"'));
+                else
+                    MessageBox.Show("Файл не соответсвует расширению!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

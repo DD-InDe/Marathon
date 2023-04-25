@@ -13,7 +13,7 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Style="{StaticResource headerTextBlock}">Спонсор бегуна</TextBlock>
             <TextBlock Width="550" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource mainTextBlock}">Пожалуйста выберите бегуна, которого вы хотели бы спонсировать и сумму, которую вы хотели бы спонсировать. Спасибо за вашу поддержку бегунов и их благотворительных учреждений.</TextBlock>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="10">
                 <!--Инфа о спонсоре-->
                 <StackPanel Orientation="Vertical">
                     <TextBlock Style="{StaticResource headerTextBlock}"  FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Информация о Спонсоре</TextBlock>
@@ -21,16 +21,16 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Ваше имя:</TextBlock>
                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Бегун:</TextBlock>
-                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Имя на карте:</TextBlock>
+                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Карта:</TextBlock>
                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Номер карты:</TextBlock>
                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Срок действия:</TextBlock>
                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">CVC:</TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <!--имя-->
-                            <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="5" Width="150"></TextBox>
+                            <olen:WatermarkTextBox x:Name="NameTextBox" Watermark="введите Ваше имя" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
                             <!--бегун-->
-                            <ComboBox x:Name="RunnerComboBox" SelectionChanged="RunnerComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="5" Width="150">
+                            <olen:WatermarkComboBox x:Name="RunnerComboBox" SelectionChanged="RunnerComboBox_SelectionChanged" Watermark="выберите бегуна" Style="{StaticResource WComboBox}" Width="150">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
@@ -45,15 +45,15 @@
                                         </TextBlock>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            </olen:WatermarkComboBox>
                             <!--имя на карте-->
-                            <TextBox x:Name="NameOnCard" HorizontalAlignment="Left" Margin="5" Width="150"></TextBox>
+                            <olen:WatermarkTextBox x:Name="NameOnCard" Style="{StaticResource mainWTextBox}" Watermark="введите имя на карте"></olen:WatermarkTextBox>
                             <!--номер карты-->
-                            <olen:MaskedTextBox Mask="0000  0000  0000  0000" CaretIndex="0" x:Name="CardNumber" HorizontalAlignment="Left" Margin="5" Width="150"></olen:MaskedTextBox>
+                            <olen:MaskedTextBox Mask="0000  0000  0000  0000" CaretIndex="0" x:Name="CardNumber" VerticalContentAlignment="Center" Margin="4,2.5,4,2.5" Width="150" Height="24" FontSize="12"></olen:MaskedTextBox>
                             <!--Срок действия карты-->
-                            <olen:MaskedTextBox Mask="00 / 00" x:Name="CardValidity" Width="40" TextAlignment="Center" HorizontalAlignment="Left" Margin="5"></olen:MaskedTextBox>
+                            <olen:MaskedTextBox Mask="00 / 00" x:Name="CardValidity" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="4,2.5,4,2.5" Width="40" Height="24" FontSize="12"></olen:MaskedTextBox>
                             <!--cvc-->
-                            <TextBox x:Name="CVC" HorizontalAlignment="Left" MaxLength="3" TextAlignment="Center" Margin="5" Width="30"></TextBox>
+                            <olen:WatermarkTextBox x:Name="CVC" HorizontalAlignment="Left" MaxLength="3" Width="30" VerticalContentAlignment="Center" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -70,11 +70,11 @@
                     </StackPanel>
                     <TextBlock Style="{StaticResource headerTextBlock}" FontSize="16" FontWeight="Bold">Сумма пожертвования</TextBlock>
                     <!--Вывод суммы-->
-                    <TextBlock HorizontalAlignment="Center" x:Name="SumTextBlock" FontSize="35" Margin="5" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" x:Name="SumTextBlock" FontSize="40" Margin="5,10,5,10" FontWeight="Bold" Foreground="Gray"></TextBlock>
                     <!--Изменение суммы-->
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <Button x:Name="MinusButton" Click="MinusButton_Click" Width="20" Height="20" >-</Button>
-                        <TextBox MaxLength="7" PreviewTextInput="PreviewTextInput" x:Name="SumTextBox" TextChanged="SumTextBox_TextChanged" Width="70" Height="18" HorizontalContentAlignment="Center"></TextBox>
+                        <olen:WatermarkTextBox MaxLength="7" PreviewTextInput="PreviewTextInput" x:Name="SumTextBox" TextChanged="SumTextBox_TextChanged" Width="70" Style="{StaticResource mainWTextBox}" HorizontalContentAlignment="Center"></olen:WatermarkTextBox>
                         <Button x:Name="PlusButton" Click="PlusButton_Click" Width="20" Height="20">+</Button>
                     </StackPanel>
                     <Button x:Name="PayButton" Click="PayButton_Click">Заплатить</Button>

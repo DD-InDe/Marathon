@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition x:Name="abuz" Height="6*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="#FF505050"></Grid>
         <Grid Grid.Row="2" Background="#FF505050"></Grid>

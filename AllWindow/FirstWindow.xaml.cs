@@ -29,7 +29,8 @@ namespace Marathon
             switch (page)
             {
                 case 1:
-                    mainFrame.Navigate(new RunnerCheckPage());
+                    //mainFrame.Navigate(new RunnerCheckPage());
+                    mainFrame.Navigate(new MatathonRegPage(null));
                     break;
                 case 2:
                     mainFrame.Navigate(new SponsorPage());

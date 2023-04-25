@@ -8,22 +8,22 @@
         
         <!--Watermark`s-->
         <Style TargetType="olen:WatermarkTextBox" x:Key="mainWTextBox">
-            <Setter Property="Margin" Value="3.5"></Setter>
+            <Setter Property="Margin" Value="4,2.5,4,2.5"></Setter>
             <Setter Property="Width" Value="150"></Setter>
-            <Setter Property="Height" Value="22"></Setter>
-            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
         </Style>
         <Style TargetType="olen:WatermarkPasswordBox" x:Key="WPasswordBox">
-            <Setter Property="Margin" Value="3.5"></Setter>
+            <Setter Property="Margin" Value="4,2.5,4,2.5"></Setter>
             <Setter Property="Width" Value="150"></Setter>
-            <Setter Property="Height" Value="22"></Setter>
-            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
             <Setter Property="PasswordChar" Value="*"></Setter>
         </Style>
         <Style TargetType="olen:WatermarkComboBox" x:Key="WComboBox">
-            <Setter Property="Margin" Value="3.5"></Setter>
-            <Setter Property="Width" Value="110"></Setter>
-            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Margin" Value="4,2.5,4,2.5"></Setter>
+            <Setter Property="Width" Value="125"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
         </Style>
         <!--Common-->
         <Style TargetType="TextBlock" x:Key="mainTextBlock">
@@ -59,6 +59,16 @@
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="TextWrapping" Value="Wrap"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Key="mainComboBox">
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+        <Style TargetType="RadioButton" x:Key="mainRadioButton">
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Width" Value="220"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
         </Style>
     </Application.Resources>
 </Application>
