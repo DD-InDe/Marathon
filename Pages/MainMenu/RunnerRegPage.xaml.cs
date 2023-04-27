@@ -1,4 +1,5 @@
 ﻿using Marathon.Entities;
+using Marathon.Pages.RunnerPages;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,9 @@ namespace Marathon.Pages.MainMenu
             GenderComboBox.ItemsSource = DB.entities.Gender.ToList();
             CountryComboBox.ItemsSource = DB.entities.Country.ToList();
         }
+
+        Gender gender;
+        Country country;
 
         private void RegButton_Click(object sender, RoutedEventArgs e)
         {
@@ -74,11 +78,8 @@ namespace Marathon.Pages.MainMenu
             else
                 MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
-        Gender gender;
-        Country country;
-
         private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
+
 
         private void GenderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => gender = GenderComboBox.SelectedItem as Gender;
         private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => country = CountryComboBox.SelectedItem as Country;
@@ -133,7 +134,6 @@ namespace Marathon.Pages.MainMenu
                 RunnerPhoto.DataContext = File.ReadAllBytes(fileDialog.FileName);
             }
         }
-
         private void WatermarkTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -145,5 +145,6 @@ namespace Marathon.Pages.MainMenu
                     MessageBox.Show("Файл не соответсвует расширению!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

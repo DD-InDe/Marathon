@@ -17,12 +17,12 @@
                 <!--названия-->
                 <StackPanel Orientation="Vertical">
                     <TextBlock Margin="10" HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Email:</TextBlock>
-                    <TextBlock Margin="10" HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Password:</TextBlock>
+                    <TextBlock Margin="10" HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Пароль:</TextBlock>
                 </StackPanel>
                 <!--поля-->
                 <StackPanel Orientation="Vertical">
-                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10"></TextBox>
-                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10"></TextBox>
+                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10">a.adkin@dayrep.net</TextBox>
+                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10">jwZh2x@p</TextBox>
                     <!--кнопки-->
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="LoginButton" Click="LoginButton_Click" Margin="10">Войти</Button>

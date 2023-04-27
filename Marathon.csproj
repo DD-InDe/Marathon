@@ -109,6 +109,7 @@
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DB.cs" />
+    <Compile Include="Resources\AppMain.cs" />
     <Page Include="AllWindow\FirstWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,7 +142,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MainMenu\MatathonRegPage.xaml">
+    <Page Include="Pages\RunnerPages\EditRunnerProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\MatathonRegPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RunnerPages\ContactPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\RegistrationConfirmationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -236,7 +245,10 @@
     <Compile Include="Pages\MainMenu\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainMenu\MatathonRegPage.xaml.cs">
+    <Compile Include="Pages\RunnerPages\EditRunnerProfilePage.xaml.cs">
+      <DependentUpon>EditRunnerProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\MatathonRegPage.xaml.cs">
       <DependentUpon>MatathonRegPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu\RunnerCheckPage.xaml.cs">
@@ -247,6 +259,9 @@
     </Compile>
     <Compile Include="Pages\RunnerPages\ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\RegistrationConfirmationPage.xaml.cs">
+      <DependentUpon>RegistrationConfirmationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RunnerPages\RunnerMenu.xaml.cs">
       <DependentUpon>RunnerMenu.xaml</DependentUpon>

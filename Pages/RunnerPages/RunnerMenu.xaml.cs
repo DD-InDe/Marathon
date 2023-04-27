@@ -1,5 +1,6 @@
 ﻿using Marathon.AllWindow;
 using Marathon.Entities;
+using Marathon.Pages.MainMenu;
 using Marathon.Pages.RunnerPages;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,10 @@ namespace Marathon.Pages
     /// </summary>
     public partial class RunnerMenu : Page
     {
-        public RunnerMenu(User user)
+        public RunnerMenu(Runner _runner)
         {
             InitializeComponent();
-            runner = DB.entities.Runner.Where(c=>c.User.Email == user.Email) as Runner;
+            runner = _runner;
         }
 
         Runner runner;
@@ -36,15 +37,7 @@ namespace Marathon.Pages
             InfoWindow infoWindow = new InfoWindow(2);
             infoWindow.ShowDialog();
         }
-
-        private void ProfileEditButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RegButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void ProfileEditButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new EditRunnerProfilePage(runner));
+        private void RegButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MatathonRegPage(runner));
     }
 }

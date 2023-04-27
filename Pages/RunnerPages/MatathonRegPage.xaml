@@ -1,4 +1,4 @@
-﻿<Page x:Class="Marathon.Pages.MainMenu.MatathonRegPage"
+﻿<Page x:Class="Marathon.Pages.RunnerPages.MatathonRegPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -30,18 +30,18 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <olen:WatermarkComboBox x:Name="CharityComboBox" DisplayMemberPath="CharityName" HorizontalAlignment="Left" Watermark="выберите организацию" Style="{StaticResource WComboBox}" Width="152"></olen:WatermarkComboBox>
+                                <olen:WatermarkComboBox x:Name="CharityComboBox" DisplayMemberPath="CharityName" SelectionChanged="CharityComboBox_SelectionChanged" HorizontalAlignment="Left" Watermark="выберите организацию" Style="{StaticResource WComboBox}" Width="152"></olen:WatermarkComboBox>
                                 <!--Кнопка информации-->
                                 <Button x:Name="InfoButton" Click="InfoButton_Click" Width="20" Height="20"  Background="Transparent" BorderBrush="Transparent">
                                     <Image Width="15" Height="15" Source="/Resources/info_logo.png"></Image>
                                 </Button>
                             </StackPanel>
-                            <olen:WatermarkTextBox x:Name="SumTextBox" HorizontalAlignment="Left" Watermark="введите сумму взноса" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
+                            <olen:WatermarkTextBox x:Name="SumTextBox" PreviewTextInput="SumTextBox_PreviewTextInput" HorizontalAlignment="Left" Watermark="введите сумму взноса" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button Margin="3,10,2,0" Width="90" Height="22">Регистрация</Button>
-                        <Button Margin="3,10,2,0" Width="60" Height="22">Отмена</Button>
+                        <Button x:Name="RegButton" Click="RegButton_Click" Margin="3,10,2,0" Width="90" Height="22">Регистрация</Button>
+                        <Button x:Name="CancelButton" Click="CancelButton_Click" Margin="3,10,2,0" Width="60" Height="22">Отмена</Button>
                     </StackPanel>
                 </StackPanel>
                 <!--варианты комплектов-->

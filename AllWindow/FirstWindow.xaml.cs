@@ -1,6 +1,7 @@
 ﻿using Marathon.Entities;
 using Marathon.Pages;
 using Marathon.Pages.MainMenu;
+using Marathon.Pages.RunnerPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,11 +47,6 @@ namespace Marathon
             RefreshTimer();
         }
 
-        private void MainFrame_ContentRendered(object sender, EventArgs e)
-        {
-
-        }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (mainFrame.CanGoBack)
@@ -77,7 +73,9 @@ namespace Marathon
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.ShowDialog();
         }
     }
 }
