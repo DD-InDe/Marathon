@@ -21,8 +21,8 @@
                 </StackPanel>
                 <!--поля-->
                 <StackPanel Orientation="Vertical">
-                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10">a.adkin@dayrep.net</TextBox>
-                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10">jwZh2x@p</TextBox>
+                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10">w.hutson@gmail.com</TextBox>
+                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10">jcas#1tM</TextBox>
                     <!--кнопки-->
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="LoginButton" Click="LoginButton_Click" Margin="10">Войти</Button>

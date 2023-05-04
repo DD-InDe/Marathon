@@ -109,6 +109,14 @@
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DB.cs" />
+    <Compile Include="Entities\RegistrationEventPartial.cs" />
+    <Compile Include="Entities\RunnerPartial.cs" />
+    <Compile Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml.cs">
+      <DependentUpon>MarathonDurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\MyRaceResultsPage.xaml.cs">
+      <DependentUpon>MyRaceResultsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\AppMain.cs" />
     <Page Include="AllWindow\FirstWindow.xaml">
       <SubType>Designer</SubType>
@@ -138,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RunnerPages\ContactPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\MyRaceResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,7 +212,6 @@
     <Compile Include="Entities\Marathon.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\PartialRegistration.cs" />
     <Compile Include="Entities\RaceKitOption.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>

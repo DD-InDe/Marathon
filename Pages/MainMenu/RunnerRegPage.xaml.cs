@@ -1,5 +1,6 @@
 ﻿using Marathon.Entities;
 using Marathon.Pages.RunnerPages;
+using Marathon.Resources;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Marathon.Pages.MainMenu
 
             GenderComboBox.ItemsSource = DB.entities.Gender.ToList();
             CountryComboBox.ItemsSource = DB.entities.Country.ToList();
+            RunnerPhoto.DataContext = File.ReadAllBytes(@"C:\Users\deer\source\repos\Marathon\Resources\None.png");
         }
 
         Gender gender;
@@ -38,36 +40,40 @@ namespace Marathon.Pages.MainMenu
         private void RegButton_Click(object sender, RoutedEventArgs e)
         {
             if (EmailTextBox.Text != null && PasswordTextBox.Text != null && PasswordRepeatTextBox.Text != null && FirstNameTextBox.Text != null
-            && LastNameTextBox.Text != null && GenderComboBox.SelectedItem != null && CountryComboBox.SelectedItem != null && DateTextBox.Text != null)
+            && LastNameTextBox.Text != null && GenderComboBox.SelectedItem != null && CountryComboBox.SelectedItem != null && BirthDatePicker.SelectedDate != null)
             {
                 if (EmailCheck(EmailTextBox.Text))
                 {
                     if (DB.entities.User.FirstOrDefault(c => c.Email == EmailTextBox.Text) == null)
                     {
-                        if (PasswordTextBox.Text.Length > 6 && PasswordCharCheck(PasswordTextBox.Password) && PasswordNumCheck(PasswordTextBox.Password) && PasswordSymCheck(PasswordTextBox.Password))
+                        if (PasswordTextBox.Password == PasswordRepeatTextBox.Password)
                         {
-                            User user = new User();
-                            Runner runner = new Runner();
+                            if (AppMain.PasswordCheck(PasswordTextBox.Password) && AppMain.AgeCheck(Convert.ToDateTime(BirthDatePicker.SelectedDate)))
+                            {
+                                User user = new User();
+                                Runner runner = new Runner();
 
-                            user.Email = EmailTextBox.Text;
-                            user.Password = PasswordTextBox.Text;
-                            user.FirstName = FirstNameTextBox.Text;
-                            user.LastName = LastNameTextBox.Text;
-                            user.RoleId = "R";
-                            DB.entities.User.Add(user);
+                                user.Email = EmailTextBox.Text;
+                                user.Password = PasswordTextBox.Text;
+                                user.FirstName = FirstNameTextBox.Text;
+                                user.LastName = LastNameTextBox.Text;
+                                user.RoleId = "R";
+                                DB.entities.User.Add(user);
 
-                            runner.Email = EmailTextBox.Text;
-                            runner.Gender1 = gender;
-                            runner.DateOfBirth = Convert.ToDateTime(DateTextBox.Text);
-                            runner.CountryCode = country.CountryCode;
-                            runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
-                            DB.entities.Runner.Add(runner);
+                                runner.Email = EmailTextBox.Text;
+                                runner.Gender1 = gender;
+                                runner.DateOfBirth = BirthDatePicker.SelectedDate;
+                                runner.CountryCode = country.CountryCode;
+                                runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
+                                DB.entities.Runner.Add(runner);
 
-                            DB.entities.SaveChanges();
-                            NavigationService.Navigate(new MatathonRegPage(runner));
+                                DB.entities.SaveChanges();
+                                MessageBox.Show("Вы успешно зарегистрировались в системе!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                                NavigationService.Navigate(new MatathonRegPage(runner));
+                            }
                         }
                         else
-                            MessageBox.Show("Пароль не соответсвует всем требованиям!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                         MessageBox.Show("Эта почта уже используется!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -89,25 +95,6 @@ namespace Marathon.Pages.MainMenu
             try { var addr = new System.Net.Mail.MailAddress(EmailTextBox.Text); }
             catch { return false; }
             return true;
-        }
-        private bool PasswordCharCheck(string password)
-        {
-            for (int i = 0; i < password.Length; i++)
-                if (char.IsUpper(password[i])) return true;
-            return false;
-        }
-        private bool PasswordNumCheck(string password)
-        {
-            for (int i = 0; i < password.Length; i++)
-                if (char.IsDigit(password[i])) return true;
-            return false;
-        }
-        private bool PasswordSymCheck(string password)
-        {
-            if (password.Contains("!") || password.Contains("@") || password.Contains("#") ||
-                password.Contains("$") || password.Contains("%") || password.Contains("^"))
-                return true;
-            return false;
         }
 
         private void VisibleButton_Click(object sender, RoutedEventArgs e)

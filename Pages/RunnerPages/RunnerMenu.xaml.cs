@@ -39,5 +39,6 @@ namespace Marathon.Pages
         }
         private void ProfileEditButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new EditRunnerProfilePage(runner));
         private void RegButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MatathonRegPage(runner));
+        private void ResultButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MyRaceResultsPage(runner));
     }
 }

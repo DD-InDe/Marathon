@@ -1,7 +1,9 @@
 ﻿using Marathon.Entities;
 using Marathon.Resources;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,60 +28,83 @@ namespace Marathon.Pages.RunnerPages
         {
             InitializeComponent();
             runner = _runner;
+
+            if (runner.RunnerImage == null)
+                RunnerPhoto.DataContext = File.ReadAllBytes(@"photo\None.png");
+            else
+                RunnerPhoto.DataContext = runner.RunnerImage;
+
             GenderComboBox.ItemsSource = DB.entities.Gender.ToList();
             CountryComboBox.ItemsSource = DB.entities.Country.ToList();
         }
 
         Runner runner;
-        Gender gender;
-        Country country;
 
         private void Page_Loaded(object sender, RoutedEventArgs e) => this.DataContext = runner;
 
-        private void GenderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => gender = GenderComboBox.SelectedItem as Gender;
-
-        private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => country = CountryComboBox.SelectedItem as Country;
-
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FirstNameTextBox.Text != null && LastNameTextBox.Text != null)
+            /*проверка на пустые поля*/
+            if (FirstNameTextBox.Text != null && LastNameTextBox.Text != null && BirthDatePicker.SelectedDate != null)
             {
-                if (PasswordTextBox.Password != null && PasswordRepeatTextBox.Password == null) MessageBox.Show("Повторите свой пароль!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                else
-                    if (PasswordTextBox.Password != PasswordRepeatTextBox.Password) MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                else
-                    DB.entities.SaveChanges();
+                /*проверка возраста*/
+                if (AppMain.AgeCheck(Convert.ToDateTime(BirthDatePicker.SelectedDate)))
+                {
+                    /* проверка пароля
+                     * 
+                       без пароля*/
+                    if (PasswordTextBox.Password == "")
+                    {
+                        runner.RunnerImage = runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
+                        DB.entities.SaveChanges();
+                    }
+                    /*с паролем*/
+                    else
+                    {
+                        if (PasswordTextBox.Password == PasswordRepeatTextBox.Password)
+                        {
+                            if (AppMain.PasswordCheck(PasswordTextBox.Password))
+                            {
+                                runner.User.Password = PasswordTextBox.Password;
+                                runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
+                                DB.entities.SaveChanges();
+                                MessageBox.Show("Данные успешно сохранены!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                                NavigationService.GoBack();
+                            }
+                        }
+                        else MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
-            else
-                DB.entities.SaveChanges();
-        }
+            else MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
 
+        }
         private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
-
-
-        private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void VisibleButton_Click(object sender, RoutedEventArgs e)
         {
-
+            VisibleStackPanel.Visibility = Visibility.Collapsed;
+            HiddenStackPanel.Visibility = Visibility.Visible;
         }
-
-        private void VisPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void CollapsedButton_Click(object sender, RoutedEventArgs e)
         {
-
+            VisibleStackPanel.Visibility = Visibility.Visible;
+            HiddenStackPanel.Visibility = Visibility.Collapsed;
         }
+
+        private void VisPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e) => PasswordTextBox.Password = VisPasswordTextBox.Text;
+        private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e) => VisPasswordTextBox.Text = PasswordTextBox.Password;
 
         private void ExplorerButton_Click(object sender, RoutedEventArgs e)
         {
-            AppMain.MD();
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Image | *.jpg; *.png";
+
+            if (fileDialog.ShowDialog() == true)
+            {
+                RunnerPhoto.DataContext = File.ReadAllBytes(fileDialog.FileName);
+                ImagePathTextBox.Text = fileDialog.FileName;
+            }
         }
     }
 }

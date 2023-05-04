@@ -31,15 +31,15 @@
                             <TextBlock Text="{Binding Email}" Style="{StaticResource mainTextBlock}" Margin="6"></TextBlock>
                             <olen:WatermarkTextBox x:Name="FirstNameTextBox" Watermark="введите Ваше имя" Style="{StaticResource mainWTextBox}" Text="{Binding User.FirstName}"></olen:WatermarkTextBox>
                             <olen:WatermarkTextBox x:Name="LastNameTextBox" Watermark="введите Вашу фамилию" Style="{StaticResource mainWTextBox}" Text="{Binding User.LastName}"></olen:WatermarkTextBox>
-                            <olen:WatermarkComboBox x:Name="GenderComboBox" HorizontalAlignment="Left" SelectionChanged="GenderComboBox_SelectionChanged" Style="{StaticResource WComboBox}" SelectedItem="{Binding Gender1}" DisplayMemberPath="Gender1"></olen:WatermarkComboBox>
-                            <olen:WatermarkTextBox x:Name="DateTextBox" Watermark="гггг.мм.дд" Text="{Binding DateOfBirth, StringFormat=yyyy.MM.dd}"  HorizontalAlignment="Left" Width="125" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
-                            <olen:WatermarkComboBox x:Name="CountryComboBox" HorizontalAlignment="Left" SelectionChanged="CountryComboBox_SelectionChanged" Style="{StaticResource WComboBox}" SelectedItem="{Binding Country}" DisplayMemberPath="CountryName"></olen:WatermarkComboBox>
+                            <olen:WatermarkComboBox x:Name="GenderComboBox" HorizontalAlignment="Left" Style="{StaticResource WComboBox}" SelectedItem="{Binding Gender1}" DisplayMemberPath="Gender1"></olen:WatermarkComboBox>
+                            <DatePicker x:Name="BirthDatePicker" Text="{Binding DateOfBirth}" HorizontalAlignment="Left" Style="{StaticResource mainDatePicker}"></DatePicker>
+                            <olen:WatermarkComboBox x:Name="CountryComboBox" HorizontalAlignment="Left" Style="{StaticResource WComboBox}" SelectedItem="{Binding Country}" DisplayMemberPath="CountryName"></olen:WatermarkComboBox>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <!--правое поле-->
                 <StackPanel Orientation="Vertical">
-                    <Image x:Name="RunnerPhoto" Margin="10,0,10,0" HorizontalAlignment="Right" Width="80" Height="100" Source="{Binding }"></Image>
+                    <Image x:Name="RunnerPhoto" Margin="10,0,10,0" HorizontalAlignment="Right" Width="100" Height="100" Source="{Binding }"></Image>
                     <TextBlock Margin="5,2,0,2" Style="{StaticResource mainTextBlock}">Фото файл:</TextBlock>
                     <!--загрузка фото-->
                     <StackPanel Orientation="Horizontal">
