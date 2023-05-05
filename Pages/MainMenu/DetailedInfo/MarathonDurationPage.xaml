@@ -11,35 +11,35 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBlock Style="{StaticResource headerTextBlock}">Насколько долгий марафон?</TextBlock>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="10">
                 <!--подробная инфа-->
-                <StackPanel Orientation="Vertical" Width="500" HorizontalAlignment="Center">
-                    <TextBlock Style="{StaticResource headerTextBlock}" Text="{Binding Name}"></TextBlock>
-                    <Image Width="300" Height="200"></Image>
+                <StackPanel Orientation="Vertical" Width="450" HorizontalAlignment="Center" x:Name="InfoStackPanel">
+                    <TextBlock Style="{StaticResource headerTextBlock}" Text="{Binding ObjectName}"></TextBlock>
+                    <Image Width="300" Height="200" Source="{Binding ObjectImage}"></Image>
                     <TextBlock Style="{StaticResource descriptionTextBlock}" Text="{Binding Description}"></TextBlock>
                 </StackPanel>
                 <!--лист элементов-->
                 <StackPanel Orientation="Vertical">
-                    <TabControl Width="280">
+                    <TabControl Width="335" Height="350">
                         <TabItem Header="Скорость">
-                            <ListView x:Name="SpeedList">
+                            <ListView x:Name="SpeedList" SelectionChanged="SpeedList_SelectionChanged">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="90" Height="70"></Image>
-                                            <TextBlock Style="{StaticResource headerTextBlock}" Text="{Binding Name}"></TextBlock>
+                                            <Image Width="90" Height="70" Source="{Binding ObjectImage}"></Image>
+                                            <TextBlock Style="{StaticResource headerTextBlock}" Text="{Binding ObjectName}"></TextBlock>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </TabItem>
                         <TabItem Header="Дистанция">
-                            <ListView x:Name="DistantionList">
+                            <ListView x:Name="DistantionList" SelectionChanged="DistantionList_SelectionChanged">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="90" Height="70"></Image>
-                                            <TextBlock Style="{StaticResource headerTextBlock}" Text="{Binding Name}"></TextBlock>
+                                            <Image Width="90" Height="70" Source="{Binding ObjectImage}"></Image>
+                                            <TextBlock Style="{StaticResource headerTextBlock}" Text="{Binding ObjectName}"></TextBlock>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>

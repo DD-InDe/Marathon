@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Marathon.Entities;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,24 @@ namespace Marathon.Pages.MainMenu.DetailedInfo
         public MarathonDurationPage()
         {
             InitializeComponent();
+
+            SpeedList.ItemsSource = DB.entities.SpeedObjects.ToList();
+            DistantionList.ItemsSource = DB.entities.DistanceObjects.ToList();
+        }
+
+        SpeedObjects speedObjects;
+        DistanceObjects distanceObjects;
+
+        private void SpeedList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            speedObjects = SpeedList.SelectedItem as SpeedObjects;
+            InfoStackPanel.DataContext = speedObjects;
+        }
+
+        private void DistantionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            distanceObjects = DistantionList.SelectedItem as DistanceObjects;
+            InfoStackPanel.DataContext = distanceObjects;
         }
     }
 }
