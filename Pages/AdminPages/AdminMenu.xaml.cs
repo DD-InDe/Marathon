@@ -1,4 +1,5 @@
 ﻿using Marathon.Entities;
+using Marathon.Pages.AdminPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,9 +42,6 @@ namespace Marathon.Pages
 
         }
 
-        private void InventoryButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void InventoryButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new InventoryPage());
     }
 }

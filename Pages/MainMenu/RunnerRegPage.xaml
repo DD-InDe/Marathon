@@ -51,7 +51,7 @@
                 </StackPanel>
                 <!--правое поле-->
                 <StackPanel Orientation="Vertical">
-                    <Image x:Name="RunnerPhoto" Margin="8" HorizontalAlignment="Right" Width="80" Height="100" Source="{Binding RunnerImage}"></Image>
+                    <Image x:Name="RunnerPhoto" Margin="7" HorizontalAlignment="Right" Width="120" Height="130" Source="{Binding RunnerImage}"></Image>
                     <TextBlock Margin="5,2,0,2" Style="{StaticResource mainTextBlock}">Фото файл:</TextBlock>
                     <StackPanel Orientation="Horizontal">
                         <olen:WatermarkTextBox x:Name="ImagePathTextBox" Style="{StaticResource mainWTextBox}" Watermark="Photo_logo.jpg" KeyDown="WatermarkTextBox_KeyDown" ></olen:WatermarkTextBox>

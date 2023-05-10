@@ -128,6 +128,9 @@
     <Compile Include="Entities\RaceKitOption.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\RaceKitSet.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Registration.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\RunnerPartial.cs" />
+    <Compile Include="Entities\SetObjects.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\SpeedObjects.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -161,8 +167,14 @@
     <Compile Include="Entities\Volunteer.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdminPages\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml.cs">
       <DependentUpon>MarathonDurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\MarathonInfoPage.xaml.cs">
+      <DependentUpon>MarathonInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RunnerPages\MyRaceResultsPage.xaml.cs">
       <DependentUpon>MyRaceResultsPage.xaml</DependentUpon>
@@ -184,6 +196,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AdminPages\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu\DetailedInfo\CharityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\MarathonInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -345,6 +365,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\marathonInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Entities\Context.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Context.edmx</DependentUpon>
@@ -355,6 +378,11 @@
       <DependentUpon>Context.edmx</DependentUpon>
       <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\marathon-map.jpg" />
+    <Resource Include="Resources\banco-banespa.jpg" />
+    <Resource Include="Resources\ibirapuera-park-lake.jpg" />
+    <Resource Include="Resources\marathon-image.jpg" />
+    <Resource Include="Resources\teatro-municipal.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище MarathonModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище MarathonModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Charity">
           <Key>
             <PropertyRef Name="CharityId" />
@@ -76,6 +76,14 @@
           <Property Name="RaceKitOption" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="RaceKitSet">
+          <Key>
+            <PropertyRef Name="RaceKitSetId" />
+          </Key>
+          <Property Name="RaceKitSetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RaceKitOption" Type="nchar" MaxLength="1" />
+          <Property Name="SetObjects" Type="int" />
+        </EntityType>
         <EntityType Name="Registration">
           <Key>
             <PropertyRef Name="RegistrationId" />
@@ -123,6 +131,14 @@
           <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="RunnerImage" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SetObjects">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObjectStock" Type="int" />
         </EntityType>
         <EntityType Name="SpeedObjects">
           <Key>
@@ -206,6 +222,30 @@
             </Principal>
             <Dependent Role="Marathon">
               <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RaceKitSe__RaceK__1F98B2C1">
+          <End Role="RaceKitOption" Type="Self.RaceKitOption" Multiplicity="0..1" />
+          <End Role="RaceKitSet" Type="Self.RaceKitSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaceKitOption">
+              <PropertyRef Name="RaceKitOptionId" />
+            </Principal>
+            <Dependent Role="RaceKitSet">
+              <PropertyRef Name="RaceKitOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RaceKitSe__SetOb__208CD6FA">
+          <End Role="SetObjects" Type="Self.SetObjects" Multiplicity="0..1" />
+          <End Role="RaceKitSet" Type="Self.RaceKitSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SetObjects">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="RaceKitSet">
+              <PropertyRef Name="SetObjects" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -374,11 +414,13 @@
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marathon" EntityType="Self.Marathon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RaceKitOption" EntityType="Self.RaceKitOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaceKitSet" EntityType="Self.RaceKitSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationEvent" EntityType="Self.RegistrationEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationStatus" EntityType="Self.RegistrationStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Runner" EntityType="Self.Runner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SetObjects" EntityType="Self.SetObjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpeedObjects" EntityType="Self.SpeedObjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sponsorship" EntityType="Self.Sponsorship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -395,6 +437,14 @@
           <AssociationSet Name="FK__Marathon__Countr__4D94879B" Association="Self.FK__Marathon__Countr__4D94879B">
             <End Role="Country" EntitySet="Country" />
             <End Role="Marathon" EntitySet="Marathon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RaceKitSe__RaceK__1F98B2C1" Association="Self.FK__RaceKitSe__RaceK__1F98B2C1">
+            <End Role="RaceKitOption" EntitySet="RaceKitOption" />
+            <End Role="RaceKitSet" EntitySet="RaceKitSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RaceKitSe__SetOb__208CD6FA" Association="Self.FK__RaceKitSe__SetOb__208CD6FA">
+            <End Role="SetObjects" EntitySet="SetObjects" />
+            <End Role="RaceKitSet" EntitySet="RaceKitSet" />
           </AssociationSet>
           <AssociationSet Name="FK__Registrat__Chari__48CFD27E" Association="Self.FK__Registrat__Chari__48CFD27E">
             <End Role="Charity" EntitySet="Charity" />
@@ -449,8 +499,7 @@
             <End Role="Volunteer" EntitySet="Volunteer" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MarathonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -537,6 +586,7 @@
           <Property Name="RaceKitOption1" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <NavigationProperty Name="Registration" Relationship="Self.FK__Registrat__RaceK__46E78A0C" FromRole="RaceKitOption" ToRole="Registration" />
+          <NavigationProperty Name="RaceKitSet" Relationship="MarathonModel.FK__RaceKitSe__RaceK__1F98B2C1" FromRole="RaceKitOption" ToRole="RaceKitSet" />
         </EntityType>
         <EntityType Name="Registration">
           <Key>
@@ -929,7 +979,60 @@
             <End Role="User" EntitySet="User" />
             <End Role="Runner" EntitySet="Runner" />
           </AssociationSet>
+          <EntitySet Name="RaceKitSet" EntityType="MarathonModel.RaceKitSet" />
+          <EntitySet Name="SetObjects" EntityType="MarathonModel.SetObjects" />
+          <AssociationSet Name="FK__RaceKitSe__RaceK__1F98B2C1" Association="MarathonModel.FK__RaceKitSe__RaceK__1F98B2C1">
+            <End Role="RaceKitOption" EntitySet="RaceKitOption" />
+            <End Role="RaceKitSet" EntitySet="RaceKitSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RaceKitSe__SetOb__208CD6FA" Association="MarathonModel.FK__RaceKitSe__SetOb__208CD6FA">
+            <End Role="SetObjects" EntitySet="SetObjects" />
+            <End Role="RaceKitSet" EntitySet="RaceKitSet" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="RaceKitSet">
+          <Key>
+            <PropertyRef Name="RaceKitSetId" />
+          </Key>
+          <Property Name="RaceKitSetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceKitOption" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="SetObjects" Type="Int32" />
+          <NavigationProperty Name="RaceKitOption1" Relationship="MarathonModel.FK__RaceKitSe__RaceK__1F98B2C1" FromRole="RaceKitSet" ToRole="RaceKitOption" />
+          <NavigationProperty Name="SetObjects1" Relationship="MarathonModel.FK__RaceKitSe__SetOb__208CD6FA" FromRole="RaceKitSet" ToRole="SetObjects" />
+        </EntityType>
+        <EntityType Name="SetObjects">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectStock" Type="Int32" />
+          <NavigationProperty Name="RaceKitSet" Relationship="MarathonModel.FK__RaceKitSe__SetOb__208CD6FA" FromRole="SetObjects" ToRole="RaceKitSet" />
+        </EntityType>
+        <Association Name="FK__RaceKitSe__RaceK__1F98B2C1">
+          <End Type="MarathonModel.RaceKitOption" Role="RaceKitOption" Multiplicity="0..1" />
+          <End Type="MarathonModel.RaceKitSet" Role="RaceKitSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaceKitOption">
+              <PropertyRef Name="RaceKitOptionId" />
+            </Principal>
+            <Dependent Role="RaceKitSet">
+              <PropertyRef Name="RaceKitOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RaceKitSe__SetOb__208CD6FA">
+          <End Type="MarathonModel.SetObjects" Role="SetObjects" Multiplicity="0..1" />
+          <End Type="MarathonModel.RaceKitSet" Role="RaceKitSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SetObjects">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="RaceKitSet">
+              <PropertyRef Name="SetObjects" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1119,6 +1222,24 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaceKitSet">
+            <EntityTypeMapping TypeName="MarathonModel.RaceKitSet">
+              <MappingFragment StoreEntitySet="RaceKitSet">
+                <ScalarProperty Name="SetObjects" ColumnName="SetObjects" />
+                <ScalarProperty Name="RaceKitOption" ColumnName="RaceKitOption" />
+                <ScalarProperty Name="RaceKitSetId" ColumnName="RaceKitSetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SetObjects">
+            <EntityTypeMapping TypeName="MarathonModel.SetObjects">
+              <MappingFragment StoreEntitySet="SetObjects">
+                <ScalarProperty Name="ObjectStock" ColumnName="ObjectStock" />
+                <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

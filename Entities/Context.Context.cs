@@ -43,5 +43,7 @@ namespace Marathon.Entities
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Volunteer> Volunteer { get; set; }
+        public virtual DbSet<RaceKitSet> RaceKitSet { get; set; }
+        public virtual DbSet<SetObjects> SetObjects { get; set; }
     }
 }

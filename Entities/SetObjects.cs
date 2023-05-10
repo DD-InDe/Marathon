@@ -12,21 +12,18 @@ namespace Marathon.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class RaceKitOption
+    public partial class SetObjects
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RaceKitOption()
+        public SetObjects()
         {
-            this.Registration = new HashSet<Registration>();
             this.RaceKitSet = new HashSet<RaceKitSet>();
         }
     
-        public string RaceKitOptionId { get; set; }
-        public string RaceKitOption1 { get; set; }
-        public decimal Cost { get; set; }
+        public int ObjectId { get; set; }
+        public string ObjectName { get; set; }
+        public Nullable<int> ObjectStock { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registration { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RaceKitSet> RaceKitSet { get; set; }
     }
