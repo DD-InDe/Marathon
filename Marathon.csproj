@@ -109,6 +109,77 @@
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DB.cs" />
+    <Compile Include="Entities\DistanceObjects.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DistanceObjectsPartial.cs" />
+    <Compile Include="Entities\Event.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EventType.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Gender.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Marathon.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RaceKitOption.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RaceKitSet.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Registration.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RegistrationEvent.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RegistrationEventPartial.cs" />
+    <Compile Include="Entities\RegistrationStatus.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Role.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Runner.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RunnerPartial.cs" />
+    <Compile Include="Entities\SetObjects.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SpeedObjects.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SpeedObjectsPartial.cs" />
+    <Compile Include="Entities\Sponsorship.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagrams.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\User.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Volunteer.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml.cs">
+      <DependentUpon>MarathonDurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\MarathonInfoPage.xaml.cs">
+      <DependentUpon>MarathonInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\MyRaceResultsPage.xaml.cs">
+      <DependentUpon>MyRaceResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AppMain.cs" />
     <Page Include="AllWindow\FirstWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +196,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AdminPages\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu\DetailedInfo\CharityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,7 +212,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\MarathonInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\EditRunnerProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\MatathonRegPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +241,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RunnerPages\ContactPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\MyRaceResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\RegistrationConfirmationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,46 +270,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Event.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\EventType.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Gender.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Marathon.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PartialRegistration.cs" />
-    <Compile Include="Entities\RaceKitOption.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Registration.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\RegistrationEvent.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\RegistrationStatus.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Role.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Runner.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Sponsorship.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\User.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Volunteer.cs">
-      <DependentUpon>Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="AllWindow\FirstWindow.xaml.cs">
       <DependentUpon>FirstWindow.xaml</DependentUpon>
     </Compile>
@@ -232,6 +291,12 @@
     <Compile Include="Pages\MainMenu\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RunnerPages\EditRunnerProfilePage.xaml.cs">
+      <DependentUpon>EditRunnerProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\MatathonRegPage.xaml.cs">
+      <DependentUpon>MatathonRegPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainMenu\RunnerCheckPage.xaml.cs">
       <DependentUpon>RunnerCheckPage.xaml</DependentUpon>
     </Compile>
@@ -240,6 +305,9 @@
     </Compile>
     <Compile Include="Pages\RunnerPages\ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\RegistrationConfirmationPage.xaml.cs">
+      <DependentUpon>RegistrationConfirmationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RunnerPages\RunnerMenu.xaml.cs">
       <DependentUpon>RunnerMenu.xaml</DependentUpon>
@@ -287,6 +355,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\None.png" />
+    <Resource Include="Resources\close_eye.png" />
+    <Resource Include="Resources\open_eye.png" />
+    <Resource Include="Resources\photo_2023-04-17_15-46-42.jpg" />
+    <Resource Include="Resources\info_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\marathonInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Entities\Context.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Context.edmx</DependentUpon>
@@ -297,12 +378,11 @@
       <DependentUpon>Context.edmx</DependentUpon>
       <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\photo_2023-04-17_15-46-42.jpg" />
-    <Resource Include="Resources\info_logo.png" />
+    <Resource Include="Resources\marathon-map.jpg" />
+    <Resource Include="Resources\banco-banespa.jpg" />
+    <Resource Include="Resources\ibirapuera-park-lake.jpg" />
+    <Resource Include="Resources\marathon-image.jpg" />
+    <Resource Include="Resources\teatro-municipal.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

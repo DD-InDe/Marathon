@@ -12,25 +12,19 @@ namespace Marathon.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Runner
+    public partial class SetObjects
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Runner()
+        public SetObjects()
         {
-            this.Registration = new HashSet<Registration>();
+            this.RaceKitSet = new HashSet<RaceKitSet>();
         }
     
-        public int RunnerId { get; set; }
-        public string Email { get; set; }
-        public string Gender { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
-        public string CountryCode { get; set; }
-        public byte[] RunnerImage { get; set; }
+        public int ObjectId { get; set; }
+        public string ObjectName { get; set; }
+        public Nullable<int> ObjectStock { get; set; }
     
-        public virtual Country Country { get; set; }
-        public virtual Gender Gender1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registration { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<RaceKitSet> RaceKitSet { get; set; }
     }
 }

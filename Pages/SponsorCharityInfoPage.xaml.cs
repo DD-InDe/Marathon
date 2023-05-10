@@ -24,14 +24,17 @@ namespace Marathon.Pages
         public SponsorCharityInfoPage(RegistrationEvent regEvent)
         {
             InitializeComponent();
-            _regEvent = regEvent;
+            charity = regEvent.Registration.Charity;
         }
 
-        RegistrationEvent _regEvent;
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public SponsorCharityInfoPage(Charity _charity)
         {
-            this.DataContext = _regEvent.Registration.Charity;
+            InitializeComponent();
+            charity = _charity;
         }
+
+        Charity charity;
+
+        private void Page_Loaded(object sender, RoutedEventArgs e) => this.DataContext = charity;
     }
 }

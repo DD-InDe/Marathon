@@ -8,24 +8,42 @@
         
         <!--Watermark`s-->
         <Style TargetType="olen:WatermarkTextBox" x:Key="mainWTextBox">
-            <Setter Property="Margin" Value="3.5"></Setter>
+            <Setter Property="Margin" Value="4,2.5,4,2.5"></Setter>
             <Setter Property="Width" Value="150"></Setter>
-            <Setter Property="Height" Value="22"></Setter>
-            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
         </Style>
         <Style TargetType="olen:WatermarkPasswordBox" x:Key="WPasswordBox">
-            <Setter Property="Margin" Value="3.5"></Setter>
+            <Setter Property="Margin" Value="4,2.5,4,2.5"></Setter>
             <Setter Property="Width" Value="150"></Setter>
-            <Setter Property="Height" Value="22"></Setter>
-            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
             <Setter Property="PasswordChar" Value="*"></Setter>
         </Style>
         <Style TargetType="olen:WatermarkComboBox" x:Key="WComboBox">
-            <Setter Property="Margin" Value="3.5"></Setter>
-            <Setter Property="Width" Value="110"></Setter>
-            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Margin" Value="4,2.5,4,2.5"></Setter>
+            <Setter Property="Width" Value="125"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
         </Style>
         <!--Common-->
+        <Style TargetType="DataGridColumnHeader" x:Key="mainColumnHeader">
+            <Setter Property="FontFamily" Value="Open Sans Semibold"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Foreground" Value="#FF505050"></Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="DatePicker" x:Key="mainDatePicker">
+            <Setter Property="Margin" Value="4,2,4,2"></Setter>
+            <Setter Property="Width" Value="140"></Setter>
+            <Setter Property="Height" Value="27"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
         <Style TargetType="TextBlock" x:Key="mainTextBlock">
             <Setter Property="Margin" Value="5"></Setter>
             <Setter Property="FontSize" Value="14"></Setter>
@@ -43,7 +61,7 @@
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Width" Value="60"></Setter>
+            <Setter Property="Width" Value="70"></Setter>
             <Setter Property="Height" Value="25"></Setter>
         </Style>
         <Style TargetType="Button" x:Key="bigButton">
@@ -59,6 +77,16 @@
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="TextWrapping" Value="Wrap"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Key="mainComboBox">
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+        <Style TargetType="RadioButton" x:Key="mainRadioButton">
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Width" Value="220"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
         </Style>
     </Application.Resources>
 </Application>

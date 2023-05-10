@@ -18,7 +18,7 @@
                     <Button x:Name="ContactsButton" Click="ContactsButton_Click" Style="{StaticResource bigButton}">Контакты</Button>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Button x:Name="ResultButton" Style="{StaticResource bigButton}">Мои результаты</Button>
+                    <Button x:Name="ResultButton" Click="ResultButton_Click" Style="{StaticResource bigButton}">Мои результаты</Button>
                     <Button x:Name="SponsorButton" Style="{StaticResource bigButton}">Мой спонсор</Button>
                 </StackPanel>
             </StackPanel>

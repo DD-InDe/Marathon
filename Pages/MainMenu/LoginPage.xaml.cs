@@ -43,7 +43,8 @@ namespace Marathon.Pages.MainMenu
                         break;
 
                     case 'R': /*бегун*/
-                        NavigationService.Navigate(new RunnerMenu(user));
+                        Runner runner = DB.entities.Runner.First(c => c.Email == user.Email);
+                        NavigationService.Navigate(new RunnerMenu(runner));
                         break;
                 }
             }
@@ -51,7 +52,13 @@ namespace Marathon.Pages.MainMenu
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            Window g = Window.GetWindow(this);
+           
+            g.Hide();
+            MainWindow mainWindow = new MainWindow();
+
+            mainWindow.ShowDialog();
+            g.Close();
         }
     }
 }

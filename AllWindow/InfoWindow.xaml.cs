@@ -3,6 +3,7 @@ using Marathon.Pages;
 using Marathon.Pages.RunnerPages;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,14 @@ namespace Marathon.AllWindow
     /// </summary>
     public partial class InfoWindow : Window
     {
-        public InfoWindow(int numPage, RegistrationEvent regEvent = null)
+        public InfoWindow(int numPage, RegistrationEvent regEvent = null, Charity charity = null)
         {
             InitializeComponent();
 
             /* Гид по страницам
             1 - SponsorCharityInfoPage - Страница с информаций о благотворительной организации на странице SponsorPage
             2 - ContactPage - Информция с выводом контактной информацией на страницу RunnerMenu
+            3 - SponsorCharityInfoPage - Страница с информаций о благотворительной организации на странице MatathonRegPage
             */
 
             switch (numPage)
@@ -38,6 +40,9 @@ namespace Marathon.AllWindow
                     break;
                 case 2:
                     mainFrame.Navigate(new ContactPage());
+                    break;
+                case 3:
+                    mainFrame.Navigate(new SponsorCharityInfoPage(charity));
                     break;
             }
         }

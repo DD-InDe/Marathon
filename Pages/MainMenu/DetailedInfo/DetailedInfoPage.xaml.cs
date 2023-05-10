@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marathon.Pages.MainMenu.DetailedInfo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,10 +26,7 @@ namespace Marathon.Pages
             InitializeComponent();
         }
 
-        private void MarathonSkillsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void MarathonSkillsButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MarathonInfoPage());
 
         private void LastResultsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,10 +38,7 @@ namespace Marathon.Pages
 
         }
 
-        private void MarathonDurationButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void MarathonDurationButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MarathonDurationPage());
 
         private void CharityListButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CharityPage());
 
