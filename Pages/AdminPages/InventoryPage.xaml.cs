@@ -1,4 +1,5 @@
-﻿using Marathon.Entities;
+﻿using Marathon.AllWindow;
+using Marathon.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,21 @@ namespace Marathon.Pages.AdminPages
         {
             InitializeComponent();
             var regEvent = DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5HM").ToList();
-            RunnersCountTextBlock.Text = Convert.ToString(regEvent.Count + 1);
+            RunnersCountTextBlock.Text = regEvent.Count.ToString();
 
-            InventoryDataGrid.ItemsSource = regEvent;
+            List<RaceKitSet> listOne = new List<RaceKitSet>();
+            listOne.Add(DB.entities.RaceKitSet.ToList()[0]);
+            InventoryDataGrid.ItemsSource = listOne;
+            
+            ObjectsDataGrid.ItemsSource = DB.entities.SetObjects.ToList();
         }
+
+        private void ReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindow infoWindow = new InfoWindow(4);
+            infoWindow.ShowDialog();
+        }
+
+        private void SupplyButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new InventorySupplyPage());
     }
 }

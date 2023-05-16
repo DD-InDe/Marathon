@@ -32,8 +32,6 @@ namespace Marathon.Pages.RunnerPages
             CharityComboBox.ItemsSource = DB.entities.Charity.ToList();
             _runner = runner;
 
-            var f = _runner.RunnerId;
-
             SumTextBlock.Text = "$0";
         }
 
@@ -122,14 +120,16 @@ namespace Marathon.Pages.RunnerPages
                     {
                         if (SumTextBox.Text != null)
                         {
-                            Registration registration = new Registration();
-                            registration.RunnerId = _runner.RunnerId;
-                            registration.RegistrationDateTime = DateTime.Now;
-                            registration.RaceKitOptionId = Convert.ToString(raceKitId);
-                            registration.RegistrationStatusId = 3;
-                            registration.Cost = Convert.ToDecimal(SumTextBlock.Text);
-                            registration.CharityId = charity.CharityId;
-                            registration.SponsorshipTarget = Convert.ToDecimal(SumTextBox.Text);
+                            Registration registration = new Registration
+                            {
+                                RunnerId = _runner.RunnerId,
+                                RegistrationDateTime = DateTime.Now,
+                                RaceKitOptionId = Convert.ToString(raceKitId),
+                                RegistrationStatusId = 3,
+                                Cost = Convert.ToDecimal(SumTextBlock.Text),
+                                CharityId = charity.CharityId,
+                                SponsorshipTarget = Convert.ToDecimal(SumTextBox.Text)
+                            };
                             DB.entities.Registration.Add(registration);
 
                             DB.entities.SaveChanges();

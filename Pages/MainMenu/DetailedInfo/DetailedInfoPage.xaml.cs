@@ -28,10 +28,7 @@ namespace Marathon.Pages
 
         private void MarathonSkillsButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MarathonInfoPage());
 
-        private void LastResultsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void LastResultsButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new RaceResultsPage());
 
         private void BMI_Button_Click(object sender, RoutedEventArgs e)
         {

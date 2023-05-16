@@ -26,6 +26,8 @@ namespace Marathon.Entities
         }
     
         public virtual DbSet<Charity> Charity { get; set; }
+        public virtual DbSet<CheckPoint> CheckPoint { get; set; }
+        public virtual DbSet<CheckPointService> CheckPointService { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<DistanceObjects> DistanceObjects { get; set; }
         public virtual DbSet<Event> Event { get; set; }
@@ -33,17 +35,18 @@ namespace Marathon.Entities
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Marathon> Marathon { get; set; }
         public virtual DbSet<RaceKitOption> RaceKitOption { get; set; }
+        public virtual DbSet<RaceKitSet> RaceKitSet { get; set; }
         public virtual DbSet<Registration> Registration { get; set; }
         public virtual DbSet<RegistrationEvent> RegistrationEvent { get; set; }
         public virtual DbSet<RegistrationStatus> RegistrationStatus { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Runner> Runner { get; set; }
+        public virtual DbSet<ServicesProvided> ServicesProvided { get; set; }
+        public virtual DbSet<SetObjects> SetObjects { get; set; }
         public virtual DbSet<SpeedObjects> SpeedObjects { get; set; }
         public virtual DbSet<Sponsorship> Sponsorship { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Volunteer> Volunteer { get; set; }
-        public virtual DbSet<RaceKitSet> RaceKitSet { get; set; }
-        public virtual DbSet<SetObjects> SetObjects { get; set; }
     }
 }

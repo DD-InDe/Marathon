@@ -1,0 +1,73 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.DetailedInfo.InteractiveMapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InteractiveMapPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/IntMap.png"></Image>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="Start" MouseLeftButtonDown="Start_MouseLeftButtonDown" Source="/Resources/map-icon-start.png" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="40" Width="40" Margin="10" Opacity="0.8"></Image>
+            <Button x:Name="CheckPoint1" Opacity="0" Click="CheckPoint_Click" Grid.Column="4" HorizontalAlignment="Left" Height="40" Width="40" Margin="0"></Button>
+            <Button x:Name="CheckPoint2" Opacity="0" Click="CheckPoint_Click" Grid.Column="4" VerticalAlignment="Top" Grid.Row="2" HorizontalAlignment="Right" Height="40" Width="40" Margin="0"></Button>
+            <Button x:Name="CheckPoint3" Opacity="0" Click="CheckPoint_Click" Grid.Column="4" VerticalAlignment="Top" Grid.Row="3" HorizontalAlignment="Right" Height="40" Width="40" Margin="0,7,5,0"></Button>
+            <Button x:Name="CheckPoint4" Opacity="0" Click="CheckPoint_Click" Grid.Column="6" VerticalAlignment="Bottom" Grid.Row="4" HorizontalAlignment="Left" Height="40" Width="40" Margin="0"></Button>
+            <Button x:Name="CheckPoint5" Opacity="0" Click="CheckPoint_Click" Grid.Column="3" VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Right" Height="40" Width="40" Margin="0"></Button>
+            <Image x:Name="Half" MouseLeftButtonDown="Half_MouseLeftButtonDown" Source="/Resources/map-icon-start.png" Grid.Column="4" VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Center" Height="40" Width="40" Margin="0,10,0,0" Opacity="0.8"></Image>
+            <Button x:Name="CheckPoint6" Opacity="0" Click="CheckPoint_Click" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40" Width="40" ></Button>
+            <Button x:Name="CheckPoint7" Opacity="0" Click="CheckPoint_Click" Grid.Column="0" HorizontalAlignment="Center" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40" Width="40" Margin="60,30,5,50"></Button>
+            <Button x:Name="CheckPoint8" Opacity="0" Click="CheckPoint_Click" Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40" Width="40" Margin="50,12,5,0"></Button>
+            <Image x:Name="End" MouseLeftButtonDown="End_MouseLeftButtonDown" Source="/Resources/map-icon-start.png"  Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40" Width="40" Margin="40,0,0,0" Opacity="0.8"></Image>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <StackPanel Orientation="Vertical" x:Name="CheckPointStackPanel">
+                <TextBlock Style="{StaticResource headerTextBlock}">Контрольная точка <Run Text="{Binding CheckPointId}"></Run></TextBlock>
+                <TextBlock Style="{StaticResource headerTextBlock}">Ориентир:</TextBlock>
+                <TextBlock Style="{StaticResource descriptionTextBlock}" Text="{Binding CheckPoint.Landmark}"></TextBlock>
+                <TextBlock Style="{StaticResource headerTextBlock}">Предоставляемые услуги:</TextBlock>
+                <ListView x:Name="ServiceListView" Width="250" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="40" Height="40" Source="{Binding ServicesProvided.ServieImage}"></Image>
+                                <TextBlock Style="{StaticResource descriptionTextBlock}" VerticalAlignment="Center" Text="{Binding ServicesProvided.ServiceName}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" x:Name="StartStackPanel">
+                <TextBlock TextWrapping="Wrap" x:Name="PointNameTextBlock" Style="{StaticResource headerTextBlock}"></TextBlock>
+                <TextBlock TextWrapping="Wrap" x:Name="PointDescriptionTextBlock" Style="{StaticResource descriptionTextBlock}"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

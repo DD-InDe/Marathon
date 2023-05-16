@@ -1,0 +1,68 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.DetailedInfo.RaceResultsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:olen ="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RaceResultsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--титульник-->
+        <TextBlock Style="{StaticResource headerTextBlock}" Grid.ColumnSpan="2">Результаты предыдущих гонок</TextBlock>
+        <!--левый StackPanel-->
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Марафон:</TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Дистанция:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <olen:WatermarkComboBox x:Name="MarathonComboBox" DisplayMemberPath="MarathonName" SelectionChanged="MarathonComboBox_SelectionChanged" HorizontalAlignment="Left" Width="150" Watermark="Выберите марафон" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
+                    <olen:WatermarkComboBox x:Name="DistanceComboBox" DisplayMemberPath="EventTypeName" SelectionChanged="DistanceComboBox_SelectionChanged" HorizontalAlignment="Left" Width="150" Watermark="Выберите дистанцию" Style="{StaticResource WComboBox}" Margin="4,6,4,2.5"></olen:WatermarkComboBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <!--правый StackPanel-->
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Пол:</TextBlock>
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Категория:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <olen:WatermarkComboBox x:Name="GenderComboBox" DisplayMemberPath="GenderName" SelectionChanged="GenderComboBox_SelectionChanged" HorizontalAlignment="Left" Width="150" Watermark="Выберите пол" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
+                    <olen:WatermarkComboBox x:Name="CategoryComboBox" HorizontalAlignment="Left" Width="150" Watermark="Выберите категорию" Style="{StaticResource WComboBox}" Margin="4,6,4,2.5"></olen:WatermarkComboBox>
+                </StackPanel>
+                <Button x:Name="SearchButton" Click="SearchButton_Click" VerticalAlignment="Bottom" Margin="3,0,0,3">Поиск</Button>
+            </StackPanel>
+        </StackPanel>
+        <!--нижний StackPanel-->
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical">
+            <StackPanel x:Name="RunnerInfoStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <!--<TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Всего бегунов: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Всего бегунов финишировало: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Среднее время: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>-->
+            </StackPanel>
+            <DataGrid x:Name="ResultDataGrid" Width="750" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="90" Header="Место" Binding="{Binding }"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Время" Binding="{Binding }"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="350" Header="Имя бегуна" Binding="{Binding }"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Страна" Binding="{Binding }"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

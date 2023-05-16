@@ -40,5 +40,15 @@ namespace Marathon.Pages
         private void ProfileEditButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new EditRunnerProfilePage(runner));
         private void RegButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MatathonRegPage(runner));
         private void ResultButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MyRaceResultsPage(runner));
+        private void SponsorButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Registration> registrationList = DB.entities.Registration.Where(c => c.RunnerId == runner.RunnerId && c.RegistrationDateTime.Year == DateTime.Now.Year).ToList();
+            Registration registration = registrationList.LastOrDefault();
+
+            if (registration != null)
+                NavigationService.Navigate(new MySponsorshipPage(registration));
+            else
+                MessageBox.Show("В текущем марафоне вас никто не поддерживает.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

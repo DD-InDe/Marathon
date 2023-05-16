@@ -46,6 +46,7 @@
         </Style>
         <Style TargetType="TextBlock" x:Key="mainTextBlock">
             <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
             <Setter Property="FontSize" Value="14"></Setter>
         </Style>
         <Style TargetType="TextBox" x:Key="mainTextBox">

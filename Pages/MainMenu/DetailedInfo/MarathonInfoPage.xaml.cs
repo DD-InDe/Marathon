@@ -28,5 +28,7 @@ namespace Marathon.Pages.MainMenu.DetailedInfo
             string path = @"C:\Users\deer\source\repos\Marathon\Resources\";
             DescriptionTextBlock.Text = File.ReadAllText(path + "marathonInfo.txt", Encoding.UTF8);
         }
+
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) => NavigationService.Navigate(new InteractiveMapPage());
     }
 }

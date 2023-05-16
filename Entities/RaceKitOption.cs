@@ -17,8 +17,8 @@ namespace Marathon.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RaceKitOption()
         {
-            this.Registration = new HashSet<Registration>();
             this.RaceKitSet = new HashSet<RaceKitSet>();
+            this.Registration = new HashSet<Registration>();
         }
     
         public string RaceKitOptionId { get; set; }
@@ -26,8 +26,8 @@ namespace Marathon.Entities
         public decimal Cost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registration { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RaceKitSet> RaceKitSet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registration> Registration { get; set; }
     }
 }

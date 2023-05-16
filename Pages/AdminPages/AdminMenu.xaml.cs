@@ -31,17 +31,8 @@ namespace Marathon.Pages
         {
 
         }
-
-        private void CharitysButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void VolunteersButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        private void CharitysButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ManageCharitiesPage());
+        private void VolunteersButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new VolunteerPage());
         private void InventoryButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new InventoryPage());
     }
 }

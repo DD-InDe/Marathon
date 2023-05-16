@@ -97,8 +97,10 @@ namespace Marathon.Pages.RunnerPages
 
         private void ExplorerButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Image | *.jpg; *.png";
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                Filter = "Image | *.jpg; *.png"
+            };
 
             if (fileDialog.ShowDialog() == true)
             {

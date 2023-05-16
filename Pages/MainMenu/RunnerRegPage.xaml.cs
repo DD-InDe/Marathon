@@ -42,7 +42,7 @@ namespace Marathon.Pages.MainMenu
             if (EmailTextBox.Text != null && PasswordTextBox.Text != null && PasswordRepeatTextBox.Text != null && FirstNameTextBox.Text != null
             && LastNameTextBox.Text != null && GenderComboBox.SelectedItem != null && CountryComboBox.SelectedItem != null && BirthDatePicker.SelectedDate != null)
             {
-                if (EmailCheck(EmailTextBox.Text))
+                if (EmailCheck())
                 {
                     if (DB.entities.User.FirstOrDefault(c => c.Email == EmailTextBox.Text) == null)
                     {
@@ -90,7 +90,7 @@ namespace Marathon.Pages.MainMenu
         private void GenderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => gender = GenderComboBox.SelectedItem as Gender;
         private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => country = CountryComboBox.SelectedItem as Country;
 
-        private bool EmailCheck(string email)
+        private bool EmailCheck()
         {
             try { var addr = new System.Net.Mail.MailAddress(EmailTextBox.Text); }
             catch { return false; }
@@ -113,8 +113,10 @@ namespace Marathon.Pages.MainMenu
 
         private void ExplorerButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Image | *.jpg; *.png";
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                Filter = "Image | *.jpg; *.png"
+            };
 
             if (fileDialog.ShowDialog() == true)
             {

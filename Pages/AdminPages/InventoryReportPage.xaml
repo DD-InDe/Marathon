@@ -1,0 +1,25 @@
+﻿<Page x:Class="Marathon.Pages.AdminPages.InventoryReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages.AdminPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="500"
+      Title="InventoryReportPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+            <TextBlock Style="{StaticResource headerTextBlock}">Отчет</TextBlock>
+            <DataGrid x:Name="ObjectsDataGrid" CanUserAddRows="False" AutoGenerateColumns="False" Width="458">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="140" Header="Наименование" Binding="{Binding ObjectName}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="80" Header="Остаток" Binding="{Binding ObjectStock}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="110" Header="Необходимо" Binding="{Binding Sum}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="120" Header="Надо заказать" Binding="{Binding Total}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Width="60" Height="24" HorizontalAlignment="Right" Margin="0,5,10,0">Печать</Button>
+        </StackPanel>
+    </Grid>
+</Page>

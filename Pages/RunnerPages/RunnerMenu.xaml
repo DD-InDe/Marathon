@@ -19,7 +19,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="ResultButton" Click="ResultButton_Click" Style="{StaticResource bigButton}">Мои результаты</Button>
-                    <Button x:Name="SponsorButton" Style="{StaticResource bigButton}">Мой спонсор</Button>
+                    <Button x:Name="SponsorButton" Click="SponsorButton_Click" Style="{StaticResource bigButton}">Мой спонсор</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -90,6 +90,13 @@
     <Compile Include="Entities\Charity.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CharityPartial.cs" />
+    <Compile Include="Entities\CheckPoint.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CheckPointService.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Context.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +129,7 @@
     <Compile Include="Entities\Gender.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\GenderPartial.cs" />
     <Compile Include="Entities\Marathon.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -131,6 +139,7 @@
     <Compile Include="Entities\RaceKitSet.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\RaceKitSetPartial.cs" />
     <Compile Include="Entities\Registration.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -148,6 +157,10 @@
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\RunnerPartial.cs" />
+    <Compile Include="Entities\ServicesProvided.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SetObjectPartial.cs" />
     <Compile Include="Entities\SetObjects.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -167,8 +180,29 @@
     <Compile Include="Entities\Volunteer.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdminPages\CharityEditPage.xaml.cs">
+      <DependentUpon>CharityEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AdminPages\InventoryPage.xaml.cs">
       <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\InventoryReportPage.xaml.cs">
+      <DependentUpon>InventoryReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\InventorySupplyPage.xaml.cs">
+      <DependentUpon>InventorySupplyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\ManageCharitiesPage.xaml.cs">
+      <DependentUpon>ManageCharitiesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\VolunteerImportPage.xaml.cs">
+      <DependentUpon>VolunteerImportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\VolunteerPage.xaml.cs">
+      <DependentUpon>VolunteerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\InteractiveMapPage.xaml.cs">
+      <DependentUpon>InteractiveMapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml.cs">
       <DependentUpon>MarathonDurationPage.xaml</DependentUpon>
@@ -176,8 +210,14 @@
     <Compile Include="Pages\MainMenu\DetailedInfo\MarathonInfoPage.xaml.cs">
       <DependentUpon>MarathonInfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\RaceResultsPage.xaml.cs">
+      <DependentUpon>RaceResultsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RunnerPages\MyRaceResultsPage.xaml.cs">
       <DependentUpon>MyRaceResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnerPages\MySponsorshipPage.xaml.cs">
+      <DependentUpon>MySponsorshipPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\AppMain.cs" />
     <Page Include="AllWindow\FirstWindow.xaml">
@@ -196,7 +236,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AdminPages\CharityEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AdminPages\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\InventoryReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\InventorySupplyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\ManageCharitiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\VolunteerImportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\VolunteerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,11 +276,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\InteractiveMapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu\DetailedInfo\MarathonDurationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainMenu\DetailedInfo\MarathonInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\RaceResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +317,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RunnerPages\MyRaceResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerPages\MySponsorshipPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -368,6 +444,17 @@
     <Resource Include="Resources\marathonInfo.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\IntMap.png" />
+    <Resource Include="Resources\marathon-map.jpg" />
+    <Resource Include="Resources\banco-banespa.jpg" />
+    <Resource Include="Resources\ibirapuera-park-lake.jpg" />
+    <Resource Include="Resources\marathon-image.jpg" />
+    <Resource Include="Resources\teatro-municipal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\map-icon-start.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Entities\Context.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Context.edmx</DependentUpon>
@@ -378,11 +465,6 @@
       <DependentUpon>Context.edmx</DependentUpon>
       <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\marathon-map.jpg" />
-    <Resource Include="Resources\banco-banespa.jpg" />
-    <Resource Include="Resources\ibirapuera-park-lake.jpg" />
-    <Resource Include="Resources\marathon-image.jpg" />
-    <Resource Include="Resources\teatro-municipal.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,22 +12,18 @@ namespace Marathon.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Charity
+    public partial class CheckPoint
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Charity()
+        public CheckPoint()
         {
-            this.Registration = new HashSet<Registration>();
+            this.CheckPointService = new HashSet<CheckPointService>();
         }
     
-        public int CharityId { get; set; }
-        public string CharityName { get; set; }
-        public string CharityDescription { get; set; }
-        public string CharityLogo { get; set; }
-        public byte[] CharityLogoImage { get; set; }
-        public string CharityShortDescription { get; set; }
+        public int CheckPointId { get; set; }
+        public string Landmark { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registration { get; set; }
+        public virtual ICollection<CheckPointService> CheckPointService { get; set; }
     }
 }

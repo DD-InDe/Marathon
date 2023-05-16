@@ -12,16 +12,32 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Style="{StaticResource headerTextBlock}">Инвентарь</TextBlock>
             <TextBlock Style="{StaticResource descriptionTextBlock}">Всего зарегистрировано бегунов на марафон: <Run FontWeight="Medium" x:Name="RunnersCountTextBlock"></Run></TextBlock>
-            <DataGrid x:Name="InventoryDataGrid" Width="700">
+            <!--таблица: комплект - кол-во-->
+            <DataGrid x:Name="InventoryDataGrid"  CanUserAddRows="False" AutoGenerateColumns="False" Width="710">
                 <DataGrid.Columns>
-                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="190" Header="Комплект" Binding="{Binding ItemName}"></DataGridTextColumn>
-                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Тип А" ></DataGridTextColumn>
-                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Тип C" ></DataGridTextColumn>
-                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Тип B" ></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="190" Header="Комплект" Binding="{Binding FirstString}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Тип А" Binding="{Binding KitOptionA}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Тип B" Binding="{Binding KitOptionB}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Тип C" Binding="{Binding KitOptionC}"></DataGridTextColumn>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="140" Header="Необходимо" ></DataGridTextColumn>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="100" Header="Остаток"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <!--таблица: объект - кол-во-->
+            <DataGrid x:Name="ObjectsDataGrid" CanUserAddRows="False" AutoGenerateColumns="False" Width="710">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="190" Binding="{Binding ObjectName}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Binding="{Binding KitOptionA}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Binding="{Binding KitOptionB}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Binding="{Binding KitOptionC}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="140" Binding="{Binding Sum}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="100" Binding="{Binding ObjectStock}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Width="700">
+                <Button x:Name="ReportButton" Click="ReportButton_Click" Margin="10" Width="60" Height="24">Отчет</Button>
+                <Button x:Name="SupplyButton" Click="SupplyButton_Click" Margin="10" Width="100" Height="24">Поступление</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

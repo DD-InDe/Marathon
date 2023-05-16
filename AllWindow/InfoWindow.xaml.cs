@@ -1,5 +1,6 @@
 ﻿using Marathon.Entities;
 using Marathon.Pages;
+using Marathon.Pages.AdminPages;
 using Marathon.Pages.RunnerPages;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace Marathon.AllWindow
             1 - SponsorCharityInfoPage - Страница с информаций о благотворительной организации на странице SponsorPage
             2 - ContactPage - Информция с выводом контактной информацией на страницу RunnerMenu
             3 - SponsorCharityInfoPage - Страница с информаций о благотворительной организации на странице MatathonRegPage
+            4 - InventoryReportPage - Страница с отчетом о закупке инвенатря для марафона на странице InventoryPage
             */
 
             switch (numPage)
@@ -43,6 +45,9 @@ namespace Marathon.AllWindow
                     break;
                 case 3:
                     mainFrame.Navigate(new SponsorCharityInfoPage(charity));
+                    break;
+                case 4:
+                    mainFrame.Navigate(new InventoryReportPage());
                     break;
             }
         }

@@ -1,0 +1,45 @@
+﻿<Page x:Class="Marathon.Pages.AdminPages.CharityEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Marathon.Pages.AdminPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CharityEditPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                <TextBlock Style="{StaticResource mainTextBlock}">Наименование:</TextBlock>
+                <olen:WatermarkTextBox x:Name="CharityNameTextBox" Watermark="Имя организации" MaxLength="100" Width="200" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"></olen:WatermarkTextBox>
+                <TextBlock Style="{StaticResource mainTextBlock}">Описание:</TextBlock>
+                <olen:WatermarkTextBox x:Name="CharityDescriptionTextBox" Watermark="Описание благотворительной организации" MaxLength="2000" TextWrapping="Wrap" Style="{StaticResource mainWTextBox}" Width="400" Height="250"></olen:WatermarkTextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource descriptionTextBlock}">Оставьте поле "Логотип файл" пустым, если вы не хотите загружать логотип</TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}">Логотип файл:</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                <olen:WatermarkTextBox x:Name="FileTextBox" Watermark="charity_logo.jpg" Style="{StaticResource mainWTextBox}" Width="200"></olen:WatermarkTextBox>
+                    <Button x:Name="FileDialogButton" Click="FileDialogButton_Click" Width="90" Height="24">Просмотр...</Button>
+                </StackPanel>
+                <TextBlock Style="{StaticResource mainTextBlock}">Текущий логотип:</TextBlock>
+                <Image x:Name="CharityLogoImage" Source="{Binding }" HorizontalAlignment="Left" Width="250" Height="190" Margin="5"></Image>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.ColumnSpan="2">
+        <TextBlock Style="{StaticResource headerTextBlock}" TextAlignment="Center" VerticalAlignment="Top">Добавление/Редактирование <LineBreak/> благотворительных организаций</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Button x:Name="SaveButton" Click="SaveButton_Click" Width="80" Height="24">Сохранить</Button>
+                <Button x:Name="CancelButton" Click="CancelButton_Click" Width="80" Height="24">Отмена</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -14,7 +14,7 @@
             <StackPanel Orientation="Horizontal">
                 <!--картинки-->
                 <StackPanel Orientation="Vertical" Margin="20,10,20,10">
-                    <Image Width="200" Height="190" Margin="2" Source="/Resources/marathon-map.jpg"></Image>
+                    <Image Width="200" Height="190" Margin="2" Source="/Resources/marathon-map.jpg" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Image Width="120" Height="90" Margin="2" Source="/Resources/banco-banespa.jpg"></Image>

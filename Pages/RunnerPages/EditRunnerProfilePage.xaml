@@ -59,14 +59,14 @@
                             <StackPanel x:Name="VisibleStackPanel" Orientation="Horizontal" HorizontalAlignment="Left">
                                 <olen:WatermarkPasswordBox x:Name="PasswordTextBox" TextChanged="PasswordTextBox_TextChanged" Style="{StaticResource WPasswordBox}" Watermark="придумайте пароль"></olen:WatermarkPasswordBox>
                                 <Button x:Name="VisibleButton" Click="VisibleButton_Click" BorderThickness="0" Background="Transparent" Width="25" Height="22" Margin="0">
-                                    <Image Width="24" Height="22" Source="/Resources/open_eye.png"></Image>
+                                    <Image Width="24" Height="24" Source="/Resources/open_eye.png"></Image>
                                 </Button>
                             </StackPanel>
                             <!--видимый пароль-->
                             <StackPanel x:Name="HiddenStackPanel" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Left">
                                 <olen:WatermarkTextBox x:Name="VisPasswordTextBox" TextChanged="VisPasswordTextBox_TextChanged" Style="{StaticResource mainWTextBox}" Watermark="придумайте пароль"></olen:WatermarkTextBox>
                                 <Button x:Name="CollapsedButton" Click="CollapsedButton_Click" BorderThickness="0" Background="Transparent" Width="25" Height="22" Margin="0">
-                                    <Image Width="24" Height="22" Source="/Resources/close_eye.png"></Image>
+                                    <Image Width="24" Height="24" Source="/Resources/close_eye.png"></Image>
                                 </Button>
                             </StackPanel>
                             <olen:WatermarkPasswordBox x:Name="PasswordRepeatTextBox" HorizontalAlignment="Left" Style="{StaticResource WPasswordBox}" Watermark="повторите пароль"></olen:WatermarkPasswordBox>
