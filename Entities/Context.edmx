@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище MarathonModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgeCategory">
+          <Key>
+            <PropertyRef Name="AgeCategoryId" />
+          </Key>
+          <Property Name="AgeCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgeCategoryName" Type="nvarchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="Charity">
           <Key>
             <PropertyRef Name="CharityId" />
@@ -147,6 +154,7 @@
           <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="RunnerImage" Type="varbinary(max)" />
+          <Property Name="AgeId" Type="int" />
         </EntityType>
         <EntityType Name="ServicesProvided">
           <Key>
@@ -370,6 +378,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Runner__AgeId__756D6ECB">
+          <End Role="AgeCategory" Type="Self.AgeCategory" Multiplicity="0..1" />
+          <End Role="Runner" Type="Self.Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeCategory">
+              <PropertyRef Name="AgeCategoryId" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="AgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Runner__CountryC__4222D4EF">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Runner" Type="Self.Runner" Multiplicity="*" />
@@ -455,6 +475,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище MarathonModelContainer">
+          <EntitySet Name="AgeCategory" EntityType="Self.AgeCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Charity" EntityType="Self.Charity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckPoint" EntityType="Self.CheckPoint" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckPointService" EntityType="Self.CheckPointService" Schema="dbo" store:Type="Tables" />
@@ -530,6 +551,10 @@
             <End Role="Runner" EntitySet="Runner" />
             <End Role="Registration" EntitySet="Registration" />
           </AssociationSet>
+          <AssociationSet Name="FK__Runner__AgeId__756D6ECB" Association="Self.FK__Runner__AgeId__756D6ECB">
+            <End Role="AgeCategory" EntitySet="AgeCategory" />
+            <End Role="Runner" EntitySet="Runner" />
+          </AssociationSet>
           <AssociationSet Name="FK__Runner__CountryC__4222D4EF" Association="Self.FK__Runner__CountryC__4222D4EF">
             <End Role="Country" EntitySet="Country" />
             <End Role="Runner" EntitySet="Runner" />
@@ -564,6 +589,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MarathonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgeCategory">
+          <Key>
+            <PropertyRef Name="AgeCategoryId" />
+          </Key>
+          <Property Name="AgeCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgeCategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Runner" Relationship="Self.FK__Runner__AgeId__756D6ECB" FromRole="AgeCategory" ToRole="Runner" />
+        </EntityType>
         <EntityType Name="Charity">
           <Key>
             <PropertyRef Name="CharityId" />
@@ -735,6 +768,8 @@
           <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="RunnerImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AgeId" Type="Int32" />
+          <NavigationProperty Name="AgeCategory" Relationship="Self.FK__Runner__AgeId__756D6ECB" FromRole="Runner" ToRole="AgeCategory" />
           <NavigationProperty Name="Country" Relationship="Self.FK__Runner__CountryC__4222D4EF" FromRole="Runner" ToRole="Country" />
           <NavigationProperty Name="Gender1" Relationship="Self.FK__Runner__Gender__412EB0B6" FromRole="Runner" ToRole="Gender" />
           <NavigationProperty Name="Registration" Relationship="Self.FK__Registrat__Runne__45F365D3" FromRole="Runner" ToRole="Registration" />
@@ -813,6 +848,18 @@
           <NavigationProperty Name="Country" Relationship="Self.FK__Volunteer__Count__4E53A1AA" FromRole="Volunteer" ToRole="Country" />
           <NavigationProperty Name="Gender1" Relationship="Self.FK__Volunteer__Gende__4D5F7D71" FromRole="Volunteer" ToRole="Gender" />
         </EntityType>
+        <Association Name="FK__Runner__AgeId__756D6ECB">
+          <End Role="AgeCategory" Type="Self.AgeCategory" Multiplicity="0..1" />
+          <End Role="Runner" Type="Self.Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeCategory">
+              <PropertyRef Name="AgeCategoryId" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="AgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Registrat__Chari__48CFD27E">
           <End Role="Charity" Type="Self.Charity" Multiplicity="1" />
           <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
@@ -1054,6 +1101,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MarathonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgeCategory" EntityType="Self.AgeCategory" />
           <EntitySet Name="Charity" EntityType="Self.Charity" />
           <EntitySet Name="CheckPoint" EntityType="Self.CheckPoint" />
           <EntitySet Name="CheckPointService" EntityType="Self.CheckPointService" />
@@ -1077,6 +1125,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Volunteer" EntityType="Self.Volunteer" />
+          <AssociationSet Name="FK__Runner__AgeId__756D6ECB" Association="Self.FK__Runner__AgeId__756D6ECB">
+            <End Role="AgeCategory" EntitySet="AgeCategory" />
+            <End Role="Runner" EntitySet="Runner" />
+          </AssociationSet>
           <AssociationSet Name="FK__Registrat__Chari__48CFD27E" Association="Self.FK__Registrat__Chari__48CFD27E">
             <End Role="Charity" EntitySet="Charity" />
             <End Role="Registration" EntitySet="Registration" />
@@ -1164,6 +1216,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище MarathonModelContainer" CdmEntityContainer="MarathonEntities">
+          <EntitySetMapping Name="AgeCategory">
+            <EntityTypeMapping TypeName="MarathonModel.AgeCategory">
+              <MappingFragment StoreEntitySet="AgeCategory">
+                <ScalarProperty Name="AgeCategoryId" ColumnName="AgeCategoryId" />
+                <ScalarProperty Name="AgeCategoryName" ColumnName="AgeCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Charity">
             <EntityTypeMapping TypeName="MarathonModel.Charity">
               <MappingFragment StoreEntitySet="Charity">
@@ -1320,6 +1380,7 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
                 <ScalarProperty Name="RunnerImage" ColumnName="RunnerImage" />
+                <ScalarProperty Name="AgeId" ColumnName="AgeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

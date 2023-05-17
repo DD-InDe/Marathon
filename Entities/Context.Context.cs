@@ -25,6 +25,7 @@ namespace Marathon.Entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AgeCategory> AgeCategory { get; set; }
         public virtual DbSet<Charity> Charity { get; set; }
         public virtual DbSet<CheckPoint> CheckPoint { get; set; }
         public virtual DbSet<CheckPointService> CheckPointService { get; set; }

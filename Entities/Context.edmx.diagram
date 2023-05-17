@@ -4,30 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5ae24fd6049b493d8428fa03eaf162c5" Name="Diagram1">
-        <EntityTypeShape EntityType="MarathonModel.Charity" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+      <Diagram DiagramId="21b55ac4bee74887a60b8b1a95c6d8c0" Name="Diagram1">
+        <EntityTypeShape EntityType="MarathonModel.AgeCategory" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.Charity" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.CheckPoint" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.CheckPointService" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.Country" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.DistanceObjects" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.Event" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.EventType" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.Gender" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.EventType" Width="1.5" PointX="3" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.Gender" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.Marathon" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.RaceKitOption" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.RaceKitSet" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.RaceKitOption" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.RaceKitSet" Width="1.5" PointX="5.25" PointY="21.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.Registration" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.RegistrationEvent" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.RegistrationStatus" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.Role" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.Runner" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.RegistrationStatus" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.Role" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.Runner" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.ServicesProvided" Width="1.5" PointX="9.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.SetObjects" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.SetObjects" Width="1.5" PointX="3" PointY="27.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.SpeedObjects" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.Sponsorship" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarathonModel.User" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarathonModel.User" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MarathonModel.Volunteer" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="MarathonModel.FK__Runner__AgeId__756D6ECB" ManuallyRouted="false" />
         <AssociationConnector Association="MarathonModel.FK__Registrat__Chari__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="MarathonModel.FK__CheckPoin__Check__2CF2ADDF" ManuallyRouted="false" />
         <AssociationConnector Association="MarathonModel.FK__CheckPoin__Servi__2DE6D218" ManuallyRouted="false" />

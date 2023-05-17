@@ -87,6 +87,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\AgeCategory.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Charity.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>

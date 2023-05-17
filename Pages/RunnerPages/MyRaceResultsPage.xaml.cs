@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Marathon.Pages.MainMenu.DetailedInfo;
 
 namespace Marathon.Pages.RunnerPages
 {
@@ -25,12 +26,9 @@ namespace Marathon.Pages.RunnerPages
         {
             InitializeComponent();
             MarathonDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == runner.RunnerId).ToList();
-            runnerInfoTextBlock.DataContext = runner; 
+            runnerInfoTextBlock.DataContext = runner;
         }
 
-        private void AllResults_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void AllResults_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new RaceResultsPage());
     }
 }

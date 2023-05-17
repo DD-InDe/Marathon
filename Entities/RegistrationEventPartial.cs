@@ -12,13 +12,14 @@ namespace Marathon.Entities
         {
             get
             {
-                RegistrationEvent eventList2 = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId).FirstOrDefault();
-                List<RegistrationEvent> marathonList = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == eventList2.Event.MarathonId).ToList();
+                RegistrationEvent eventList = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId).FirstOrDefault();
+                List<RegistrationEvent> marathonList = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == eventList.Event.MarathonId).ToList();
                 marathonList.OrderBy(c => c.RaceTime);
-                string number = "#" + Convert.ToString(marathonList.IndexOf(eventList2) + 1);
+                string number = "#" + Convert.ToString(marathonList.IndexOf(eventList) + 1);
                 return number;
             }
         }
+
         public string CategoryPlace
         {
             get
@@ -71,11 +72,12 @@ namespace Marathon.Entities
                 return number;
             }
         }
+
         public string Time
         {
             get
             {
-                RegistrationEvent regEvent = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId).FirstOrDefault();
+                RegistrationEvent regEvent = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId).FirstOrDefault();
                 var f = TimeSpan.FromSeconds(Convert.ToInt32(regEvent.RaceTime));
                 string time = $"{f.Hours}h {f.Minutes}m {f.Seconds}s";
 

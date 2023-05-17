@@ -43,7 +43,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <olen:WatermarkComboBox x:Name="GenderComboBox" DisplayMemberPath="GenderName" SelectionChanged="GenderComboBox_SelectionChanged" HorizontalAlignment="Left" Width="150" Watermark="Выберите пол" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
-                    <olen:WatermarkComboBox x:Name="CategoryComboBox" HorizontalAlignment="Left" Width="150" Watermark="Выберите категорию" Style="{StaticResource WComboBox}" Margin="4,6,4,2.5"></olen:WatermarkComboBox>
+                    <olen:WatermarkComboBox x:Name="CategoryComboBox" DisplayMemberPath="AgeCategoryName" SelectionChanged="CategoryComboBox_SelectionChanged" HorizontalAlignment="Left" Width="150" Watermark="Выберите категорию" Style="{StaticResource WComboBox}" Margin="4,6,4,2.5"></olen:WatermarkComboBox>
                 </StackPanel>
                 <Button x:Name="SearchButton" Click="SearchButton_Click" VerticalAlignment="Bottom" Margin="3,0,0,3">Поиск</Button>
             </StackPanel>
@@ -55,12 +55,12 @@
                 <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Всего бегунов финишировало: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>
                 <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Среднее время: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>-->
             </StackPanel>
-            <DataGrid x:Name="ResultDataGrid" Width="750" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False">
+            <DataGrid x:Name="ResultDataGrid" Width="750" Height="300" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="90" Header="Место" Binding="{Binding }"></DataGridTextColumn>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Время" Binding="{Binding }"></DataGridTextColumn>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="350" Header="Имя бегуна" Binding="{Binding }"></DataGridTextColumn>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Страна" Binding="{Binding }"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="90" Header="Место" Binding="{Binding GeneralPlace}"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Время" Binding="{Binding Time}"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="350" Header="Имя бегуна" Binding="{Binding Registration.Runner.User.FirstName}"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Страна" Binding="{Binding Registration.Runner.Country.CountryName}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
