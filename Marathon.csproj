@@ -216,6 +216,9 @@
     <Compile Include="Pages\MainMenu\DetailedInfo\RaceResultsPage.xaml.cs">
       <DependentUpon>RaceResultsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\RunnerCardPage.xaml.cs">
+      <DependentUpon>RunnerCardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RunnerPages\MyRaceResultsPage.xaml.cs">
       <DependentUpon>MyRaceResultsPage.xaml</DependentUpon>
     </Compile>
@@ -292,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainMenu\DetailedInfo\RaceResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\RunnerCardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

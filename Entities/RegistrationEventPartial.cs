@@ -8,7 +8,7 @@ namespace Marathon.Entities
 {
     partial class RegistrationEvent
     {
-        public string GeneralPlace
+        public string GeneralPlace // метод для страницы с результатами конкретного бегуна
         {
             get
             {
@@ -20,7 +20,7 @@ namespace Marathon.Entities
             }
         }
 
-        public string CategoryPlace
+        public string CategoryPlace // метод для страницы с результатами конкретного бегуна
         {
             get
             {
@@ -77,11 +77,19 @@ namespace Marathon.Entities
         {
             get
             {
-                RegistrationEvent regEvent = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId).FirstOrDefault();
+                RegistrationEvent regEvent = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId && c.Registration.Runner.AgeId == Registration.Runner.AgeId && Registration.Runner.Gender1.Gender1 == Registration.Runner.Gender1.Gender1).FirstOrDefault();
                 var f = TimeSpan.FromSeconds(Convert.ToInt32(regEvent.RaceTime));
                 string time = $"{f.Hours}h {f.Minutes}m {f.Seconds}s";
 
                 return time;
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return Registration.Runner.User.FirstName + " " + Registration.Runner.User.LastName;
             }
         }
     }

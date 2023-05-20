@@ -12,7 +12,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBlock Style="{StaticResource headerTextBlock}">Мои результаты</TextBlock>
-            <TextBlock Style="{StaticResource descriptionTextBlock}" Width="700">Это - список всех ваших прошлых результатов гонки для Marathon Skills. <LineBreak/> Общее место сравнивает всех бегунов. <LineBreak/> Место по категории compares runners in the same gender and age categories.</TextBlock>
+            <TextBlock Style="{StaticResource descriptionTextBlock}" Width="700">Это - список всех ваших прошлых результатов гонки для Marathon Skills. <LineBreak/> Общее место сравнивает всех бегунов. <LineBreak/> Место по полу и возрастной категории.</TextBlock>
             <TextBlock x:Name="runnerInfoTextBlock" Style="{StaticResource descriptionTextBlock}"><Run FontWeight="Medium">Пол:</Run> <Run Text="{Binding RunnerGender}"></Run> <Run FontWeight="Medium">Возрастная категория:</Run> <Run Text="{Binding AgeCategory.AgeCategoryName}"></Run></TextBlock>
             <DataGrid  x:Name="MarathonDataGrid" MaxHeight="250" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.Columns>
