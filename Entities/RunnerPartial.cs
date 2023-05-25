@@ -25,5 +25,35 @@ namespace Marathon.Entities
 
             set { }
         }
+        public string FullName
+        {
+            get
+            {
+                User user = DB.entities.User.First(c => c.Email == Email);
+                return user.FirstName + " " + user.LastName;
+            }
+
+            set { }
+        }
+        public string Age
+        {
+            get
+            {
+                return Convert.ToString(Convert.ToInt32(((DateTime.Now - Convert.ToDateTime(DateOfBirth)).TotalDays / 365.35)));
+            }
+
+            set
+            {
+
+            }
+        }
+        public string Date
+        {
+            get
+            {
+                DateTime date = Convert.ToDateTime(DateOfBirth);
+                return date.ToString("D");
+            }
+        }
     }
 }

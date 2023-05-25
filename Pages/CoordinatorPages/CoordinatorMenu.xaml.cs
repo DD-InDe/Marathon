@@ -1,4 +1,5 @@
 ﻿using Marathon.Entities;
+using Marathon.Pages.CoordinatorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +22,15 @@ namespace Marathon.Pages
     /// </summary>
     public partial class CoordinatorMenu : Page
     {
-        public CoordinatorMenu(User user)
+        public CoordinatorMenu(User _user)
         {
             InitializeComponent();
+            user = _user;
         }
 
-        private void RunnersButton_Click(object sender, RoutedEventArgs e)
-        {
+        User user;
 
-        }
-
-        private void SponsorsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void RunnersButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new RunnerManagementPage(user));
+        private void SponsorsButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new SponsorshipOverviewPage());
     }
 }

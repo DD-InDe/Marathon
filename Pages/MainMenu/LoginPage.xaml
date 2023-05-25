@@ -12,7 +12,7 @@
     <Grid>
         <StackPanel Margin="15" Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource headerTextBlock}">Форма авторизации</TextBlock>
-            <TextBlock FontSize="16" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource mainTextBlock}" Width="600">Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль.</TextBlock>
+            <TextBlock Style="{StaticResource descriptionTextBlock}" Width="600">Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль.</TextBlock>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <!--названия-->
                 <StackPanel Orientation="Vertical">
@@ -21,8 +21,8 @@
                 </StackPanel>
                 <!--поля-->
                 <StackPanel Orientation="Vertical">
-                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10">v.aldridge@gmail.com</TextBox>
-                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10">DULw9bWl</TextBox>
+                    <TextBox x:Name="EmailTextBox" Height="20" Width="200" Margin="10">dean.pinilla@gmail.com</TextBox>
+                    <TextBox x:Name="PasswordTextBox" Height="20" Width="200" Margin="10">WQnbEyjo</TextBox>
                     <!--кнопки-->
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="LoginButton" Click="LoginButton_Click" Margin="10">Войти</Button>

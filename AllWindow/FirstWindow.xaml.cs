@@ -1,6 +1,7 @@
 ﻿using Marathon.Entities;
 using Marathon.Pages;
 using Marathon.Pages.MainMenu;
+using Marathon.Pages.MainMenu.DetailedInfo;
 using Marathon.Pages.RunnerPages;
 using System;
 using System.Collections.Generic;

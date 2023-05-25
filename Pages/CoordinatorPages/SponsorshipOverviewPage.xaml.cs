@@ -14,22 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Marathon.Pages.MainMenu.DetailedInfo
+namespace Marathon.Pages.CoordinatorPages
 {
     /// <summary>
-    /// Логика взаимодействия для RunnerCardPage.xaml
+    /// Логика взаимодействия для SponsorshipOverviewPage.xaml
     /// </summary>
-    public partial class RunnerCardPage : Page
+    public partial class SponsorshipOverviewPage : Page
     {
-        public RunnerCardPage(Runner _runner)
+        public SponsorshipOverviewPage()
         {
             InitializeComponent();
-            runner = _runner;
-            RaceResults.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == runner.RunnerId).ToList();
+            
         }
-
-        Runner runner;
-
-        private void Page_Loaded(object sender, RoutedEventArgs e) => this.DataContext = runner;
     }
 }

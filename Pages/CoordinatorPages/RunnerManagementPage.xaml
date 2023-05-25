@@ -1,0 +1,85 @@
+﻿<Page x:Class="Marathon.Pages.CoordinatorPages.RunnerManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages.CoordinatorPages"
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RunnerManagementPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Style="{StaticResource headerTextBlock}" Grid.ColumnSpan="2">Управление бегунами</TextBlock>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1">
+            <TextBlock Style="{StaticResource descriptionTextBlock}">Сортировка и фильтрация</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Статус:</TextBlock>
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Дистанция:</TextBlock>
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Сортировать по:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <olen:WatermarkComboBox x:Name="StatusComboBox" DisplayMemberPath="RegistrationStatus1" SelectionChanged="StatusComboBox_SelectionChanged" Style="{StaticResource WComboBox}" Watermark="Статус бегуна" Margin="4,4,4,3" Width="150"></olen:WatermarkComboBox>
+                    <olen:WatermarkComboBox x:Name="DistanceComboBox" DisplayMemberPath="EventTypeName" SelectionChanged="DistanceComboBox_SelectionChanged" Style="{StaticResource WComboBox}" Watermark="Дистанция бегуна" Margin="4,4,4,3" Width="150"></olen:WatermarkComboBox>
+                    <olen:WatermarkComboBox x:Name="SortComboBox" SelectionChanged="SortComboBox_SelectionChanged" Style="{StaticResource WComboBox}" Watermark="Имени" Margin="4,4,4,2.5" Width="150"></olen:WatermarkComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                <Button x:Name="UpdateButton" Click="UpdateButton_Click" VerticalAlignment="Bottom" Margin="2">Обновить</Button>
+                <Button x:Name="DropButton" Click="DropButton_Click" VerticalAlignment="Bottom" Margin="2">Сбросить</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" >
+            <TextBlock Style="{StaticResource descriptionTextBlock}">Выгрузка</TextBlock>
+            <Button x:Name="CSVfileButton" Click="CSVfileButton_Click" Width="150" Height="35">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">Детальной информации<LineBreak></LineBreak>(CSV)</TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Name="EmailListButton" Click="EmailListButton_Click" Width="150">E-mail список</Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource mainTextBlock}" FontWeight="Medium">Всего бегунов: <Run FontWeight="Normal" x:Name="RunnerCountTextBlock"></Run></TextBlock>
+            <DataGrid Visibility="Collapsed" x:Name="RunnerDataGrid" Width="750" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" MaxHeight="220">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}" Width="140"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Фамилия" Binding="{Binding Registration.Runner.User.LastName}" Width="140"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Email" Binding="{Binding Registration.Runner.Email}" Width="200"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Статус" Binding="{Binding Registration.RegistrationStatus.RegistrationStatus1}" Width="150"></DataGridTextColumn>
+                    <DataGridTemplateColumn Width="95">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="0" HorizontalAlignment="Center" FontSize="14" Background="Transparent" x:Name="EditButton" Click="EditButton_Click" Height="25" Width="70">Изменить</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="ForCSVDataGrid" MaxHeight="200">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Registration.Runner.User.LastName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Почта" Binding="{Binding Registration.Runner.Email}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Registration.Runner.Gender}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Страна" Binding="{Binding Registration.Runner.Country.CountryName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding Registration.Runner.DateOfBirth}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Возраст" Binding="{Binding Registration.Runner.Age}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Состояние регистрации" Binding="{Binding Registration.RegistrationStatus.RegistrationStatus1}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Выбранный комплект" Binding="{Binding Registration.RaceKitOption.RaceKitOption1}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Тип марафона" Binding="{Binding MarathonType}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

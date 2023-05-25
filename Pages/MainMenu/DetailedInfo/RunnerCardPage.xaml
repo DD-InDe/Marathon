@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="RunnerCardPage">
 
     <Grid>
@@ -21,20 +22,20 @@
         <TextBlock Grid.ColumnSpan="2" Style="{StaticResource headerTextBlock}">Карточка бегуна</TextBlock>
         <!--личная информация бегуна-->
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="5" Orientation="Vertical" HorizontalAlignment="Left">
-            <Image HorizontalAlignment="Center" Width="130" Height="150"></Image>
+            <Image HorizontalAlignment="Center" Width="130" Height="150" Source="{Binding RunnerImage}"></Image>
             <TextBlock FontWeight="Medium" Style="{StaticResource mainTextBlock}">Имя: <Run FontWeight="Normal" Text="{Binding FullName}"></Run></TextBlock>
-            <TextBlock FontWeight="Medium" Style="{StaticResource mainTextBlock}">Страна: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>
-            <TextBlock FontWeight="Medium" Style="{StaticResource mainTextBlock}">Возраст: <Run FontWeight="Normal" Text="{Binding }"></Run></TextBlock>
+            <TextBlock FontWeight="Medium" Style="{StaticResource mainTextBlock}">Страна: <Run FontWeight="Normal" Text="{Binding Country.CountryName}"></Run></TextBlock>
+            <TextBlock FontWeight="Medium" Style="{StaticResource mainTextBlock}">Возраст: <Run FontWeight="Normal" Text="{Binding Age}"></Run></TextBlock>
         </StackPanel>
         <!--результаты прошлых забегов-->
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
             <TextBlock Style="{StaticResource descriptionTextBlock}">Прошлые результаты бегуна</TextBlock>
-            <DataGrid x:Name="RaceResults" CanUserAddRows="False" AutoGenerateColumns="False" CanUserDeleteRows="False" Width="550" MaxHeight="250">
+            <DataGrid x:Name="RaceResults" CanUserAddRows="False" AutoGenerateColumns="False" CanUserDeleteRows="False" Width="540" MaxHeight="250">
                 <DataGrid.Columns>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="70" Header="Место"></DataGridTextColumn>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="100" Header="Время"></DataGridTextColumn>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Тип забега"></DataGridTextColumn>
-                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="220" Header="Марафон"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="70" Header="Место" Binding="{Binding GeneralPlace}"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="100" Header="Время" Binding="{Binding Time}"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="150" Header="Тип забега" Binding="{Binding Event.EventType.EventTypeName}"></DataGridTextColumn>
+                    <DataGridTextColumn HeaderStyle="{StaticResource mainColumnHeader}" ElementStyle="{StaticResource mainTextBlock}" Width="210" Header="Марафон" Binding="{Binding Event.Marathon.MarathonName}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

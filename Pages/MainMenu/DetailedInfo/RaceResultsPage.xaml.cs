@@ -1,4 +1,5 @@
-﻿using Marathon.Entities;
+﻿using Marathon.AllWindow;
+using Marathon.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Marathon.Pages.MainMenu.DetailedInfo
             DistanceComboBox.SelectedIndex = 0;
 
             //загрузка в datagrid
-            currentDataList = DB.entities.RegistrationEvent.Where(c=>c.RaceTime != 0 && c.RaceTime != null && c.Event.MarathonId == currentMarathon.MarathonId && c.Event.EventTypeId == currentDistance.EventTypeId).ToList();
+            currentDataList = DB.entities.RegistrationEvent.Where(c => c.RaceTime != 0 && c.RaceTime != null && c.Event.MarathonId == currentMarathon.MarathonId && c.Event.EventTypeId == currentDistance.EventTypeId).ToList();
             currentDataList = currentDataList.OrderBy(c => c.RaceTime).ToList();
             ResultDataGrid.ItemsSource = currentDataList;
 
@@ -45,13 +46,12 @@ namespace Marathon.Pages.MainMenu.DetailedInfo
             int time = 0;
             foreach (var item in currentDataList)
                 time += Convert.ToInt32(item.RaceTime);
-            var k = TimeSpan.FromSeconds(time/currentDataList.Count);
+            var k = TimeSpan.FromSeconds(time / currentDataList.Count);
 
-            RunnerCount.Text = Convert.ToString(DB.entities.RegistrationEvent.Where(c=> c.Event.MarathonId == currentMarathon.MarathonId && c.Event.EventTypeId == currentDistance.EventTypeId).ToList().Count);
+            RunnerCount.Text = Convert.ToString(DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == currentMarathon.MarathonId && c.Event.EventTypeId == currentDistance.EventTypeId).ToList().Count);
             FinishCount.Text = Convert.ToString(currentDataList.Count);
             Time.Text = $"{k.Hours}h {k.Minutes}m {k.Seconds}s";
         }
-
         List<RegistrationEvent> currentDataList = new List<RegistrationEvent>();
         Entities.Marathon currentMarathon;
         EventType currentDistance;
@@ -81,14 +81,18 @@ namespace Marathon.Pages.MainMenu.DetailedInfo
                 RunnerCount.Text = Convert.ToString(DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == currentMarathon.MarathonId && c.Event.EventTypeId == currentDistance.EventTypeId && c.Registration.Runner.Gender == currentGender.Gender1 && c.Registration.Runner.AgeId == currentCategory.AgeCategoryId).ToList().Count);
             }
 
-            int time = 0;
-            foreach (var item in currentDataList)
-                time += Convert.ToInt32(item.RaceTime);
-            var k = TimeSpan.FromSeconds(time / currentDataList.Count);
+            if (currentDataList.Count != 0)
+            {
+                int time = 0;
+                foreach (var item in currentDataList)
+                    time += Convert.ToInt32(item.RaceTime);
+                var k = TimeSpan.FromSeconds(time / currentDataList.Count);
 
-            FinishCount.Text = Convert.ToString(currentDataList.Count);
-            Time.Text = $"{k.Hours}h {k.Minutes}m {k.Seconds}s";
-
+                FinishCount.Text = Convert.ToString(currentDataList.Count);
+                Time.Text = $"{k.Hours}h {k.Minutes}m {k.Seconds}s";
+            }
+            else
+                MessageBox.Show("Нет бегунов, соответсвующих этим параметрам поиска.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Warning);
             currentDataList = currentDataList.OrderBy(c => c.RaceTime).ToList();
             ResultDataGrid.ItemsSource = currentDataList;
         }
@@ -100,7 +104,10 @@ namespace Marathon.Pages.MainMenu.DetailedInfo
 
         private void ResultDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            var f = ResultDataGrid.SelectedItem;
+            RegistrationEvent selectedItem = (RegistrationEvent)ResultDataGrid.SelectedItem;
+            Runner currentRunner = DB.entities.Runner.First(c => c.RunnerId == selectedItem.Registration.RunnerId);
+            InfoWindow infoWindow = new InfoWindow(5, runner: currentRunner);
+            infoWindow.ShowDialog();
         }
 
         private void ResultDataGrid_LoadingRow(object sender, DataGridRowEventArgs e) => e.Row.Header = Convert.ToString(e.Row.GetIndex() + 1);

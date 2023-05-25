@@ -26,19 +26,24 @@ namespace Marathon.Pages
         {
             InitializeComponent();
 
-            RunnerComboBox.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5HM").ToList();
+            List<RegistrationEvent> runnersList = new List<RegistrationEvent>();
+            runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5FM").ToList());
+            runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5FR").ToList());
+            runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5HM").ToList());
+
+            RunnerComboBox.ItemsSource = runnersList;
 
             SumTextBox.Text = "50";
             SumTextBlock.Text = '$' + SumTextBox.Text;
         }
 
         int sum;
-        RegistrationEvent f;
+        RegistrationEvent regEvent;
 
         private void RunnerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            f = RunnerComboBox.SelectedItem as RegistrationEvent;
-            CharityNameTextBlock.Text = f.Registration.Charity.CharityName;
+            regEvent = RunnerComboBox.SelectedItem as RegistrationEvent;
+            CharityNameTextBlock.Text = regEvent.Registration.Charity.CharityName;
         }
 
         private void PlusButton_Click(object sender, RoutedEventArgs e) => SumTextBox.Text = Convert.ToString(Convert.ToInt32(SumTextBox.Text) + 10);
@@ -67,7 +72,7 @@ namespace Marathon.Pages
             if (RunnerComboBox.SelectedItem != null)
             {
                 var f = RunnerComboBox.SelectedItem as RegistrationEvent;
-                InfoWindow infoWindow = new InfoWindow(1,f);
+                InfoWindow infoWindow = new InfoWindow(1, f);
                 infoWindow.ShowDialog();
             }
             else
@@ -83,14 +88,40 @@ namespace Marathon.Pages
             }
             else
             {
-                Sponsorship addSponsorship = new Sponsorship();
-                addSponsorship.Amount = Convert.ToDecimal(SumTextBox.Text);
-                addSponsorship.SponsorName = NameTextBox.Text;
-                addSponsorship.Registration = f.Registration;
-                DB.entities.Sponsorship.Add(addSponsorship);
-                //DB.entities.SaveChanges();
-                NavigationService.Navigate(new SponsorThanksPage(f,addSponsorship));
+                if (CardCheck())
+                {
+                    Sponsorship addSponsorship = new Sponsorship();
+                    addSponsorship.Amount = Convert.ToDecimal(SumTextBox.Text);
+                    addSponsorship.SponsorName = NameTextBox.Text;
+                    addSponsorship.Registration = regEvent.Registration;
+                    DB.entities.Sponsorship.Add(addSponsorship);
+                    DB.entities.SaveChanges();
+                    NavigationService.Navigate(new SponsorThanksPage(regEvent, addSponsorship));
+                }
             }
+        }
+
+        public bool CardCheck()
+        {
+            DateTime dateTime;
+
+            try
+            {
+                dateTime = DateTime.ParseExact(CardValidity.Text, "MM yyyy", null);
+            }
+            catch
+            {
+                MessageBox.Show("В поле ''Срок Действия'' введены неккоректные данные!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (dateTime <= DateTime.Now)
+            {
+                MessageBox.Show("Карта недействительна!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else
+                return true;
         }
     }
 }

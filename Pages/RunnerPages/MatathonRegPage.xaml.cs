@@ -37,41 +37,55 @@ namespace Marathon.Pages.RunnerPages
 
         Runner _runner;
         Charity charity;
+        Event _event;
+        List<Event> eventList = new List<Event>();
 
         /* CheckBoxes */
         private void BigCheckBox_Click(object sender, RoutedEventArgs e)
         {
+            _event = DB.entities.Event.Where(c => c.EventType.EventTypeId == "FM").ToList().Last();
+
             if (BigCheckBox.IsChecked == true)
             {
                 priceMatathon += 145;
+                eventList.Add(_event);
             }
             else
             {
                 priceMatathon -= 145;
+                eventList.Remove(_event);
             }
             SumTextBlock.Text = Convert.ToString(priceMatathon);
         }
         private void MediumCheckBox_Click(object sender, RoutedEventArgs e)
         {
+            _event = DB.entities.Event.Where(c => c.EventType.EventTypeId == "HM").ToList().Last();
+
             if (MediumCheckBox.IsChecked == true)
             {
                 priceMatathon += 75;
+                eventList.Add(_event);
             }
             else
             {
                 priceMatathon -= 75;
+                eventList.Remove(_event);
             }
             SumTextBlock.Text = Convert.ToString(priceMatathon);
         }
         private void SmallCheckBox_Click(object sender, RoutedEventArgs e)
         {
+            _event = DB.entities.Event.Where(c => c.EventType.EventTypeId == "FR").ToList().Last();
+
             if (SmallCheckBox.IsChecked == true)
             {
                 priceMatathon += 20;
+                eventList.Add(_event);
             }
             else
             {
                 priceMatathon -= 20;
+                eventList.Remove(_event);
             }
             SumTextBlock.Text = Convert.ToString(priceMatathon);
         }
@@ -112,7 +126,7 @@ namespace Marathon.Pages.RunnerPages
         /* Buttons */
         private void RegButton_Click(object sender, RoutedEventArgs e)
         {
-            if (BigCheckBox.IsChecked == true || MediumCheckBox.IsChecked == true || SmallCheckBox.IsChecked == true)
+            if (eventList.Count != 0)
             {
                 if (raceKitId != ' ')
                 {
@@ -130,9 +144,25 @@ namespace Marathon.Pages.RunnerPages
                                 CharityId = charity.CharityId,
                                 SponsorshipTarget = Convert.ToDecimal(SumTextBox.Text)
                             };
-                            DB.entities.Registration.Add(registration);
 
+                            DB.entities.Registration.Add(registration);
                             DB.entities.SaveChanges();
+                            RegistrationEvent regEvent;
+                            int bibNumber;
+
+                            foreach (var events in eventList)
+                            {
+                                bibNumber = Convert.ToInt32(DB.entities.RegistrationEvent.Where(c => c.EventId == events.EventId).ToList().Last().BibNumber) + 1;
+                                regEvent = new RegistrationEvent
+                                {
+                                    RegistrationId = registration.RegistrationId,
+                                    EventId = events.EventId,
+                                    BibNumber = (short?)bibNumber
+                                };
+
+                                DB.entities.RegistrationEvent.Add(regEvent);
+                                DB.entities.SaveChanges();
+                            }
 
                             NavigationService.Navigate(new RegistrationConfirmationPage(_runner));
                         }

@@ -10,64 +10,95 @@
       Title="MatathonRegPage">
 
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Style="{StaticResource headerTextBlock}">Регистрация на марафон</TextBlock>
-            <TextBlock Width="550" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource mainTextBlock}">Пожалуйста заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2016 проводимом в Москве. Russia. С вами свяжутся после регистрации для уточнения оплаты и другой информации.</TextBlock>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <StackPanel Orientation="Vertical" Margin="5,0,15,0">
-                    <!--вид марафона-->
-                    <TextBlock Style="{StaticResource headerTextBlock}"  FontSize="14" FontWeight="Bold" HorizontalAlignment="Center">Вид марафона</TextBlock>
-                    <CheckBox x:Name="BigCheckBox" Click="BigCheckBox_Click" Style="{StaticResource mainComboBox}">42km Полный марафон($145)</CheckBox>
-                    <CheckBox x:Name="MediumCheckBox" Click="MediumCheckBox_Click" Style="{StaticResource mainComboBox}">21km Полумарафон ($75)</CheckBox>
-                    <CheckBox x:Name="SmallCheckBox" Click="SmallCheckBox_Click" Style="{StaticResource mainComboBox}">5km Малая дистанция ($20)</CheckBox>
-
-                    <!--детали спонсорства-->
-                    <TextBlock Style="{StaticResource headerTextBlock}"  FontSize="14" FontWeight="Bold" HorizontalAlignment="Center">Детали спонсорства</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Взнос:</TextBlock>
-                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Сумма взноса:</TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <olen:WatermarkComboBox x:Name="CharityComboBox" DisplayMemberPath="CharityName" SelectionChanged="CharityComboBox_SelectionChanged" HorizontalAlignment="Left" Watermark="выберите организацию" Style="{StaticResource WComboBox}" Width="152"></olen:WatermarkComboBox>
-                                <!--Кнопка информации-->
-                                <Button x:Name="InfoButton" Click="InfoButton_Click" Width="20" Height="20"  Background="Transparent" BorderBrush="Transparent">
-                                    <Image Width="15" Height="15" Source="/Resources/info_logo.png"></Image>
-                                </Button>
-                            </StackPanel>
-                            <olen:WatermarkTextBox x:Name="SumTextBox" PreviewTextInput="SumTextBox_PreviewTextInput" HorizontalAlignment="Left" Watermark="введите сумму взноса" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="RegButton" Click="RegButton_Click" Margin="3,10,2,0" Width="90" Height="22">Регистрация</Button>
-                        <Button x:Name="CancelButton" Click="CancelButton_Click" Margin="3,10,2,0" Width="60" Height="22">Отмена</Button>
-                    </StackPanel>
-                </StackPanel>
-                <!--варианты комплектов-->
-                <StackPanel Orientation="Vertical" Margin="15,0,5,0">
-                    <TextBlock Style="{StaticResource headerTextBlock}"  FontSize="14" FontWeight="Bold" HorizontalAlignment="Center">Варианты комплектов</TextBlock>
-                    <RadioButton x:Name="VarARadioButton" Click="VarARadioButton_Click" Style="{StaticResource mainRadioButton}">
-                        <RadioButton.Content>
-                            <TextBlock Text="Вариант A ($0): Номер бегуна+ RFID браслет." TextWrapping="Wrap"></TextBlock>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <RadioButton x:Name="VarBRadioButton" Style="{StaticResource mainRadioButton}" Checked="VarBRadioButton_Checked">
-                        <RadioButton.Content>
-                            <TextBlock Text="Вариант B ($20): вариант A + бейсболка + бутылка воды." TextWrapping="Wrap"></TextBlock>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <RadioButton x:Name="VarCRadionButton" Style="{StaticResource mainRadioButton}" Checked="VarCRadionButton_Checked">
-                        <RadioButton.Content>
-                            <TextBlock Text="Вариант C ($45): Вариант B +футболка + сувенирный буклет." TextWrapping="Wrap"></TextBlock>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <TextBlock Style="{StaticResource headerTextBlock}" FontSize="14" FontWeight="Bold">Регистрационный взнос</TextBlock>
-                    <!--Вывод суммы-->
-                    <TextBlock HorizontalAlignment="Center" x:Name="SumTextBlock" FontSize="40" Margin="5,10,5,10" FontWeight="Bold" Foreground="Gray"></TextBlock>
-                </StackPanel>
-            </StackPanel>
+            <TextBlock Width="600" Style="{StaticResource descriptionTextBlock}">Пожалуйста заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2016 проводимом в Москве. Russia. С вами свяжутся после регистрации для уточнения оплаты и другой информации.</TextBlock>
         </StackPanel>
 
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <!--вид марафона-->
+                <TextBlock Style="{StaticResource headerTextBlock}">Вид марафона</TextBlock>
+                <CheckBox x:Name="BigCheckBox" Click="BigCheckBox_Click" Style="{StaticResource otherComboBox}">
+                    <CheckBox.Content>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">42km Полный марафон ($145)</TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox x:Name="MediumCheckBox" Click="MediumCheckBox_Click" Style="{StaticResource otherComboBox}">
+                    <CheckBox.Content>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">21km Полумарафон ($75)</TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox x:Name="SmallCheckBox" Click="SmallCheckBox_Click" Style="{StaticResource otherComboBox}">
+                    <CheckBox.Content>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">5km Малая дистанция ($20)</TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+
+                <!--детали спонсорства-->
+                <TextBlock Style="{StaticResource headerTextBlock}">Детали спонсорства</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Взнос:</TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Сумма взноса:</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <olen:WatermarkComboBox x:Name="CharityComboBox" DisplayMemberPath="CharityName" SelectionChanged="CharityComboBox_SelectionChanged" HorizontalAlignment="Left" Watermark="выберите организацию" Style="{StaticResource WComboBox}" Width="152"></olen:WatermarkComboBox>
+                            <!--Кнопка информации-->
+                            <Button x:Name="InfoButton" Click="InfoButton_Click" Width="20" Height="20"  Background="Transparent" BorderBrush="Transparent">
+                                <Image Width="15" Height="15" Source="/Resources/info_logo.png"></Image>
+                            </Button>
+                        </StackPanel>
+                        <olen:WatermarkTextBox x:Name="SumTextBox" PreviewTextInput="SumTextBox_PreviewTextInput" HorizontalAlignment="Left" Watermark="введите сумму взноса" Style="{StaticResource mainWTextBox}"></olen:WatermarkTextBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            
+            <!--кнопки-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <Button x:Name="RegButton" Click="RegButton_Click" Width="90">Регистрация</Button>
+                    <Button x:Name="CancelButton" Click="CancelButton_Click" Width="90">Отмена</Button>
+                </StackPanel>
+            </Grid>
+            
+            <!--варианты комплектов-->
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource headerTextBlock}">Варианты комплектов</TextBlock>
+                <RadioButton x:Name="VarARadioButton" Click="VarARadioButton_Click" Style="{StaticResource otherRadioButton}">
+                    <RadioButton.Content>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Вариант A ($0): Номер бегуна+ RFID браслет.</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="VarBRadioButton" Style="{StaticResource otherRadioButton}" Checked="VarBRadioButton_Checked">
+                    <RadioButton.Content>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Вариант B ($20): вариант A + бейсболка + бутылка воды.</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Name="VarCRadionButton" Style="{StaticResource otherRadioButton}" Checked="VarCRadionButton_Checked">
+                    <RadioButton.Content>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Вариант C ($45): Вариант B +футболка + сувенирный буклет.</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+                <TextBlock Style="{StaticResource headerTextBlock}">Регистрационный взнос</TextBlock>
+                <!--Вывод суммы-->
+                <TextBlock HorizontalAlignment="Center" x:Name="SumTextBlock" FontSize="40" Margin="5,10,5,10" FontWeight="Bold" Foreground="Gray"></TextBlock>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -92,5 +92,10 @@ namespace Marathon.Entities
                 return Registration.Runner.User.FirstName + " " + Registration.Runner.User.LastName;
             }
         }
+
+        //public string MarathonType
+        //{
+           
+        //}
     }
 }

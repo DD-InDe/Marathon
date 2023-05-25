@@ -1,0 +1,11 @@
+﻿[Runner] 
+Login:		a.adkin@dayrep.net 
+Password:	jwZh2x@p
+
+[Coordinator]
+Login:		dean.pinilla@gmail.com
+Password:	WQnbEyjo
+
+[Admin]
+Login:		leila.azedeva@mskills.com
+Password:	MvTQ3itX

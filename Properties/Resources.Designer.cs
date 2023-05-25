@@ -63,9 +63,29 @@ namespace Marathon.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cross_icon {
+            get {
+                object obj = ResourceManager.GetObject("cross_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap info_logo {
             get {
                 object obj = ResourceManager.GetObject("info_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tick_icon {
+            get {
+                object obj = ResourceManager.GetObject("tick_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
