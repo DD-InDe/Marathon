@@ -1,6 +1,7 @@
 ﻿using Marathon.Entities;
 using Marathon.Pages;
 using Marathon.Pages.AdminPages;
+using Marathon.Pages.CoordinatorPages;
 using Marathon.Pages.MainMenu.DetailedInfo;
 using Marathon.Pages.RunnerPages;
 using System;
@@ -25,7 +26,7 @@ namespace Marathon.AllWindow
     /// </summary>
     public partial class InfoWindow : Window
     {
-        public InfoWindow(int numPage, RegistrationEvent regEvent = null, Charity charity = null, Runner runner = null)
+        public InfoWindow(int numPage, RegistrationEvent regEvent = null, Charity charity = null, Runner runner = null, List<RegistrationEvent> regEventList = null)
         {
             InitializeComponent();
 
@@ -35,6 +36,7 @@ namespace Marathon.AllWindow
             3 - SponsorCharityInfoPage - Страница с информаций о благотворительной организации на странице MatathonRegPage
             4 - InventoryReportPage - Страница с отчетом о закупке инвенатря для марафона на странице InventoryPage
             5 - RunnerCardPage - Страница с подробной информацией выбранного бегуна на странице RaceResultPage
+            6 - EmailOutputPage - Страница с почтой бегунов на странице RunnerManagementPage
             */
 
             switch (numPage)
@@ -55,6 +57,10 @@ namespace Marathon.AllWindow
                     this.Width = 800;
                     this.Height = 350;
                     mainFrame.Navigate(new RunnerCardPage(runner));
+                    break;
+                case 6:
+                    mainFrame.Navigate(new EmailOutputPage(regEventList));
+                    this.Width = 600;
                     break;
             }
         }

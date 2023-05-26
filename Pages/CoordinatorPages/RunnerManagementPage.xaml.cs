@@ -1,7 +1,10 @@
-﻿using Marathon.Entities;
+﻿using Marathon.AllWindow;
+using Marathon.Entities;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,14 +48,14 @@ namespace Marathon.Pages.CoordinatorPages
             SortComboBox.ItemsSource = sortList;
             SortComboBox.SelectedIndex = 0;
 
-            RunnerDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId).ToList();
-           
+            RunnerDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
+
         }
 
         RegistrationStatus regStatus;
         EventType distance;
         string selectedSort;
-        Event eve = DB.entities.Event.ToList().Last();
+        Entities.Marathon marathon = DB.entities.Marathon.ToList().Last();
 
         private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => regStatus = (RegistrationStatus)StatusComboBox.SelectedItem;
         private void DistanceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => distance = (EventType)DistanceComboBox.SelectedItem;
@@ -66,22 +69,22 @@ namespace Marathon.Pages.CoordinatorPages
                 switch (selectedSort)
                 {
                     case "Имени":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.FirstName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Фамилии":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.LastName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Почте":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.Email).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Статусу":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1 && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.RegistrationStatus).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
@@ -92,22 +95,22 @@ namespace Marathon.Pages.CoordinatorPages
                 switch (selectedSort)
                 {
                     case "Имени":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.FirstName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Фамилии":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.LastName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Почте":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.Email).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Статусу":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Registration.RegistrationStatus.RegistrationStatus1 == regStatus.RegistrationStatus1).ToList();
                         list = list.OrderBy(c => c.Registration.RegistrationStatus).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
@@ -118,22 +121,22 @@ namespace Marathon.Pages.CoordinatorPages
                 switch (selectedSort)
                 {
                     case "Имени":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.FirstName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Фамилии":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.LastName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Почте":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.Email).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Статусу":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId && c.Event.EventType.EventTypeName == distance.EventTypeName).ToList();
                         list = list.OrderBy(c => c.Registration.RegistrationStatus).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
@@ -144,22 +147,22 @@ namespace Marathon.Pages.CoordinatorPages
                 switch (selectedSort)
                 {
                     case "Имени":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.FirstName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Фамилии":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.User.LastName).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Почте":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
                         list = list.OrderBy(c => c.Registration.Runner.Email).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
                     case "Статусу":
-                        list = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId).ToList();
+                        list = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
                         list = list.OrderBy(c => c.Registration.RegistrationStatus).ToList();
                         RunnerDataGrid.ItemsSource = list;
                         break;
@@ -171,30 +174,38 @@ namespace Marathon.Pages.CoordinatorPages
             StatusComboBox.SelectedIndex = 0;
             DistanceComboBox.SelectedIndex = 0;
             SortComboBox.SelectedIndex = 0;
-            RunnerDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.EventId == eve.EventId).ToList();
+            RunnerDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
         }
 
         private void CSVfileButton_Click(object sender, RoutedEventArgs e)
         {
-            ForCSVDataGrid.ItemsSource  = RunnerDataGrid.ItemsSource;
+            ForCSVDataGrid.ItemsSource = RunnerDataGrid.ItemsSource;
 
-            //RunnerDataGrid.SelectAllCells();
-            //RunnerDataGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
-            //ApplicationCommands.Copy.Execute(null, RunnerDataGrid);
-            //String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
-            //String result = (string)Clipboard.GetData(DataFormats.Text);
-            //RunnerDataGrid.UnselectAllCells();
-            //System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"test.xls");
-            //file1.WriteLine(result.Replace(',', ' '));
-            //file1.Close();
+            ForCSVDataGrid.SelectAllCells();
+            ForCSVDataGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, ForCSVDataGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            ForCSVDataGrid.UnselectAllCells();
 
-            //MessageBox.Show(" Exporting DataGrid data to Excel file created.xls");
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                System.IO.StreamWriter file1 = new System.IO.StreamWriter($@"{saveFileDialog.FileName}.csv");
+                file1.WriteLine(result.Replace(',', ' '));
+                file1.Close();
+
+                MessageBox.Show("Таблица экспортирована в csv-файл");
+            }
 
         }
 
         private void EmailListButton_Click(object sender, RoutedEventArgs e)
         {
-
+            List<RegistrationEvent> runnersList = (List<RegistrationEvent>)RunnerDataGrid.ItemsSource;
+            InfoWindow infoWindow = new InfoWindow(6,regEventList:runnersList);
+            infoWindow.ShowDialog();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new SelectedRunnerManagePage(((Button)e.Source).DataContext as RegistrationEvent));

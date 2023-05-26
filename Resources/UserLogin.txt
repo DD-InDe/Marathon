@@ -1,6 +1,9 @@
 ﻿[Runner] 
-Login:		a.adkin@dayrep.net 
+Login:		a.adkin@dayrep.net
 Password:	jwZh2x@p
+
+Login:		evalyn.christian@hr.gov
+Password:	DqqSGUE2
 
 [Coordinator]
 Login:		dean.pinilla@gmail.com

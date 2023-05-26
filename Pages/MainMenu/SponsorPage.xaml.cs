@@ -26,10 +26,13 @@ namespace Marathon.Pages
         {
             InitializeComponent();
 
-            List<RegistrationEvent> runnersList = new List<RegistrationEvent>();
-            runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5FM").ToList());
-            runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5FR").ToList());
-            runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == "15_5HM").ToList());
+            //List<RegistrationEvent> runnersList = new List<RegistrationEvent>();
+            //runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == DB.entities.Event.Where(k => k.EventTypeId == "FM").ToList().Last().EventId).ToList());
+            //runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == DB.entities.Event.Where(k => k.EventTypeId == "FR").ToList().Last().EventId).ToList());
+            //runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.EventId == DB.entities.Event.Where(k => k.EventTypeId == "HM").ToList().Last().EventId).ToList());
+
+            Entities.Marathon marathon = DB.entities.Marathon.ToList().Last();
+            List<RegistrationEvent> runnersList = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
 
             RunnerComboBox.ItemsSource = runnersList;
 

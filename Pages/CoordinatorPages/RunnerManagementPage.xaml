@@ -44,14 +44,14 @@
             <TextBlock Style="{StaticResource descriptionTextBlock}">Выгрузка</TextBlock>
             <Button x:Name="CSVfileButton" Click="CSVfileButton_Click" Width="150" Height="35">
                 <Button.Content>
-                    <TextBlock TextAlignment="Center">Детальной информации<LineBreak></LineBreak>(CSV)</TextBlock>
+                    <TextBlock TextAlignment="Center">Детальная информация<LineBreak></LineBreak>(CSV)</TextBlock>
                 </Button.Content>
             </Button>
             <Button Name="EmailListButton" Click="EmailListButton_Click" Width="150">E-mail список</Button>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Style="{StaticResource mainTextBlock}" FontWeight="Medium">Всего бегунов: <Run FontWeight="Normal" x:Name="RunnerCountTextBlock"></Run></TextBlock>
-            <DataGrid Visibility="Collapsed" x:Name="RunnerDataGrid" Width="750" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" MaxHeight="220">
+            <DataGrid x:Name="RunnerDataGrid" Width="750" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" MaxHeight="220">
                 <DataGrid.Columns>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}" Width="140"></DataGridTextColumn>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Фамилия" Binding="{Binding Registration.Runner.User.LastName}" Width="140"></DataGridTextColumn>
@@ -66,7 +66,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="ForCSVDataGrid" MaxHeight="200">
+            <DataGrid x:Name="ForCSVDataGrid" MaxHeight="200" AutoGenerateColumns="False" Visibility="Collapsed">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding Registration.Runner.User.LastName}"></DataGridTextColumn>
@@ -77,7 +77,7 @@
                     <DataGridTextColumn Header="Возраст" Binding="{Binding Registration.Runner.Age}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Состояние регистрации" Binding="{Binding Registration.RegistrationStatus.RegistrationStatus1}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Выбранный комплект" Binding="{Binding Registration.RaceKitOption.RaceKitOption1}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Тип марафона" Binding="{Binding MarathonType}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Тип марафона" Binding="{Binding Event.EventType.EventTypeName}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

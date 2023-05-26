@@ -1,0 +1,24 @@
+﻿<Page x:Class="Marathon.Pages.CoordinatorPages.EmailOutputPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Marathon.Pages.CoordinatorPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EmailOutputPage">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource headerTextBlock}">Выгрузка электронной почты</TextBlock>
+            <DataGrid x:Name="RunnerDataGrid" MaxWidth="680" MaxHeight="250" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Фамлия" Binding="{Binding Registration.Runner.User.LastName}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Почта" Binding="{Binding Registration.Runner.Email}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

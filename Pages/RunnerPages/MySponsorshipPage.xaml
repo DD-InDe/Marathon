@@ -31,14 +31,16 @@
                 <TextBlock Style="{StaticResource descriptionTextBlock}" Text="{Binding CharityDescription}"></TextBlock>
             </ScrollViewer>
         </StackPanel>
-        <!--правый stackpanel-->
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <DataGrid x:Name="SponsorDateGrid" Width="300" GridLinesVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserSortColumns="False">
+        <!--таблица спонсоров-->
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top">
+            <DataGrid x:Name="SponsorDateGrid" Height="200" VerticalAlignment="Top" Width="300" GridLinesVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="200" Binding="{Binding SponsorName}" Header="Спонсор"></DataGridTextColumn>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="95" Binding="{Binding Amount}" Header="Взнос"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <TextBlock x:Name="InfoTextBlock" Style="{StaticResource descriptionTextBlock}">В текущем марафоне вас еще никто не спонсирует</TextBlock>
+            <TextBlock x:Name="SumTextBlock" Style="{StaticResource descriptionTextBlock}"></TextBlock>
         </StackPanel>
     </Grid>
 </Page>

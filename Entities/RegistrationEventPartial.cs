@@ -13,9 +13,11 @@ namespace Marathon.Entities
             get
             {
                 RegistrationEvent eventList = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId).FirstOrDefault();
-                List<RegistrationEvent> marathonList = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == eventList.Event.MarathonId).ToList();
-                marathonList.OrderBy(c => c.RaceTime);
-                string number = "#" + Convert.ToString(marathonList.IndexOf(eventList) + 1);
+                List<RegistrationEvent> runnersList = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == eventList.Event.MarathonId && c.RaceTime != null && c.RaceTime != 0).ToList();
+                runnersList = runnersList.OrderBy(c => c.RaceTime).ToList();
+
+                runnersList.AddRange(DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == eventList.Event.MarathonId && c.RaceTime == 0 || c.Event.MarathonId == eventList.Event.MarathonId && c.RaceTime == null).ToList());
+                string number = "#" + Convert.ToString(runnersList.IndexOf(eventList) + 1);
                 return number;
             }
         }
@@ -24,51 +26,23 @@ namespace Marathon.Entities
         {
             get
             {
-                List<RegistrationEvent> runnerList = new List<RegistrationEvent>(); /*лист всех бегунов*/
-                RegistrationEvent eventList = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId).FirstOrDefault();
-                int ageCategory = Convert.ToInt32((DateTime.Now - Convert.ToDateTime(Registration.Runner.DateOfBirth)).TotalDays / 365.35);
-                int min, max;
+                RegistrationEvent runner = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == Registration.RunnerId && c.EventId == EventId).FirstOrDefault();
+                List<RegistrationEvent> runnersList = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == runner.Event.MarathonId && c.RaceTime != null && c.RaceTime != 0 && c.Registration.Runner.AgeId == runner.Registration.Runner.AgeId && c.Registration.Runner.Gender == runner.Registration.Runner.Gender).ToList();
 
-                if (ageCategory < 18)
-                {
-                    min = 0;
-                    max = 18;
-                }
-                else if (ageCategory < 30)
-                {
-                    min = 18;
-                    max = 30;
-                }
-                else if (ageCategory < 40)
-                {
-                    min = 30;
-                    max = 40;
-                }
-                else if (ageCategory < 56)
-                {
-                    min = 40;
-                    max = 55;
-                }
-                else if (ageCategory < 70)
-                {
-                    min = 55;
-                    max = 70;
-                }
-                else
-                {
-                    min = 70;
-                    max = int.MaxValue;
-                }
+                runnersList = runnersList.OrderBy(c => c.RaceTime).ToList();
 
-                foreach (var runner in DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == eventList.Event.MarathonId).ToList())
-                {
-                    int runnerAge = Convert.ToInt32((DateTime.Now - Convert.ToDateTime(runner.Registration.Runner.DateOfBirth)).TotalDays / 365.35);
-                    if (min <= runnerAge && runnerAge < max && runner.Registration.Runner.Gender == Registration.Runner.Gender)
-                        runnerList.Add(runner);
-                }
-                runnerList.OrderBy(c => c.RaceTime);
-                string number = "#" + Convert.ToString(runnerList.IndexOf(eventList) + 1);
+                runnersList.AddRange(DB.entities.RegistrationEvent.Where(c =>
+                    c.Event.MarathonId == runner.Event.MarathonId &&
+                    c.RaceTime == null &&
+                    c.Registration.Runner.AgeId == runner.Registration.Runner.AgeId &&
+                    c.Registration.Runner.Gender == runner.Registration.Runner.Gender
+                    ||
+                    c.Event.MarathonId == runner.Event.MarathonId &&
+                    c.RaceTime == 0 &&
+                    c.Registration.Runner.AgeId == runner.Registration.Runner.AgeId &&
+                    c.Registration.Runner.Gender == runner.Registration.Runner.Gender).ToList());
 
+                string number = "#" + Convert.ToString(runnersList.IndexOf(runner) + 1);
                 return number;
             }
         }
@@ -93,9 +67,5 @@ namespace Marathon.Entities
             }
         }
 
-        //public string MarathonType
-        //{
-           
-        //}
     }
 }

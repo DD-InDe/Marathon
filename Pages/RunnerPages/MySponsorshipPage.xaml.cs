@@ -26,7 +26,34 @@ namespace Marathon.Pages.RunnerPages
             InitializeComponent();
 
             CharityStackPanel.DataContext = registration.Charity;
-            SponsorDateGrid.ItemsSource = DB.entities.Sponsorship.Where(c => c.Registration.RegistrationId == registration.RegistrationId).ToList();
+
+            Entities.Marathon marathon = DB.entities.Marathon.ToList().Last();
+            List<Event> eventList = DB.entities.Event.Where(c => c.MarathonId == marathon.MarathonId).ToList();
+
+            RegistrationEvent g = new RegistrationEvent();
+            foreach (Event item in eventList)
+            {
+                g = DB.entities.RegistrationEvent.FirstOrDefault(c => c.EventId == item.EventId && c.RegistrationId == registration.RegistrationId);
+                if (g != null)
+                    break;
+            }
+            var t = DB.entities.Sponsorship.Where(c => c.RegistrationId == g.RegistrationId).ToList();
+
+            int sum = 0;
+
+            foreach (var item in t)
+                sum += Convert.ToInt32(item.Amount);
+
+            SponsorDateGrid.ItemsSource = t;
+            SumTextBlock.Text = "Итого: " + sum.ToString();
+
+            if (t.Count == 0)
+            {
+                SumTextBlock.Visibility = Visibility.Collapsed;
+                SponsorDateGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+                InfoTextBlock.Visibility = Visibility.Collapsed;
         }
     }
 }

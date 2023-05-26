@@ -136,6 +136,7 @@
     <Compile Include="Entities\Marathon.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OutputClass.cs" />
     <Compile Include="Entities\RaceKitOption.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -203,6 +204,9 @@
     </Compile>
     <Compile Include="Pages\AdminPages\VolunteerPage.xaml.cs">
       <DependentUpon>VolunteerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CoordinatorPages\EmailOutputPage.xaml.cs">
+      <DependentUpon>EmailOutputPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CoordinatorPages\RunnerManagementPage.xaml.cs">
       <DependentUpon>RunnerManagementPage.xaml</DependentUpon>
@@ -276,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AdminPages\VolunteerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CoordinatorPages\EmailOutputPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
