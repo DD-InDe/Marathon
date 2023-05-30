@@ -13,10 +13,10 @@ namespace Marathon.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MarathonEntities : DbContext
+    public partial class Marathon1Entities : DbContext
     {
-        public MarathonEntities()
-            : base("name=MarathonEntities")
+        public Marathon1Entities()
+            : base("name=Marathon1Entities")
         {
         }
     

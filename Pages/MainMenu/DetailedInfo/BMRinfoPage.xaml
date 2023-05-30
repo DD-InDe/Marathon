@@ -1,0 +1,22 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.DetailedInfo.BMRinfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="500"
+      Title="BMRinfoPage">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Style="{StaticResource headerTextBlock}">Уровни активности</TextBlock>
+            <TextBlock Style="{StaticResource descriptionTextBlock}">Описание уровней активности</TextBlock>
+            <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Сидячий: <Run FontWeight="Normal">нет работы или работа за столом.</Run></TextBlock>
+            <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Маленькая активность: <Run FontWeight="Normal">мало физических работы или занятия спортом 1-3 раза в неделю.</Run></TextBlock>
+            <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Средняя активность: <Run FontWeight="Normal">умеренная физическая работа или занятия спортом 3 - 5 дней в неделю.</Run></TextBlock>
+            <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Сильная активность: <Run FontWeight="Normal">сильные физическая нагрузка или занятия спортом 6 - 7 дней в неделю.</Run></TextBlock>
+            <TextBlock Style="{StaticResource mainTextBlock}" FontWeight="Medium">Максимальная активность: <Run FontWeight="Normal">сильная ежедневная физическая нагрузка или спорт и физическая работа.</Run></TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

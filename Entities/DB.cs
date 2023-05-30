@@ -8,6 +8,6 @@ namespace Marathon.Entities
 {
     public class DB
     {
-        public static MarathonEntities entities = new MarathonEntities();
+        public static Marathon1Entities entities = new Marathon1Entities();
     }
 }

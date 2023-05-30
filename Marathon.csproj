@@ -199,11 +199,26 @@
     <Compile Include="Pages\AdminPages\ManageCharitiesPage.xaml.cs">
       <DependentUpon>ManageCharitiesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdminPages\UserAddPage.xaml.cs">
+      <DependentUpon>UserAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\UserEditPage.xaml.cs">
+      <DependentUpon>UserEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\UserManagementPage.xaml.cs">
+      <DependentUpon>UserManagementPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AdminPages\VolunteerImportPage.xaml.cs">
       <DependentUpon>VolunteerImportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminPages\VolunteerPage.xaml.cs">
       <DependentUpon>VolunteerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CoordinatorPages\CertificatePage.xaml.cs">
+      <DependentUpon>CertificatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CoordinatorPages\EditRunnerPage.xaml.cs">
+      <DependentUpon>EditRunnerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CoordinatorPages\EmailOutputPage.xaml.cs">
       <DependentUpon>EmailOutputPage.xaml</DependentUpon>
@@ -211,11 +226,23 @@
     <Compile Include="Pages\CoordinatorPages\RunnerManagementPage.xaml.cs">
       <DependentUpon>RunnerManagementPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CoordinatorPages\RunnersBadgePage.xaml.cs">
+      <DependentUpon>RunnersBadgePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CoordinatorPages\SelectedRunnerManagePage.xaml.cs">
       <DependentUpon>SelectedRunnerManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CoordinatorPages\SponsorshipOverviewPage.xaml.cs">
       <DependentUpon>SponsorshipOverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\BMIcalculatorPage.xaml.cs">
+      <DependentUpon>BMIcalculatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\BMRcalculatorPage.xaml.cs">
+      <DependentUpon>BMRcalculatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenu\DetailedInfo\BMRinfoPage.xaml.cs">
+      <DependentUpon>BMRinfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu\DetailedInfo\InteractiveMapPage.xaml.cs">
       <DependentUpon>InteractiveMapPage.xaml</DependentUpon>
@@ -275,6 +302,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AdminPages\UserAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\UserEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\UserManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AdminPages\VolunteerImportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +321,14 @@
     <Page Include="Pages\AdminPages\VolunteerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CoordinatorPages\CertificatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CoordinatorPages\EditRunnerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\CoordinatorPages\EmailOutputPage.xaml">
       <SubType>Designer</SubType>
@@ -291,11 +338,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\CoordinatorPages\RunnersBadgePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CoordinatorPages\SelectedRunnerManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CoordinatorPages\SponsorshipOverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\BMIcalculatorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\BMRcalculatorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenu\DetailedInfo\BMRinfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -494,16 +557,8 @@
     <Resource Include="Resources\map-icon-start.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\Context.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Context.edmx</DependentUpon>
-      <LastGenOutput>Context.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Context.edmx</DependentUpon>
-      <LastGenOutput>Context.cs</LastGenOutput>
-    </Content>
+    <Resource Include="Resources\marathon-skills-2014-logo.png" />
+    <Resource Include="Resources\marathon-skills-2014-certificate-seal.png" />
     <Resource Include="Resources\UserLogin.txt" />
     <None Include="Resources\tick-icon.png" />
     <None Include="Resources\cross-icon.png" />
@@ -536,6 +591,20 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\Context.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\female-icon.png" />
+    <Resource Include="Resources\male-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,18 +30,12 @@ namespace Marathon.Pages
 
         private void LastResultsButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new RaceResultsPage());
 
-        private void BMI_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void BMI_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new BMIcalculatorPage());
 
         private void MarathonDurationButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MarathonDurationPage());
 
         private void CharityListButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CharityPage());
 
-        private void BMR_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void BMR_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new BMRcalculatorPage());
     }
 }

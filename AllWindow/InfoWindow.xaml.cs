@@ -17,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Marathon.AllWindow
@@ -37,6 +38,7 @@ namespace Marathon.AllWindow
             4 - InventoryReportPage - Страница с отчетом о закупке инвенатря для марафона на странице InventoryPage
             5 - RunnerCardPage - Страница с подробной информацией выбранного бегуна на странице RaceResultPage
             6 - EmailOutputPage - Страница с почтой бегунов на странице RunnerManagementPage
+            7 - RunnersBadgePage - Страница с бейджиком бегуна на странице SelectresRunnerManagePage
             */
 
             switch (numPage)
@@ -54,13 +56,21 @@ namespace Marathon.AllWindow
                     mainFrame.Navigate(new InventoryReportPage());
                     break;
                 case 5:
-                    this.Width = 800;
-                    this.Height = 350;
+                    Width = 800;
+                    Height = 350;
                     mainFrame.Navigate(new RunnerCardPage(runner));
                     break;
                 case 6:
                     mainFrame.Navigate(new EmailOutputPage(regEventList));
-                    this.Width = 600;
+                    Width = 600;
+                    break;
+                case 7:
+                    mainFrame.Navigate(new RunnersBadgePage(regEvent));
+                    Width = 700;
+                    Height = 400;
+                    break;
+                case 8:
+                    mainFrame.Navigate(new BMRinfoPage());
                     break;
             }
         }

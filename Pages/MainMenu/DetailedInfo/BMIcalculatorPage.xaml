@@ -1,0 +1,76 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.DetailedInfo.BMIcalculatorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BMIcalculatorPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" Style="{StaticResource headerTextBlock}">BMI калькулятор</TextBlock>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource descriptionTextBlock}" FontSize="14">BMI обозначает индекс массы тела. Он используется, чтобы дать вам представление о том, является ли Ваш вес- избыточным или идеальным для вашего роста. Это полезно знать, потому что если ваш вес увеличивается или уменьшается за пределами идеального диапазона, у вас повышается риск заболеть.</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="MaleButton" Click="MaleButton_Click" Height="100" Width="100" VerticalContentAlignment="Bottom" BorderBrush="LightGray">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Resources/male-icon.png" Height="60" Width="90"></Image>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Мужской</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="GenderButton" Click="GenderButton_Click" Height="100" Width="100" VerticalContentAlignment="Bottom" BorderBrush="LightGray">
+                    <StackPanel Orientation="Vertical">
+                        <Image  Source="/Resources/female-icon.png" Height="60" Width="90"></Image>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Женский</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource descriptionTextBlock}" FontSize="14">Рост:</TextBlock>
+                <olen:WatermarkTextBox x:Name="GrowthTextBox" Style="{StaticResource mainWTextBox}" Width="50" PreviewTextInput="TextBox_PreviewTextInput"></olen:WatermarkTextBox>
+                <TextBlock Style="{StaticResource descriptionTextBlock}" FontSize="14">см</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource descriptionTextBlock}" FontSize="14">Вес:</TextBlock>
+                <olen:WatermarkTextBox x:Name="WeightTextBox" Style="{StaticResource mainWTextBox}" PreviewTextInput="TextBox_PreviewTextInput" Width="50"></olen:WatermarkTextBox>
+                <TextBlock Style="{StaticResource descriptionTextBlock}" FontSize="14">кг</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="CalculationButton" Click="CalculationButton_Click">Рассчитать</Button>
+                <Button x:Name="CancelButton" Click="CancelButton_Click">Отмена</Button>
+            </StackPanel>
+        </StackPanel>
+
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.7*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1">
+                <Rectangle Width="75" Height="24" Fill="#FFFFAF00"></Rectangle>
+                <Rectangle Width="75" Height="24" Fill="#FF00CC00"></Rectangle>
+                <Rectangle Width="75" Height="24" Fill="#FFFFAF00"></Rectangle>
+                <Rectangle Width="75" Height="24" Fill="Red"></Rectangle>
+            </StackPanel>
+        </Grid>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top">
+            <Image x:Name="StatusImage" Width="150" Height="200" Margin="40" Source="{Binding }"></Image>
+            <Slider x:Name="BMISlider" Width="300" Maximum="34.5" Minimum="13.5" Value="15"/>
+        </StackPanel>
+    </Grid>
+</Page>

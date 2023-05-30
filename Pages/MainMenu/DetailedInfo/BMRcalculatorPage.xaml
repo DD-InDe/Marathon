@@ -1,0 +1,88 @@
+﻿<Page x:Class="Marathon.Pages.MainMenu.DetailedInfo.BMRcalculatorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BMRcalculatorPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" Style="{StaticResource headerTextBlock}">BMI калькулятор</TextBlock>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource descriptionTextBlock}" FontSize="14">BMR используется в качестве оценки для измерения метаболизма взрослого человека, который изменяется в зависимости от роста, веса, возраста и различных медицинских факторов.</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="MaleButton" Click="MaleButton_Click" Height="100" Width="100" VerticalContentAlignment="Bottom" BorderBrush="LightGray">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Resources/male-icon.png" Height="60" Width="90"></Image>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Мужской</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="FemaleButton" Click="FemaleButton_Click" Height="100" Width="100" VerticalContentAlignment="Bottom" BorderBrush="LightGray">
+                    <StackPanel Orientation="Vertical">
+                        <Image  Source="/Resources/female-icon.png" Height="60" Width="90"></Image>
+                        <TextBlock Style="{StaticResource descriptionTextBlock}">Женский</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{StaticResource descriptionTextBlock}" HorizontalAlignment="Right" FontSize="14">Рост:</TextBlock>
+                    <TextBlock Style="{StaticResource descriptionTextBlock}" HorizontalAlignment="Right" FontSize="14">Вес:</TextBlock>
+                    <TextBlock Style="{StaticResource descriptionTextBlock}" HorizontalAlignment="Right" FontSize="14">Возраст:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <olen:WatermarkTextBox x:Name="GrowthTextBox" Style="{StaticResource mainWTextBox}" Width="50" PreviewTextInput="TextBox_PreviewTextInput"></olen:WatermarkTextBox>
+                    <olen:WatermarkTextBox x:Name="WeightTextBox" Style="{StaticResource mainWTextBox}" PreviewTextInput="TextBox_PreviewTextInput" Width="50"></olen:WatermarkTextBox>
+                    <olen:WatermarkTextBox x:Name="AgeTextBox" Style="{StaticResource mainWTextBox}" PreviewTextInput="TextBox_PreviewTextInput" Width="50"></olen:WatermarkTextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{StaticResource descriptionTextBlock}" HorizontalAlignment="Left" FontSize="14">см</TextBlock>
+                    <TextBlock Style="{StaticResource descriptionTextBlock}" HorizontalAlignment="Left" FontSize="14">кг</TextBlock>
+                    <TextBlock Style="{StaticResource descriptionTextBlock}" HorizontalAlignment="Left" FontSize="14">лет</TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="CalculationButton" Click="CalculationButton_Click">Рассчитать</Button>
+                <Button x:Name="CancelButton" Click="CancelButton_Click">Отмена</Button>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource descriptionTextBlock}">Ваш BMR</TextBlock>
+                <TextBlock x:Name="BMRTextBlock" Style="{StaticResource descriptionTextBlock}" FontSize="40"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource descriptionTextBlock}" >Ежедневно тратится калорий</TextBlock>
+                    <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="/Resources/info_logo.png" Width="20" Height="20"></Image>
+                </StackPanel>
+                <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right" FontWeight="Medium" Foreground="DeepSkyBlue">Сидячий: <Run x:Name="PassiveTextBlock"></Run></TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right" FontWeight="Medium" Foreground="LimeGreen">Маленькая активность: <Run x:Name="LittleActivityTextBlock"></Run></TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right" FontWeight="Medium" Foreground="Orange">Средняя активность: <Run x:Name="MiddleActivityTextBlock"></Run></TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right" FontWeight="Medium" Foreground="OrangeRed">Сильная активность: <Run x:Name="BigActivityTextBlock"></Run></TextBlock>
+                <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right" FontWeight="Medium" Foreground="Red">Максимальная активность: <Run x:Name="MaxActivityTextBlock"></Run></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

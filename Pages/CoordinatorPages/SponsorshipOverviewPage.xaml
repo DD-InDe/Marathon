@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:Marathon.Pages.CoordinatorPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -13,24 +14,27 @@
             <TextBlock Style="{StaticResource headerTextBlock}">Просмотр спонсоров</TextBlock>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource mainTextBlock}">Отсоритровать по:</TextBlock>
-                <ComboBox Width="200" Height="25"></ComboBox>
-                <Button Width="100">Сортировка</Button>
+                <olen:WatermarkComboBox x:Name="SortByComboBox" SelectionChanged="SortByComboBox_SelectionChanged" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
+                <Button x:Name="SortButton" Click="SortButton_Click" Width="100">Сортировка</Button>
             </StackPanel>
-            <TextBlock Style="{StaticResource headerTextBlock}">Всего благотворительных организаций: <Run Text="{Binding Registraton.Charity.CharityName}"></Run></TextBlock>
-            <TextBlock Style="{StaticResource headerTextBlock}">Сумма спонсорских взносов: <Run Text="{Binding Amount}"></Run></TextBlock>
-            <DataGrid x:Name="SponsorDataGrid" Width="550" MaxHeight="270">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn HeaderStyle="{StaticResource mainColumnHeader}" Width="150" Header="Логотип">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Width="145" Height="80" Source="{Binding }"></Image>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="245" Header="Наименование"></DataGridTextColumn>
-                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="145" Header="Сумма"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+            <TextBlock Style="{StaticResource headerTextBlock}">Всего благотворительных организаций: <Run x:Name="CharityCountTextBlock"></Run></TextBlock>
+            <TextBlock Style="{StaticResource headerTextBlock}">Сумма спонсорских взносов: <Run x:Name="AmountTextBlock"></Run></TextBlock>
+            
+            <ScrollViewer Height="270">
+                <DataGrid x:Name="SponsorDataGrid" MaxWidth="700" AutoGenerateColumns="False" VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.ScrollUnit="Item" EnableColumnVirtualization="True" EnableRowVirtualization="True" CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn HeaderStyle="{StaticResource mainColumnHeader}" Width="150" Header="Логотип">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="145" Height="80" Source="{Binding CharityLogoImage}"></Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Наименование" Binding="{Binding CharityName}"></DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="100" Header="Сумма" Binding="{Binding TotalSum}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

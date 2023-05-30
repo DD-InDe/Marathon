@@ -7,6 +7,7 @@
       xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="RunnerManagementPage">
 
     <Grid>
@@ -19,7 +20,7 @@
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <TextBlock Style="{StaticResource headerTextBlock}" Grid.ColumnSpan="2">Управление бегунами</TextBlock>
         <StackPanel HorizontalAlignment="Center" Grid.Row="1">
             <TextBlock Style="{StaticResource descriptionTextBlock}">Сортировка и фильтрация</TextBlock>
@@ -35,8 +36,8 @@
                     <olen:WatermarkComboBox x:Name="SortComboBox" SelectionChanged="SortComboBox_SelectionChanged" Style="{StaticResource WComboBox}" Watermark="Имени" Margin="4,4,4,2.5" Width="150"></olen:WatermarkComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                <Button x:Name="UpdateButton" Click="UpdateButton_Click" VerticalAlignment="Bottom" Margin="2">Обновить</Button>
-                <Button x:Name="DropButton" Click="DropButton_Click" VerticalAlignment="Bottom" Margin="2">Сбросить</Button>
+                    <Button x:Name="UpdateButton" Click="UpdateButton_Click" VerticalAlignment="Bottom" Margin="2">Обновить</Button>
+                    <Button x:Name="DropButton" Click="DropButton_Click" VerticalAlignment="Bottom" Margin="2">Сбросить</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -51,7 +52,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Style="{StaticResource mainTextBlock}" FontWeight="Medium">Всего бегунов: <Run FontWeight="Normal" x:Name="RunnerCountTextBlock"></Run></TextBlock>
-            <DataGrid x:Name="RunnerDataGrid" Width="750" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" MaxHeight="220">
+            <DataGrid x:Name="RunnerDataGrid" Width="750" MaxHeight="200" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}" Width="140"></DataGridTextColumn>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Header="Фамилия" Binding="{Binding Registration.Runner.User.LastName}" Width="140"></DataGridTextColumn>
@@ -66,7 +67,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="ForCSVDataGrid" MaxHeight="200" AutoGenerateColumns="False" Visibility="Collapsed">
+            <DataGrid x:Name="ForCSVDataGrid" AutoGenerateColumns="False" Visibility="Collapsed">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Registration.Runner.User.FirstName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding Registration.Runner.User.LastName}"></DataGridTextColumn>

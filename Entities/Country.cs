@@ -25,6 +25,7 @@ namespace Marathon.Entities
         public string CountryCode { get; set; }
         public string CountryName { get; set; }
         public string CountryFlag { get; set; }
+        public byte[] FlagImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Marathon> Marathon { get; set; }

@@ -67,5 +67,19 @@ namespace Marathon.Entities
             }
         }
 
+        public string RunnerProfit
+        {
+            get
+            {
+                List<Sponsorship> sponsorList = DB.entities.Sponsorship.Where(c => c.RegistrationId == RegistrationId).ToList();
+                int sum = 0;
+                foreach (Sponsorship sponsor in sponsorList)
+                    sum += Convert.ToInt32(sponsor.Amount);
+
+                return sum.ToString() + "$";
+            }
+
+            set { }
+        }
     }
 }

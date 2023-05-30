@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище MarathonModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Marathon1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AgeCategory">
           <Key>
             <PropertyRef Name="AgeCategoryId" />
@@ -45,6 +45,7 @@
           <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CountryFlag" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FlagImage" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="DistanceObjects">
           <Key>
@@ -474,7 +475,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище MarathonModelContainer">
+        <EntityContainer Name="Хранилище Marathon1ModelContainer">
           <EntitySet Name="AgeCategory" EntityType="Self.AgeCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Charity" EntityType="Self.Charity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckPoint" EntityType="Self.CheckPoint" Schema="dbo" store:Type="Tables" />
@@ -588,7 +589,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MarathonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Marathon1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AgeCategory">
           <Key>
             <PropertyRef Name="AgeCategoryId" />
@@ -634,6 +635,7 @@
           <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountryFlag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FlagImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Marathon" Relationship="Self.FK__Marathon__Countr__4D94879B" FromRole="Country" ToRole="Marathon" />
           <NavigationProperty Name="Runner" Relationship="Self.FK__Runner__CountryC__4222D4EF" FromRole="Country" ToRole="Runner" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK__Volunteer__Count__4E53A1AA" FromRole="Country" ToRole="Volunteer" />
@@ -1100,7 +1102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MarathonEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Marathon1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AgeCategory" EntityType="Self.AgeCategory" />
           <EntitySet Name="Charity" EntityType="Self.Charity" />
           <EntitySet Name="CheckPoint" EntityType="Self.CheckPoint" />
@@ -1215,9 +1217,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище MarathonModelContainer" CdmEntityContainer="MarathonEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Marathon1ModelContainer" CdmEntityContainer="Marathon1Entities">
           <EntitySetMapping Name="AgeCategory">
-            <EntityTypeMapping TypeName="MarathonModel.AgeCategory">
+            <EntityTypeMapping TypeName="Marathon1Model.AgeCategory">
               <MappingFragment StoreEntitySet="AgeCategory">
                 <ScalarProperty Name="AgeCategoryId" ColumnName="AgeCategoryId" />
                 <ScalarProperty Name="AgeCategoryName" ColumnName="AgeCategoryName" />
@@ -1225,7 +1227,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Charity">
-            <EntityTypeMapping TypeName="MarathonModel.Charity">
+            <EntityTypeMapping TypeName="Marathon1Model.Charity">
               <MappingFragment StoreEntitySet="Charity">
                 <ScalarProperty Name="CharityId" ColumnName="CharityId" />
                 <ScalarProperty Name="CharityName" ColumnName="CharityName" />
@@ -1237,7 +1239,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CheckPoint">
-            <EntityTypeMapping TypeName="MarathonModel.CheckPoint">
+            <EntityTypeMapping TypeName="Marathon1Model.CheckPoint">
               <MappingFragment StoreEntitySet="CheckPoint">
                 <ScalarProperty Name="CheckPointId" ColumnName="CheckPointId" />
                 <ScalarProperty Name="Landmark" ColumnName="Landmark" />
@@ -1245,7 +1247,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CheckPointService">
-            <EntityTypeMapping TypeName="MarathonModel.CheckPointService">
+            <EntityTypeMapping TypeName="Marathon1Model.CheckPointService">
               <MappingFragment StoreEntitySet="CheckPointService">
                 <ScalarProperty Name="CheckPointServiceId" ColumnName="CheckPointServiceId" />
                 <ScalarProperty Name="CheckPointId" ColumnName="CheckPointId" />
@@ -1254,16 +1256,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Country">
-            <EntityTypeMapping TypeName="MarathonModel.Country">
+            <EntityTypeMapping TypeName="Marathon1Model.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
                 <ScalarProperty Name="CountryFlag" ColumnName="CountryFlag" />
+                <ScalarProperty Name="FlagImage" ColumnName="FlagImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DistanceObjects">
-            <EntityTypeMapping TypeName="MarathonModel.DistanceObjects">
+            <EntityTypeMapping TypeName="Marathon1Model.DistanceObjects">
               <MappingFragment StoreEntitySet="DistanceObjects">
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
@@ -1274,7 +1277,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Event">
-            <EntityTypeMapping TypeName="MarathonModel.Event">
+            <EntityTypeMapping TypeName="Marathon1Model.Event">
               <MappingFragment StoreEntitySet="Event">
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="EventName" ColumnName="EventName" />
@@ -1287,7 +1290,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EventType">
-            <EntityTypeMapping TypeName="MarathonModel.EventType">
+            <EntityTypeMapping TypeName="Marathon1Model.EventType">
               <MappingFragment StoreEntitySet="EventType">
                 <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
                 <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
@@ -1295,14 +1298,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
-            <EntityTypeMapping TypeName="MarathonModel.Gender">
+            <EntityTypeMapping TypeName="Marathon1Model.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Gender1" ColumnName="Gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Marathon">
-            <EntityTypeMapping TypeName="MarathonModel.Marathon">
+            <EntityTypeMapping TypeName="Marathon1Model.Marathon">
               <MappingFragment StoreEntitySet="Marathon">
                 <ScalarProperty Name="MarathonId" ColumnName="MarathonId" />
                 <ScalarProperty Name="MarathonName" ColumnName="MarathonName" />
@@ -1313,7 +1316,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RaceKitOption">
-            <EntityTypeMapping TypeName="MarathonModel.RaceKitOption">
+            <EntityTypeMapping TypeName="Marathon1Model.RaceKitOption">
               <MappingFragment StoreEntitySet="RaceKitOption">
                 <ScalarProperty Name="RaceKitOptionId" ColumnName="RaceKitOptionId" />
                 <ScalarProperty Name="RaceKitOption1" ColumnName="RaceKitOption" />
@@ -1322,7 +1325,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RaceKitSet">
-            <EntityTypeMapping TypeName="MarathonModel.RaceKitSet">
+            <EntityTypeMapping TypeName="Marathon1Model.RaceKitSet">
               <MappingFragment StoreEntitySet="RaceKitSet">
                 <ScalarProperty Name="RaceKitSetId" ColumnName="RaceKitSetId" />
                 <ScalarProperty Name="RaceKitOption" ColumnName="RaceKitOption" />
@@ -1331,7 +1334,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Registration">
-            <EntityTypeMapping TypeName="MarathonModel.Registration">
+            <EntityTypeMapping TypeName="Marathon1Model.Registration">
               <MappingFragment StoreEntitySet="Registration">
                 <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
                 <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
@@ -1345,7 +1348,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegistrationEvent">
-            <EntityTypeMapping TypeName="MarathonModel.RegistrationEvent">
+            <EntityTypeMapping TypeName="Marathon1Model.RegistrationEvent">
               <MappingFragment StoreEntitySet="RegistrationEvent">
                 <ScalarProperty Name="RegistrationEventId" ColumnName="RegistrationEventId" />
                 <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
@@ -1356,7 +1359,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegistrationStatus">
-            <EntityTypeMapping TypeName="MarathonModel.RegistrationStatus">
+            <EntityTypeMapping TypeName="Marathon1Model.RegistrationStatus">
               <MappingFragment StoreEntitySet="RegistrationStatus">
                 <ScalarProperty Name="RegistrationStatusId" ColumnName="RegistrationStatusId" />
                 <ScalarProperty Name="RegistrationStatus1" ColumnName="RegistrationStatus" />
@@ -1364,7 +1367,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="MarathonModel.Role">
+            <EntityTypeMapping TypeName="Marathon1Model.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -1372,7 +1375,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Runner">
-            <EntityTypeMapping TypeName="MarathonModel.Runner">
+            <EntityTypeMapping TypeName="Marathon1Model.Runner">
               <MappingFragment StoreEntitySet="Runner">
                 <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1385,7 +1388,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServicesProvided">
-            <EntityTypeMapping TypeName="MarathonModel.ServicesProvided">
+            <EntityTypeMapping TypeName="Marathon1Model.ServicesProvided">
               <MappingFragment StoreEntitySet="ServicesProvided">
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
@@ -1395,7 +1398,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SetObjects">
-            <EntityTypeMapping TypeName="MarathonModel.SetObjects">
+            <EntityTypeMapping TypeName="Marathon1Model.SetObjects">
               <MappingFragment StoreEntitySet="SetObjects">
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
@@ -1404,7 +1407,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpeedObjects">
-            <EntityTypeMapping TypeName="MarathonModel.SpeedObjects">
+            <EntityTypeMapping TypeName="Marathon1Model.SpeedObjects">
               <MappingFragment StoreEntitySet="SpeedObjects">
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
@@ -1415,7 +1418,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sponsorship">
-            <EntityTypeMapping TypeName="MarathonModel.Sponsorship">
+            <EntityTypeMapping TypeName="Marathon1Model.Sponsorship">
               <MappingFragment StoreEntitySet="Sponsorship">
                 <ScalarProperty Name="SponsorshipId" ColumnName="SponsorshipId" />
                 <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
@@ -1425,7 +1428,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MarathonModel.sysdiagrams">
+            <EntityTypeMapping TypeName="Marathon1Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1436,7 +1439,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="MarathonModel.User">
+            <EntityTypeMapping TypeName="Marathon1Model.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1447,7 +1450,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Volunteer">
-            <EntityTypeMapping TypeName="MarathonModel.Volunteer">
+            <EntityTypeMapping TypeName="Marathon1Model.Volunteer">
               <MappingFragment StoreEntitySet="Volunteer">
                 <ScalarProperty Name="VolunteerId" ColumnName="VolunteerId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

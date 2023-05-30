@@ -1,0 +1,70 @@
+﻿<Page x:Class="Marathon.Pages.AdminPages.UserManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:olen="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Marathon.Pages.AdminPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
+      Title="UserManagementPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Style="{StaticResource headerTextBlock}" Grid.ColumnSpan="2">Управление пользователями</TextBlock>
+
+        <!--фильтрация и поиск-->
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Фильтр по ролям:</TextBlock>
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Сортировать по:</TextBlock>
+                    <TextBlock Style="{StaticResource mainTextBlock}" HorizontalAlignment="Right">Поиск:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <olen:WatermarkComboBox x:Name="RoleComboBox" DisplayMemberPath="RoleName" Width="150" Style="{StaticResource WComboBox}" Margin="4,4,4,2.5"></olen:WatermarkComboBox>
+                    <olen:WatermarkComboBox x:Name="SortByComboBox" Width="150" Style="{StaticResource WComboBox}" Margin="4,4,4,2.5"></olen:WatermarkComboBox>
+                    <olen:WatermarkTextBox x:Name="SearchTextBox" Style="{StaticResource mainWTextBox}" Margin="4,5,4,2.5"></olen:WatermarkTextBox>
+                    <Button x:Name="UpdateButton" Click="UpdateButton_Click">Обновить</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        
+        <!--кнопка добавления-->
+        <Button Grid.Row="1" Width="150" Height="37" Click="Button_Click">
+            <Button.Content>
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center">+ Добавить нового пользователя</TextBlock>
+            </Button.Content>
+        </Button>
+        
+        <!--таблица пользователей-->
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Row="2">
+            <TextBlock Style="{StaticResource descriptionTextBlock}">Всего пользователей: <Run x:Name="countTextBlock"></Run></TextBlock>
+            <DataGrid x:Name="UserDataGrid" Height="220" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" Width="700">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="150" Header="Имя" Binding="{Binding FirstName}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="150" Header="Фамилия" Binding="{Binding LastName}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="200" Header="Почта" Binding="{Binding Email}"></DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="90" Header="Роль" Binding="{Binding Role.RoleName}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="0" HorizontalAlignment="Center" FontSize="14" Background="Transparent" x:Name="EditButton" Click="EditButton_Click" Height="25" Width="70">Изменить</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

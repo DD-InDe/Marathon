@@ -37,17 +37,17 @@ namespace Marathon.Pages.RunnerPages
                 if (g != null)
                     break;
             }
-            var t = DB.entities.Sponsorship.Where(c => c.RegistrationId == g.RegistrationId).ToList();
+            List<Sponsorship> sponsorList = DB.entities.Sponsorship.Where(c => c.RegistrationId == g.RegistrationId).ToList();
 
             int sum = 0;
 
-            foreach (var item in t)
+            foreach (var item in sponsorList)
                 sum += Convert.ToInt32(item.Amount);
 
-            SponsorDateGrid.ItemsSource = t;
+            SponsorDateGrid.ItemsSource = sponsorList;
             SumTextBlock.Text = "Итого: " + sum.ToString();
 
-            if (t.Count == 0)
+            if (sponsorList.Count == 0)
             {
                 SumTextBlock.Visibility = Visibility.Collapsed;
                 SponsorDateGrid.Visibility = Visibility.Collapsed;

@@ -11,12 +11,21 @@
       Title="EditRunnerProfilePage">
 
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" Width="400" HorizontalAlignment="Center">
-                    <TextBlock Style="{StaticResource headerTextBlock}">Редактирование профиля</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" Style="{StaticResource headerTextBlock}">Редактирование профиля</TextBlock>
+        
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Width="400">
                     <!--левое поле-->
-                    <StackPanel Orientation="Horizontal" Margin="10,20,10,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical">
                             <!--названия строк-->
                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Email:</TextBlock>
@@ -29,21 +38,22 @@
                         <StackPanel Orientation="Vertical">
                             <!--строки-->
                             <TextBlock Text="{Binding Email}" Style="{StaticResource mainTextBlock}" Margin="6"></TextBlock>
-                            <olen:WatermarkTextBox x:Name="FirstNameTextBox" Watermark="введите Ваше имя" Style="{StaticResource mainWTextBox}" Text="{Binding User.FirstName}"></olen:WatermarkTextBox>
-                            <olen:WatermarkTextBox x:Name="LastNameTextBox" Watermark="введите Вашу фамилию" Style="{StaticResource mainWTextBox}" Text="{Binding User.LastName}"></olen:WatermarkTextBox>
-                            <olen:WatermarkComboBox x:Name="GenderComboBox" HorizontalAlignment="Left" Style="{StaticResource WComboBox}" SelectedItem="{Binding Gender1}" DisplayMemberPath="Gender1"></olen:WatermarkComboBox>
-                            <DatePicker x:Name="BirthDatePicker" Text="{Binding DateOfBirth}" HorizontalAlignment="Left" Style="{StaticResource mainDatePicker}"></DatePicker>
+                            <olen:WatermarkTextBox x:Name="FirstNameTextBox" Watermark="введите Ваше имя" Style="{StaticResource mainWTextBox}" Width="200" Text="{Binding User.FirstName}"></olen:WatermarkTextBox>
+                    <olen:WatermarkTextBox x:Name="LastNameTextBox" Watermark="введите Вашу фамилию" Style="{StaticResource mainWTextBox}" Width="200" Text="{Binding User.LastName}"></olen:WatermarkTextBox>
+                            <olen:WatermarkComboBox x:Name="GenderComboBox" HorizontalAlignment="Left" Style="{StaticResource WComboBox}"  SelectedItem="{Binding Gender1}" DisplayMemberPath="Gender1"></olen:WatermarkComboBox>
+                            <DatePicker x:Name="BirthDatePicker" Width="150" Text="{Binding DateOfBirth}" HorizontalAlignment="Left" Style="{StaticResource mainDatePicker}"></DatePicker>
                             <olen:WatermarkComboBox x:Name="CountryComboBox" HorizontalAlignment="Left" Style="{StaticResource WComboBox}" SelectedItem="{Binding Country}" DisplayMemberPath="CountryName"></olen:WatermarkComboBox>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+        
                 <!--правое поле-->
-                <StackPanel Orientation="Vertical">
-                    <Image x:Name="RunnerPhoto" Margin="10,0,10,0" HorizontalAlignment="Right" Width="120" Height="130" Source="{Binding }"></Image>
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Image x:Name="RunnerPhoto" Margin="0,0,10,0" HorizontalAlignment="Right" Width="120" Height="140" Source="{Binding }"></Image>
                     <TextBlock Margin="5,2,0,2" Style="{StaticResource mainTextBlock}">Фото файл:</TextBlock>
                     <!--загрузка фото-->
                     <StackPanel Orientation="Horizontal">
-                        <olen:WatermarkTextBox x:Name="ImagePathTextBox" Style="{StaticResource mainWTextBox}" Margin="3.5,0,0,0" Watermark="Photo_logo.jpg"></olen:WatermarkTextBox>
+                <olen:WatermarkTextBox x:Name="ImagePathTextBox" Style="{StaticResource mainWTextBox}" Margin="3.5,0,0,0" Width="200" Watermark="Photo_logo.jpg"></olen:WatermarkTextBox>
                         <Button x:Name="ExplorerButton" Click="ExplorerButton_Click" HorizontalAlignment="Right" Margin="5,0,0,0" Width="90" Height="20">Просмотр...</Button>
                     </StackPanel>
                     <TextBlock Style="{StaticResource headerTextBlock}" FontSize="16">Смена пароля</TextBlock>
@@ -73,11 +83,10 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+        
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="SaveButton" Click="SaveButton_Click" Width="80">Сохранить</Button>
+                <Button x:Name="CancelButton" Click="CancelButton_Click" Width="70">Отмена</Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
-                <Button x:Name="SaveButton" Click="SaveButton_Click" Width="80" Height="22">Сохранить</Button>
-                <Button x:Name="CancelButton" Click="CancelButton_Click" Width="70" Height="22">Отмена</Button>
-            </StackPanel>
-        </StackPanel>
     </Grid>
 </Page>

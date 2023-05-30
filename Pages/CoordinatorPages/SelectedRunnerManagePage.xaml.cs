@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Marathon.Resources;
 using System.IO;
+using Marathon.Pages.RunnerPages;
+using Marathon.AllWindow;
 
 namespace Marathon.Pages.CoordinatorPages
 {
@@ -62,5 +64,23 @@ namespace Marathon.Pages.CoordinatorPages
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e) => this.DataContext = baseInfo;
+
+        private void CertificateButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<RegistrationEvent> regEventList = DB.entities.RegistrationEvent.Where(c => c.Registration.RunnerId == baseInfo.Registration.RunnerId && c.Event.MarathonId == 4).ToList();
+
+            if (regEventList.Count != 0)
+                NavigationService.Navigate(new CertificatePage(regEventList));
+            else
+                MessageBox.Show("Этот бегун не участвовал в прошлом марафоне!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void BadgeButton_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindow infoWindow = new InfoWindow(7,baseInfo);
+            infoWindow.ShowDialog();
+        }
+
+        private void RunnerEditButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new EditRunnerPage(baseInfo.Registration.Runner));
     }
 }

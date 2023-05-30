@@ -43,8 +43,8 @@ namespace Marathon.Pages
         private void ResultButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MyRaceResultsPage(runner));
         private void SponsorButton_Click(object sender, RoutedEventArgs e)
         {
+            // поиск регистрации на текущий марафон
             RegistrationEvent regEvent = DB.entities.RegistrationEvent.FirstOrDefault(c => c.Registration.RunnerId == runner.RunnerId && c.Event.MarathonId == marathon.MarathonId);
-            Registration registration = DB.entities.Registration.Where(c => c.RunnerId == runner.RunnerId).ToList().Last();
 
             if (regEvent == null)
             {
@@ -53,7 +53,7 @@ namespace Marathon.Pages
                     NavigationService.Navigate(new MatathonRegPage(runner));
             }
             else
-                NavigationService.Navigate(new MySponsorshipPage(registration));
+                NavigationService.Navigate(new MySponsorshipPage(regEvent.Registration));
         }
     }
 }

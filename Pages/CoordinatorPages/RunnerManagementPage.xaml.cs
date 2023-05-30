@@ -47,9 +47,6 @@ namespace Marathon.Pages.CoordinatorPages
             List<string> sortList = new List<string>() { "Имени", "Фамилии", "Почте", "Статусу" };
             SortComboBox.ItemsSource = sortList;
             SortComboBox.SelectedIndex = 0;
-
-            RunnerDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
-
         }
 
         RegistrationStatus regStatus;
@@ -168,6 +165,8 @@ namespace Marathon.Pages.CoordinatorPages
                         break;
                 }
             }
+
+            RunnerCountTextBlock.Text = RunnerDataGrid.Items.Count.ToString();
         }
         private void DropButton_Click(object sender, RoutedEventArgs e)
         {
@@ -204,10 +203,16 @@ namespace Marathon.Pages.CoordinatorPages
         private void EmailListButton_Click(object sender, RoutedEventArgs e)
         {
             List<RegistrationEvent> runnersList = (List<RegistrationEvent>)RunnerDataGrid.ItemsSource;
-            InfoWindow infoWindow = new InfoWindow(6,regEventList:runnersList);
+            InfoWindow infoWindow = new InfoWindow(6, regEventList: runnersList);
             infoWindow.ShowDialog();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new SelectedRunnerManagePage(((Button)e.Source).DataContext as RegistrationEvent));
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            RunnerDataGrid.ItemsSource = DB.entities.RegistrationEvent.Where(c => c.Event.MarathonId == marathon.MarathonId).ToList();
+            RunnerCountTextBlock.Text = RunnerDataGrid.Items.Count.ToString();
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Marathon.Pages.AdminPages
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             DB.entities.SaveChanges();
-            DB.entities = new MarathonEntities();
+            DB.entities = new Marathon1Entities();
             InventoryDataGrid.ItemsSource = DB.entities.SetObjects.ToList();
         }
     }
