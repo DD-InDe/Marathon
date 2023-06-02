@@ -50,13 +50,13 @@ namespace Marathon.Pages.AdminPages
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (RoleComboBox.SelectedIndex == 0 && SearchTextBox.Text == "")
+            if (RoleComboBox.SelectedIndex == 0 && SearchTextBox.Text == string.Empty)
                 userList = DB.entities.User.ToList();
-            if (RoleComboBox.SelectedIndex != 0 && SearchTextBox.Text == "")
+            if (RoleComboBox.SelectedIndex != 0 && SearchTextBox.Text == string.Empty)
                 userList = DB.entities.User.Where(c => c.Role.RoleId == ((Role)RoleComboBox.SelectedItem).RoleId).ToList();
-            if (RoleComboBox.SelectedIndex == 0 && SearchTextBox.Text != "")
+            if (RoleComboBox.SelectedIndex == 0 && SearchTextBox.Text != string.Empty)
                 userList = DB.entities.User.Where(c => c.FirstName.Contains(SearchTextBox.Text) || c.LastName.Contains(SearchTextBox.Text) || c.Email.Contains(SearchTextBox.Text)).ToList();
-            if (RoleComboBox.SelectedIndex != 0 && SearchTextBox.Text != "")
+            if (RoleComboBox.SelectedIndex != 0 && SearchTextBox.Text != string.Empty)
             {
                 userList = DB.entities.User.Where(c => c.FirstName.Contains(SearchTextBox.Text) || c.LastName.Contains(SearchTextBox.Text) || c.Email.Contains(SearchTextBox.Text)).ToList();
                 userList = userList.Where(c => c.RoleId == ((Role)RoleComboBox.SelectedItem).RoleId).ToList();
@@ -65,15 +65,15 @@ namespace Marathon.Pages.AdminPages
             switch (SortByComboBox.SelectedItem)
             {
                 case "Имени":
-                    userList = userList.OrderBy(c => c.FirstName).ToList();
+                    userList = userList.OrderBy(c => c.FirstName).Where(c=>c.FirstName.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
                     countTextBlock.Text = userList.Count.ToString();
                     break;
                 case "Фамилии":
-                    userList = userList.OrderBy(c => c.LastName).ToList();
+                    userList = userList.OrderBy(c => c.LastName).Where(c => c.LastName.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
                     countTextBlock.Text = userList.Count.ToString();
                     break;
                 case "Почте":
-                    userList = userList.OrderBy(c => c.Email).ToList();
+                    userList = userList.OrderBy(c => c.Email).Where(c => c.Email.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
                     countTextBlock.Text = userList.Count.ToString();
                     break;
                 case "Ролям":

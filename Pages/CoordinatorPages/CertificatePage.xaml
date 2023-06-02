@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.CoordinatorPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CertificatePage">
+      Title="Сертификат участника">
 
     
     <Grid x:Name="mainGrid">

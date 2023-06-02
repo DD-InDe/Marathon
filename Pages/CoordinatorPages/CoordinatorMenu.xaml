@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CoordinatorMenu">
+      Title="Меню координатора">
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  >

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="800"
       Loaded="Page_Loaded"
-      Title="RunnerCardPage">
+      Title="Карточка бегуна">
 
     <Grid>
         <Grid.RowDefinitions>

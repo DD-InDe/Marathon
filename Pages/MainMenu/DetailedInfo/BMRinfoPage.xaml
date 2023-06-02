@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="500"
-      Title="BMRinfoPage">
+      Title="Инфорамция об уровнях активности">
 
     <Grid>
         <StackPanel>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marathon.Entities;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -57,6 +58,45 @@ namespace Marathon.Resources
                 return false;
             }
             return true;
+        }
+        public static bool EmailCheck(string email)
+        {
+            try { var addr = new System.Net.Mail.MailAddress(email); }
+            catch
+            {
+                MessageBox.Show("Некорректный адрес электронный почты!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+        public static AgeCategory AgeCategoryCheck(DateTime birth)
+        {
+            List<AgeCategory> categoryList = DB.entities.AgeCategory.ToList();
+            AgeCategory category;
+            int age = (int)((DateTime.Now - birth).TotalDays / 365.25);
+
+            if (age < 18)
+                category = categoryList.Where(c => c.AgeCategoryId == 1) as AgeCategory;
+            else if (age < 30)
+                category = categoryList.Where(c => c.AgeCategoryId == 2) as AgeCategory;
+            else if (age < 40)
+                category = categoryList.Where(c => c.AgeCategoryId == 3) as AgeCategory;
+            else if (age < 55)
+                category = categoryList.Where(c => c.AgeCategoryId == 4) as AgeCategory;
+            else if (age < 70)
+                category = categoryList.Where(c => c.AgeCategoryId == 5) as AgeCategory;
+            else
+                category = categoryList.Where(c => c.AgeCategoryId == 6) as AgeCategory;
+
+            return category;
+        }
+        public static bool PasswordSameCheck(string password, string passwordRepeat)
+        {
+            if (password == passwordRepeat)
+                return true;
+
+            MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+            return false; 
         }
     }
 }

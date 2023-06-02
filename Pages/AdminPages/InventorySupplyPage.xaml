@@ -6,11 +6,11 @@
       xmlns:local="clr-namespace:Marathon.Pages.AdminPages"
       mc:Ignorable="d"     
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="InventorySupplyPage">
+      Title="Поступление инвентаря">
 
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Style="{StaticResource headerTextBlock}">Постпление инвентаря</TextBlock>
+            <TextBlock Style="{StaticResource headerTextBlock}">Поступление инвентаря</TextBlock>
             
             <DataGrid x:Name="InventoryDataGrid" Width="400"  CanUserAddRows="False"  CanUserDeleteRows="False" AutoGenerateColumns="False">
                 <DataGrid.Columns>

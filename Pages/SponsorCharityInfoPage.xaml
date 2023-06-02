@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="340" d:DesignWidth="500"
       Loaded="Page_Loaded"
-      Title="Информация о споонсоре">
+      Title="Информация о спонсорстве">
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">

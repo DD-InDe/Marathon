@@ -29,114 +29,90 @@ namespace Marathon.Pages.AdminPages
 
             RoleComboBox.ItemsSource = DB.entities.Role.ToList();
             CountryComboBox.ItemsSource = DB.entities.Country.ToList();
-
-            CountryComboBox.Visibility = Visibility.Collapsed;
-            BirthDatePicker.Visibility = Visibility.Collapsed;
-            CountryTextBlock.Visibility = Visibility.Collapsed;
-            BirthTextBlock.Visibility = Visibility.Collapsed;
+            GenderComboBox.ItemsSource = DB.entities.Gender.ToList();
         }
 
+        User user;
         Role role;
+        Runner runner;
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PasswordTextBox.Text == PasswordRepeatTextBox.Password && AppMain.PasswordCheck(PasswordTextBox.Text) && EmailCheck() && FirstNameTextBox.Text != string.Empty && LastNameTextBox.Text != string.Empty)
+            user = DB.entities.User.FirstOrDefault(c => c.Email == EmailTextBox.Text);
+            if (user == null)
             {
-                try
+                if (FirstNameTextBox.Text != string.Empty && LastNameTextBox.Text != string.Empty && PasswordTextBox.Text != string.Empty)
                 {
-                    switch (((Role)RoleComboBox.SelectedItem).RoleName)
+                    UserAdd();
+
+                    if (role.RoleName == "Runner")
                     {
-                        case "Runner":
-                            if (AppMain.AgeCheck(Convert.ToDateTime(BirthDatePicker.SelectedDate)))
+                        if (CountryComboBox.SelectedItem != null && GenderComboBox.SelectedItem != null && BirthDatePicker.Text != string.Empty)
+                        {
+                            if (AppMain.AgeCheck((DateTime)BirthDatePicker.SelectedDate))
                             {
-                                UserAdd();
-                                Runner runner = new Runner();
-
+                                runner = new Runner();
                                 runner.Email = EmailTextBox.Text;
+                                runner.User = user;
+                                runner.Country = CountryComboBox.SelectedItem as Country;
+                                runner.Gender1 = GenderComboBox.SelectedItem as Gender;
                                 runner.DateOfBirth = BirthDatePicker.SelectedDate;
-                                runner.Country = (Country)CountryComboBox.SelectedItem;
+                                runner.AgeCategory = AppMain.AgeCategoryCheck((DateTime)BirthDatePicker.SelectedDate);
+                                runner.AgeId = runner.AgeCategory.AgeCategoryId;
                                 DB.entities.Runner.Add(runner);
-
-                                DB.entities.SaveChanges();
-                                MessageBox.Show("Вы успешно зарегистрировали пользователя!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                                NavigationService.GoBack();
                             }
-                            break;
-
-                        case "Coordinator":
-                            UserAdd();
-
-                            DB.entities.SaveChanges();
-                            MessageBox.Show("Вы успешно зарегистрировали пользователя!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.GoBack();
-                            break;
-
-                        case "Administrator":
-                            UserAdd();
-
-                            DB.entities.SaveChanges();
-                            MessageBox.Show("Вы успешно зарегистрировали пользователя!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.GoBack();
-                            break;
+                        }
+                        else
+                            MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                    DB.entities.SaveChanges();
+                    MessageBox.Show("Пользователь создан!");
                 }
-                catch
-                {
-                    MessageBox.Show("Введены неккоректные данные!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                else
+                    MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else
+                MessageBox.Show("Почта уже используется!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
+        private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
 
         private void UserAdd()
         {
-            User user;
             try
             {
-                user = new User();
+                if (AppMain.EmailCheck(EmailTextBox.Text) && AppMain.PasswordCheck(PasswordTextBox.Text) && AppMain.PasswordSameCheck(PasswordTextBox.Text, PasswordRepeatTextBox.Password))
+                {
+                    user = new User();
+                    user.Email = EmailTextBox.Text;
+                    user.FirstName = FirstNameTextBox.Text;
+                    user.LastName = LastNameTextBox.Text;
+                    user.Password = PasswordTextBox.Text;
+                    user.Role = RoleComboBox.SelectedItem as Role;
 
-                user.Email = EmailTextBox.Text;
-                user.Password = PasswordTextBox.Text;
-                user.FirstName = FirstNameTextBox.Text;
-                user.LastName = LastNameTextBox.Text;
-                user.RoleId = ((Role)RoleComboBox.SelectedItem).RoleId;
-                DB.entities.User.Add(user);
+                    DB.entities.User.Add(user);
+                }
             }
             catch
             {
-                MessageBox.Show("Произошла ошибка!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Что-то пошло не так..", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
 
         private void RoleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((Role)RoleComboBox.SelectedItem).RoleName == "Runner")
+            role = (Role)RoleComboBox.SelectedItem;
+            if (role != null && role.RoleName == "Runner")
             {
-                CountryComboBox.Visibility = Visibility.Visible;
-                BirthDatePicker.Visibility = Visibility.Visible;
-                CountryTextBlock.Visibility = Visibility.Visible;
-                BirthTextBlock.Visibility = Visibility.Visible;
+                RunnersEditStackPanel.Visibility = Visibility.Visible;
+                RunnersStackPanel.Visibility = Visibility.Visible;
             }
             else
             {
-                CountryComboBox.Visibility = Visibility.Collapsed;
-                BirthDatePicker.Visibility = Visibility.Collapsed;
-                CountryTextBlock.Visibility = Visibility.Collapsed;
-                BirthTextBlock.Visibility = Visibility.Collapsed;
+                RunnersEditStackPanel.Visibility = Visibility.Collapsed;
+                RunnersStackPanel.Visibility = Visibility.Collapsed;
             }
         }
 
-        private bool EmailCheck()
-        {
-            try { var addr = new System.Net.Mail.MailAddress(EmailTextBox.Text); }
-            catch
-            {
-                MessageBox.Show("Некорректный адрес электронный почты!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            return true;
-        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = "0123456789.!@#$%&*()_-,`/'".IndexOf(e.Text) > 0;
     }
 }

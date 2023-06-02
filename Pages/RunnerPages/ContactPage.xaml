@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.RunnerPages"
       mc:Ignorable="d" 
       d:DesignHeight="340" d:DesignWidth="500"
-      Title="ContactPage">
+      Title="Контакты">
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">

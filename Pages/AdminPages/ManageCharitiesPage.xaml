@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.AdminPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManageCharitiesPage">
+      Title="Управление благотворительными организациями">
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">

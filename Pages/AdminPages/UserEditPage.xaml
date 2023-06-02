@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
-      Title="UserEditPage">
+      Title="Редактирование профиля пользователя">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +20,7 @@
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource headerTextBlock}" Grid.ColumnSpan="2">Редактирование пользователя</TextBlock>
+        <TextBlock Style="{StaticResource headerTextBlock}" Grid.ColumnSpan="2">Редактирование профиля пользователя</TextBlock>
 
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
@@ -29,17 +29,29 @@
                     <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Имя:</TextBlock>
                     <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Фамилия:</TextBlock>
                     <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}">Роль:</TextBlock>
-                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}" x:Name="CountryTextBlock">Страна:</TextBlock>
-                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}" x:Name="BirthTextBlock">Дата рождения:</TextBlock>
+                    <StackPanel x:Name="RunnerStackPanel">
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}" >Пол:</TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}" >Страна:</TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource mainTextBlock}" >Дата рождения:</TextBlock>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Style="{StaticResource mainTextBlock}" Text="{Binding Email}"></TextBlock>
-                    <olen:WatermarkTextBox x:Name="FirstNameTextBox" Text="{Binding FirstName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
-                    <olen:WatermarkTextBox x:Name="LastNameTextBox" Text="{Binding LastName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
-                    <olen:WatermarkComboBox x:Name="RoleComboBox" SelectionChanged="RoleComboBox_SelectionChanged" SelectedItem="{Binding Role}" HorizontalAlignment="Left" DisplayMemberPath="RoleName" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
-                    <olen:WatermarkComboBox x:Name="CountryComboBox" HorizontalAlignment="Left" DisplayMemberPath="CountryName" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
-                    <DatePicker x:Name="BirthDatePicker" Style="{StaticResource mainDatePicker}" Width="160"></DatePicker>
+                    <StackPanel Orientation="Vertical" x:Name="UserEditStackPanel">
+                        <TextBlock Style="{StaticResource mainTextBlock}" Text="{Binding Email}"></TextBlock>
+                        <olen:WatermarkTextBox x:Name="FirstNameTextBox" Text="{Binding FirstName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
+                        <olen:WatermarkTextBox x:Name="LastNameTextBox" Text="{Binding LastName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
+                        <olen:WatermarkComboBox x:Name="RoleComboBox" SelectionChanged="RoleComboBox_SelectionChanged" SelectedItem="{Binding Role}" HorizontalAlignment="Left" DisplayMemberPath="RoleName" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
+                    </StackPanel>
+                    <StackPanel x:Name="RunnerEditStackPanel" Margin="0,4,0,0">
+                        <olen:WatermarkComboBox x:Name="GenderComboBox" SelectedItem="{Binding Gender1}" HorizontalAlignment="Left" DisplayMemberPath="Gender1" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
+                        <olen:WatermarkComboBox x:Name="CountryComboBox" SelectedItem="{Binding Country}" HorizontalAlignment="Left" DisplayMemberPath="CountryName" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
+                        <DatePicker x:Name="BirthDatePicker" Text="{Binding DateOfBirth}" Style="{StaticResource mainDatePicker}" Width="160"></DatePicker>
+                    </StackPanel>
                 </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
+                <Button x:Name="CancelButton" Click="CancelButton_Click">Отмена</Button>
             </StackPanel>
         </StackPanel>
 
@@ -56,11 +68,7 @@
                     <olen:WatermarkPasswordBox x:Name="PasswordRepeatTextBox" Style="{StaticResource mainWTextBox}" Watermark="Повторитель пароль"></olen:WatermarkPasswordBox>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
-            <Button x:Name="CancelButton" Click="CancelButton_Click">Отмена</Button>
+                <Button x:Name="SavePasswordButton" Click="SavePasswordButton_Click" Width="120">Сохранить пароль</Button>
         </StackPanel>
     </Grid>
 </Page>

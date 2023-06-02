@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.MainMenu.DetailedInfo"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MarathonDurationPage">
+      Title="Длительность марафона">
 
     <Grid>
         <StackPanel Orientation="Vertical">

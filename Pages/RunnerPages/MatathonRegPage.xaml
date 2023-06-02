@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.MainMenu"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MatathonRegPage">
+      Title="Регистрация на марафон">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marathon.Pages.CoordinatorPages"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="700"
-      Title="RunnersBadgePage">
+      Title="Бейдж бегуна">
 
     <Grid>
         <Grid.ColumnDefinitions>

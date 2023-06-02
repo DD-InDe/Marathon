@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
-      Title="UserManagementPage">
+      Title="Управление пользователями">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -50,7 +50,7 @@
         <!--таблица пользователей-->
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Row="2">
             <TextBlock Style="{StaticResource descriptionTextBlock}">Всего пользователей: <Run x:Name="countTextBlock"></Run></TextBlock>
-            <DataGrid x:Name="UserDataGrid" Height="220" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" Width="700">
+            <DataGrid x:Name="UserDataGrid" Height="220" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" Width="700">
                 <DataGrid.Columns>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="150" Header="Имя" Binding="{Binding FirstName}"></DataGridTextColumn>
                     <DataGridTextColumn ElementStyle="{StaticResource mainTextBlock}" HeaderStyle="{StaticResource mainColumnHeader}" Width="150" Header="Фамилия" Binding="{Binding LastName}"></DataGridTextColumn>
