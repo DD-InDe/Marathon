@@ -38,8 +38,8 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical" x:Name="UserEditStackPanel">
                         <TextBlock Style="{StaticResource mainTextBlock}" Text="{Binding Email}"></TextBlock>
-                        <olen:WatermarkTextBox x:Name="FirstNameTextBox" Text="{Binding FirstName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
-                        <olen:WatermarkTextBox x:Name="LastNameTextBox" Text="{Binding LastName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
+                        <olen:WatermarkTextBox x:Name="FirstNameTextBox" PreviewTextInput="PreviewTextInput" Text="{Binding FirstName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
+                        <olen:WatermarkTextBox x:Name="LastNameTextBox" PreviewTextInput="PreviewTextInput" Text="{Binding LastName}" Style="{StaticResource mainWTextBox}" HorizontalAlignment="Left"  Width="150"></olen:WatermarkTextBox>
                         <olen:WatermarkComboBox x:Name="RoleComboBox" SelectionChanged="RoleComboBox_SelectionChanged" SelectedItem="{Binding Role}" HorizontalAlignment="Left" DisplayMemberPath="RoleName" Style="{StaticResource WComboBox}"></olen:WatermarkComboBox>
                     </StackPanel>
                     <StackPanel x:Name="RunnerEditStackPanel" Margin="0,4,0,0">

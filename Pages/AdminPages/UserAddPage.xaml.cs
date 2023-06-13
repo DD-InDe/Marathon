@@ -38,41 +38,35 @@ namespace Marathon.Pages.AdminPages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            user = DB.entities.User.FirstOrDefault(c => c.Email == EmailTextBox.Text);
-            if (user == null)
+            if (FirstNameTextBox.Text != string.Empty && LastNameTextBox.Text != string.Empty && PasswordTextBox.Text != string.Empty)
             {
-                if (FirstNameTextBox.Text != string.Empty && LastNameTextBox.Text != string.Empty && PasswordTextBox.Text != string.Empty)
-                {
-                    UserAdd();
+                UserAdd();
 
-                    if (role.RoleName == "Runner")
+                if (role.RoleName == "Runner")
+                {
+                    if (CountryComboBox.SelectedItem != null && GenderComboBox.SelectedItem != null && BirthDatePicker.Text != string.Empty)
                     {
-                        if (CountryComboBox.SelectedItem != null && GenderComboBox.SelectedItem != null && BirthDatePicker.Text != string.Empty)
+                        if (AppMain.AgeCheck((DateTime)BirthDatePicker.SelectedDate))
                         {
-                            if (AppMain.AgeCheck((DateTime)BirthDatePicker.SelectedDate))
-                            {
-                                runner = new Runner();
-                                runner.Email = EmailTextBox.Text;
-                                runner.User = user;
-                                runner.Country = CountryComboBox.SelectedItem as Country;
-                                runner.Gender1 = GenderComboBox.SelectedItem as Gender;
-                                runner.DateOfBirth = BirthDatePicker.SelectedDate;
-                                runner.AgeCategory = AppMain.AgeCategoryCheck((DateTime)BirthDatePicker.SelectedDate);
-                                runner.AgeId = runner.AgeCategory.AgeCategoryId;
-                                DB.entities.Runner.Add(runner);
-                            }
+                            runner = new Runner();
+                            runner.Email = EmailTextBox.Text;
+                            runner.User = user;
+                            runner.Country = CountryComboBox.SelectedItem as Country;
+                            runner.Gender1 = GenderComboBox.SelectedItem as Gender;
+                            runner.DateOfBirth = BirthDatePicker.SelectedDate;
+                            runner.AgeCategory = AppMain.AgeCategoryCheck((DateTime)BirthDatePicker.SelectedDate);
+                            runner.AgeId = runner.AgeCategory.AgeCategoryId;
+                            DB.entities.Runner.Add(runner);
                         }
-                        else
-                            MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    DB.entities.SaveChanges();
-                    MessageBox.Show("Пользователь создан!");
+                    else
+                        MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else
-                    MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                DB.entities.SaveChanges();
+                MessageBox.Show("Пользователь создан!");
             }
             else
-                MessageBox.Show("Почта уже используется!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
 
@@ -80,7 +74,7 @@ namespace Marathon.Pages.AdminPages
         {
             try
             {
-                if (AppMain.EmailCheck(EmailTextBox.Text) && AppMain.PasswordCheck(PasswordTextBox.Text) && AppMain.PasswordSameCheck(PasswordTextBox.Text, PasswordRepeatTextBox.Password))
+                if (AppMain.EmailCheck(EmailTextBox.Text) && AppMain.PasswordCheck(PasswordTextBox.Text, PasswordRepeatTextBox.Password))
                 {
                     user = new User();
                     user.Email = EmailTextBox.Text;
@@ -112,7 +106,6 @@ namespace Marathon.Pages.AdminPages
                 RunnersStackPanel.Visibility = Visibility.Collapsed;
             }
         }
-
         private void PreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = "0123456789.!@#$%&*()_-,`/'".IndexOf(e.Text) > 0;
     }
 }

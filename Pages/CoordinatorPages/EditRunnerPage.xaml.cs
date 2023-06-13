@@ -71,7 +71,7 @@ namespace Marathon.Pages.RunnerPages
                     {
                         if (PasswordTextBox.Password == PasswordRepeatTextBox.Password)
                         {
-                            if (AppMain.PasswordCheck(PasswordTextBox.Password))
+                            if (AppMain.PasswordCheck(PasswordTextBox.Password, PasswordRepeatTextBox.Password))
                             {
                                 runner.User.Password = PasswordTextBox.Password;
                                 runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
@@ -81,15 +81,13 @@ namespace Marathon.Pages.RunnerPages
                                 NavigationService.GoBack();
                             }
                         }
-                        else MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             else MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-
         }
-        private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
         private void VisibleButton_Click(object sender, RoutedEventArgs e)
         {
             VisibleStackPanel.Visibility = Visibility.Collapsed;

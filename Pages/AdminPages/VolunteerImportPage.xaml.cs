@@ -46,61 +46,68 @@ namespace Marathon.Pages.AdminPages
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FileTextBox.Text != null)
+            try
             {
-                //загрузка файла
-                List<string> fileVolunteersList = File.ReadAllLines(FileTextBox.Text).ToList();
-                fileVolunteersList.RemoveAt(0);
-
-                string[] volunteerString;
-                int id;
-                //проходимся по строкам
-                for (int i = 0; i < fileVolunteersList.Count; i++)
+                if (FileTextBox.Text != null)
                 {
-                    volunteerString = fileVolunteersList[i].Split(',');
+                    //загрузка файла
+                    List<string> fileVolunteersList = File.ReadAllLines(FileTextBox.Text).ToList();
+                    fileVolunteersList.RemoveAt(0);
 
-                    id = Convert.ToInt32(volunteerString[0]);
-                    volunteer = DB.entities.Volunteer.FirstOrDefault(c => c.VolunteerId == id);
-                    void DateWrite(Volunteer volunteer)
+                    string[] volunteerString;
+                    int id;
+                    //проходимся по строкам
+                    for (int i = 0; i < fileVolunteersList.Count; i++)
                     {
-                        volunteer.LastName = volunteerString[1];
-                        volunteer.FirstName = volunteerString[2];
-                        volunteer.CountryCode = volunteerString[3];
-                        volunteer.Gender = volunteerString[4];
-                    }
+                        volunteerString = fileVolunteersList[i].Split(',');
 
-                    if (volunteer == null)
-                    {
-                        volunteer = new Volunteer();
-
-                        DateWrite(volunteer);
-
-                        DB.entities.Volunteer.Add(volunteer);
-                        if (volunteer.Gender1 != null && volunteer.Country != null)
+                        id = Convert.ToInt32(volunteerString[0]);
+                        volunteer = DB.entities.Volunteer.FirstOrDefault(c => c.VolunteerId == id);
+                        void DateWrite(Volunteer volunteer)
                         {
-                            DB.entities.SaveChanges();
-                            addCount++;
+                            volunteer.LastName = volunteerString[1];
+                            volunteer.FirstName = volunteerString[2];
+                            volunteer.CountryCode = volunteerString[3];
+                            volunteer.Gender = volunteerString[4];
+                        }
+
+                        if (volunteer == null)
+                        {
+                            volunteer = new Volunteer();
+
+                            DateWrite(volunteer);
+
+                            DB.entities.Volunteer.Add(volunteer);
+                            if (volunteer.Gender1 != null && volunteer.Country != null)
+                            {
+                                DB.entities.SaveChanges();
+                                addCount++;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Ошибка добавления Волонтера с id: {id} ");
+                                DB.entities.Volunteer.Remove(volunteer);
+                            }
                         }
                         else
                         {
-                            MessageBox.Show($"Ошибка добавления Волонтера с id: {id} ");
-                            DB.entities.Volunteer.Remove(volunteer);
+                            DateWrite(volunteer);
+                            if (volunteer.Gender1 != null && volunteer.Country != null)
+                            {
+                                changeCount++;
+                                DB.entities.SaveChanges();
+                            }
+                            else
+                                MessageBox.Show($"Ошибка изменения Волонтера с id: {id} ");
                         }
-                    }
-                    else
-                    {
-                        DateWrite(volunteer);
-                        if (volunteer.Gender1 != null && volunteer.Country != null)
-                        {
-                            changeCount++;
-                            DB.entities.SaveChanges();
-                        }
-                        else
-                            MessageBox.Show($"Ошибка изменения Волонтера с id: {id} ");
                     }
                 }
+                MessageBox.Show($"Добавлено {addCount} записей. Изменено {changeCount} записей.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            MessageBox.Show($"Добавлено {addCount} записей. Изменено {changeCount} записей.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+            catch
+            {
+                MessageBox.Show($"");
+            }
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e) => NavigationService.GoBack();
     }

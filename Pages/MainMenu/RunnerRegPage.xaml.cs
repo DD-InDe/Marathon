@@ -42,44 +42,31 @@ namespace Marathon.Pages.MainMenu
             if (EmailTextBox.Text != null && PasswordTextBox.Text != null && PasswordRepeatTextBox.Text != null && FirstNameTextBox.Text != null
             && LastNameTextBox.Text != null && GenderComboBox.SelectedItem != null && CountryComboBox.SelectedItem != null && BirthDatePicker.SelectedDate != null)
             {
-                if (EmailCheck())
+                if (AppMain.EmailCheck(EmailTextBox.Text) && AppMain.AgeCheck(Convert.ToDateTime(BirthDatePicker.SelectedDate)) && AppMain.PasswordCheck(PasswordTextBox.Text, PasswordRepeatTextBox.Password))
                 {
-                    if (DB.entities.User.FirstOrDefault(c => c.Email == EmailTextBox.Text) == null)
-                    {
-                        if (PasswordTextBox.Password == PasswordRepeatTextBox.Password)
-                        {
-                            if (AppMain.PasswordCheck(PasswordTextBox.Password) && AppMain.AgeCheck(Convert.ToDateTime(BirthDatePicker.SelectedDate)))
-                            {
-                                User user = new User();
-                                Runner runner = new Runner();
+                    User user = new User();
+                    Runner runner = new Runner();
 
-                                user.Email = EmailTextBox.Text;
-                                user.Password = PasswordTextBox.Text;
-                                user.FirstName = FirstNameTextBox.Text;
-                                user.LastName = LastNameTextBox.Text;
-                                user.RoleId = "R";
-                                DB.entities.User.Add(user);
+                    user.Email = EmailTextBox.Text;
+                    user.Password = PasswordTextBox.Text;
+                    user.FirstName = FirstNameTextBox.Text;
+                    user.LastName = LastNameTextBox.Text;
+                    user.RoleId = "R";
+                    DB.entities.User.Add(user);
 
-                                runner.Email = EmailTextBox.Text;
-                                runner.Gender1 = gender;
-                                runner.DateOfBirth = BirthDatePicker.SelectedDate;
-                                runner.CountryCode = country.CountryCode;
-                                runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
-                                DB.entities.Runner.Add(runner);
+                    runner.Email = EmailTextBox.Text;
+                    runner.User = user;
+                    runner.Gender1 = gender;
+                    runner.DateOfBirth = BirthDatePicker.SelectedDate;
+                    runner.CountryCode = country.CountryCode;
+                    runner.RunnerImage = (byte[])RunnerPhoto.DataContext;
+                    runner.AgeCategory = AppMain.AgeCategoryCheck((DateTime)BirthDatePicker.SelectedDate);
+                    DB.entities.Runner.Add(runner);
 
-                                DB.entities.SaveChanges();
-                                MessageBox.Show("Вы успешно зарегистрировались в системе!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                                NavigationService.Navigate(new MatathonRegPage(runner));
-                            }
-                        }
-                        else
-                            MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                        MessageBox.Show("Эта почта уже используется!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                    DB.entities.SaveChanges();
+                    MessageBox.Show("Вы успешно зарегистрировались в системе!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigationService.Navigate(new MatathonRegPage(runner));
                 }
-                else
-                    MessageBox.Show("Почта введена неверно!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
                 MessageBox.Show("Поля не могут быть пустыми!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);

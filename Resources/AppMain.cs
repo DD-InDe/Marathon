@@ -11,9 +11,9 @@ namespace Marathon.Resources
 {
     public static class AppMain
     {
-        public static bool PasswordCheck(string password)
+        public static bool PasswordCheck(string password, string passwordRepeat)
         {
-            if (PasswordCharCheck() && PasswordNumCheck() && PasswordSymCheck() && PasswordLengthCheck())
+            if (PasswordCharCheck() && PasswordNumCheck() && PasswordSymCheck() && PasswordLengthCheck() && PasswordSameCheck())
                 return true;
             return false;
 
@@ -49,6 +49,13 @@ namespace Marathon.Resources
                 MessageBox.Show("Пароль должен содержать один из символов: !@#$%^", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
+            bool PasswordSameCheck()
+            {
+                if (password == passwordRepeat)
+                    return true;
+                MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
         }
         public static bool AgeCheck(DateTime birth)
         {
@@ -61,13 +68,19 @@ namespace Marathon.Resources
         }
         public static bool EmailCheck(string email)
         {
+            //проверка на формат
             try { var addr = new System.Net.Mail.MailAddress(email); }
             catch
             {
                 MessageBox.Show("Некорректный адрес электронный почты!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            return true;
+            //проверка на существование
+            if (DB.entities.User.FirstOrDefault(c => c.Email == email) == null)
+                return true;
+
+            MessageBox.Show("Эта почта уже используется!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+            return false;
         }
         public static AgeCategory AgeCategoryCheck(DateTime birth)
         {
@@ -89,14 +102,6 @@ namespace Marathon.Resources
                 category = categoryList.Where(c => c.AgeCategoryId == 6) as AgeCategory;
 
             return category;
-        }
-        public static bool PasswordSameCheck(string password, string passwordRepeat)
-        {
-            if (password == passwordRepeat)
-                return true;
-
-            MessageBox.Show("Пароли не совпадают!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-            return false; 
         }
     }
 }

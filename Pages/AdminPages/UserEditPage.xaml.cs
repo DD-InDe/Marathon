@@ -26,7 +26,6 @@ namespace Marathon.Pages.AdminPages
         {
             InitializeComponent();
             user = _user;
-            password = user.Password;
 
             RoleComboBox.ItemsSource = DB.entities.Role.ToList();
             CountryComboBox.ItemsSource = DB.entities.Country.ToList();
@@ -37,7 +36,6 @@ namespace Marathon.Pages.AdminPages
 
         User user;
         Runner runner;
-        string password;
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +64,7 @@ namespace Marathon.Pages.AdminPages
         }
         private void SavePasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AppMain.PasswordCheck(PasswordTextBox.Text) && AppMain.PasswordSameCheck(PasswordTextBox.Text, PasswordRepeatTextBox.Password))
+            if (AppMain.PasswordCheck(PasswordTextBox.Text, PasswordRepeatTextBox.Password))
             {
                 user.Password = PasswordTextBox.Text;
                 DB.entities.SaveChanges();
@@ -98,5 +96,6 @@ namespace Marathon.Pages.AdminPages
             }
         }
 
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = "0123456789.!@#$%&*()_-,`/'".IndexOf(e.Text) > 0;
     }
 }
